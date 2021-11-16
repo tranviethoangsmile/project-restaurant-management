@@ -14,9 +14,9 @@ public class RestaurantAPI {
 //    Mọi người dán Autowired ở đây.
     @Autowired
     ITableService tableService;
-    @PostMapping("/table/create")
-    public Desk createTable (@RequestBody Desk desks) {
-        return tableService.save(desks);
+    @PostMapping("/desk/create")
+    public Desk createTable (@RequestBody Desk desk) {
+        return tableService.save(desk);
     }
 }
 

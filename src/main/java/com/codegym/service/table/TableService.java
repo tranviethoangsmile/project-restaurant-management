@@ -20,8 +20,8 @@ public class TableService implements ITableService{
     }
 
     @Override
-    public Desk save(Desk tables) {
-        return null;
+    public Desk save(Desk desk) {
+        return tablesRepository.save(desk);
     }
 
     @Override
