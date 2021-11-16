@@ -22,7 +22,7 @@
 }
 
 body{
-    background-color: #CCCCCC;
+    background-color: #ffffff;
 }
 
 .section .wizard-card{
@@ -153,49 +153,49 @@ body{
 
 }
 
-.logo-container.logo-documentation{
-    position: relative;
-    top: 0;
-    left: 0;
-}
+/*.logo-container.logo-documentation{*/
+/*    position: relative;*/
+/*    top: 0;*/
+/*    left: 0;*/
+/*}*/
 
-.logo-container .logo{
-    overflow: hidden;
-    border-radius: 50%;
-    border: 1px solid #333333;
-    width: 50px;
-    float: left;
-}
+/*.logo-container .logo{*/
+/*    overflow: hidden;*/
+/*    border-radius: 50%;*/
+/*    border: 1px solid #333333;*/
+/*    width: 50px;*/
+/*    float: left;*/
+/*}*/
 
-.logo-container .brand{
-    font-size: 16px;
-    line-height: 18px;
-    float: left;
-    margin-left: 10px;
-    margin-top: 7px;
-    width: 70px;
-    height: 40px;
-    text-align: left;
-}
+/*.logo-container .brand{*/
+/*    font-size: 16px;*/
+/*    line-height: 18px;*/
+/*    float: left;*/
+/*    margin-left: 10px;*/
+/*    margin-top: 7px;*/
+/*    width: 70px;*/
+/*    height: 40px;*/
+/*    text-align: left;*/
+/*}*/
 
 
-.navbar-default .logo-container .brand{
-    color: #999999;
-}
-.navbar-transparent .logo-container .brand{
-    color: #FFFFFF;
-}
+/*.navbar-default .logo-container .brand{*/
+/*    color: #999999;*/
+/*}*/
+/*.navbar-transparent .logo-container .brand{*/
+/*    color: #FFFFFF;*/
+/*}*/
 
-.logo-container .brand-material{
-    font-size: 18px;
-    margin-top: 15px;
-    height: 25px;
-    width: auto;
-}
+/*.logo-container .brand-material{*/
+/*    font-size: 18px;*/
+/*    margin-top: 15px;*/
+/*    height: 25px;*/
+/*    width: auto;*/
+/*}*/
 
-.logo-container .logo img{
-    width: 100%;
-}
+/*.logo-container .logo img{*/
+/*    width: 100%;*/
+/*}*/
 .navbar-small .logo-container .brand{
     color: #333333;
 }
