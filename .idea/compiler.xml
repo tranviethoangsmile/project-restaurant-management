@@ -8,6 +8,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="project-Restaurant-management" />
+        <module name="project-restaurant-management" />
       </profile>
     </annotationProcessing>
   </component>
