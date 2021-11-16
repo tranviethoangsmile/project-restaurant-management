@@ -1,5 +1,7 @@
 package com.codegym.config;
 
+import com.codegym.service.table.ITableService;
+import com.codegym.service.table.TableService;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -119,6 +121,11 @@ public class AppConfig implements WebMvcConfigurer, ApplicationContextAware {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/resource/**").addResourceLocations("/resource/");
+    }
+
+    @Bean
+    public ITableService tableService() {
+        return new TableService();
     }
 
 }

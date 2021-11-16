@@ -7,6 +7,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import javax.persistence.Table;
+import java.math.BigDecimal;
 
 @Getter
 @Setter
@@ -19,7 +20,7 @@ public class OrderDetail {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private Integer quantity;
-
+    private BigDecimal price;
     @ManyToOne
     @JoinColumn(name = "product_id", referencedColumnName = "id", nullable = false)
     private Product product;
