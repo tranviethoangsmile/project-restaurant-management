@@ -30,6 +30,7 @@ public class User {
     private String phone;
     private String status;
     private String role;
+
     @JsonIgnore
     @OneToMany (targetEntity = Order.class,fetch = FetchType.EAGER)
     private Set<Order> orders;
