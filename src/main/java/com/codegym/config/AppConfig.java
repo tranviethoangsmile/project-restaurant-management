@@ -2,6 +2,8 @@ package com.codegym.config;
 
 import com.codegym.service.table.ITableService;
 import com.codegym.service.table.TableService;
+import com.codegym.service.user.IUserService;
+import com.codegym.service.user.UserService;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -17,6 +19,7 @@ import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -128,4 +131,8 @@ public class AppConfig implements WebMvcConfigurer, ApplicationContextAware {
         return new TableService();
     }
 
+    @Bean
+    public IUserService userService() {
+        return new UserService();
+    }
 }

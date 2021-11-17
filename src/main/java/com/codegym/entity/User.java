@@ -23,13 +23,16 @@ public class User {
     private Long id;
 
     private String fullName;
-    private String userName;
-    private String passWord;
+    private String username;
+    private String password;
     private Date dob;
     private String address;
     private String phone;
     private String status;
-    private String role;
+
+    @ManyToOne
+    @JoinColumn(name = "role_id")
+    private Role role;
 
     @JsonIgnore
     @OneToMany (targetEntity = Order.class,fetch = FetchType.EAGER)
