@@ -29,9 +29,9 @@ public class HomeController {
         return modelAndView;
     }
 
-    @GetMapping ("/table")
+    @GetMapping ("/desk")
     private ModelAndView goTable () {
-        ModelAndView modelAndView = new ModelAndView("/layout/table");
+        ModelAndView modelAndView = new ModelAndView("/layout/desk");
         return modelAndView;
     }
 
