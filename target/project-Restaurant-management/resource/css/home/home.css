@@ -248,14 +248,12 @@ a.article:hover {
     margin-top: 10px !important;
 }
 
-.container{
+.container {
     position: relative;
     margin-top: 10%;
     margin-left: 20%;
 }
-.error {
-    color: red;
-}
+
 #sidebar{
     background-color: #14808F;
 }
