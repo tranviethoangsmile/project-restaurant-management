@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
 Created-By: IntelliJ IDEA
-Built-By: tvh-macbookpro
-Build-Jdk: BellSoft Liberica JDK version 16.0.2
+Built-By: ASUS
+Build-Jdk: version 16.0.1
 

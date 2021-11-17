@@ -7,6 +7,7 @@ $(document).ready(function () {
         $('a[aria-expanded=true]').attr('aria-expanded', 'false');
     });
 });
+
 //Tạo bàn
 createTable = function () {
   if($("#deskCreate").valid()){
@@ -15,7 +16,6 @@ createTable = function () {
           showDenyButton: true,
           confirmButtonText: 'Yes',
       }).then((result) => {
-          /* Read more about isConfirmed, isDenied below */
           if (result.isConfirmed) {
               let desk = {
                   name: $("#tableName").val(),
@@ -42,4 +42,6 @@ createTable = function () {
       })
   }
 }
+
+//viết api nhận bàn về lúc truy cập và hiển thị ửo mục danh sách bàn.
 
