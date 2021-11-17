@@ -1,30 +1,30 @@
 package com.codegym.entity;
 
 public class Login {
-    private String userName;
-    private String passWord;
+    private String username;
+    private String password;
 
     public Login() {
     }
 
     public Login(String userName, String passWord) {
-        this.userName = userName;
-        this.passWord = passWord;
+        this.username = userName;
+        this.password = passWord;
     }
 
     public String getUserName() {
-        return userName;
+        return username;
     }
 
     public void setUserName(String userName) {
-        this.userName = userName;
+        this.username = userName;
     }
 
-    public String getPassWord() {
-        return passWord;
+    public String getPassword() {
+        return password;
     }
 
-    public void setPassWord(String passWord) {
-        this.passWord = passWord;
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

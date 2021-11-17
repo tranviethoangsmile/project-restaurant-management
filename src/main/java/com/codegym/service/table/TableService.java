@@ -11,7 +11,7 @@ public class TableService implements ITableService{
     TablesRepository tablesRepository;
     @Override
     public Iterable<Desk> findAll() {
-        return null;
+        return tablesRepository.findAll();
     }
 
     @Override
