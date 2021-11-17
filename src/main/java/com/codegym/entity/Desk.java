@@ -14,8 +14,8 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "tables")
-public class Tables {
+@Table(name = "desks")
+public class Desk {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;

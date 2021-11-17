@@ -20,7 +20,7 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
-    private BigDecimal price;
+    private BigDecimal priceUnit;
     private Boolean status;
     @ManyToOne
     @JoinColumn(name = "category_id", referencedColumnName = "id", nullable = false)

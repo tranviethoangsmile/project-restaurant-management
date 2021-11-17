@@ -1,5 +1,8 @@
 package com.codegym.controller;
 
+import com.codegym.entity.Product;
+import com.codegym.service.product.IProductService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -8,10 +11,15 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 @RequestMapping ("")
 public class HomeController {
+    @Autowired
+    private IProductService productService;
 
     @GetMapping
     private ModelAndView goHome () {
-        ModelAndView modelAndView = new ModelAndView("/user/home");
+        ModelAndView modelAndView = new ModelAndView();
+        Iterable<Product> products = productService.findAll();
+        modelAndView.setViewName("/user/home");
+        modelAndView.addObject("products", products);
         return modelAndView;
     }
 

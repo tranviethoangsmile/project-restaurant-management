@@ -28,7 +28,7 @@ public class Order {
 
     @ManyToOne
     @JoinColumn(name = "table_id", referencedColumnName = "id", nullable = false)
-    private Tables table;
+    private Desk table;
 
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)

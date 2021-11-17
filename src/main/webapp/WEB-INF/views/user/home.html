@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -11,14 +11,9 @@
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="/resource/css/home/home.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
-    <!-- Our Custom CSS -->
-    <!-- Scrollbar Custom CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
-
-    <!-- Font Awesome JS -->
-    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
-    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
-
+    <link href="/resource/bootstrap-4.6.0-dist/css/bootstrap.min.css" rel="stylesheet" type="text/css" id="bootstrap-stylesheet">
+    <link rel="stylesheet" href="/resource/font-awesome-4.7.0/css/font-awesome.css">
+    <link rel="stylesheet" href="/resource/css/style.css">
 </head>
 <body>
 <!--preloader-->
@@ -67,74 +62,33 @@
             </li>
         </ul>
     </nav>
-
-    <!-- Page Content  -->
-    <div id="content">
-        <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-            <div class="btn-group" role="group" aria-label="Third group">
-                <button class="snip1582">Bàn 01</button>
-            </div>
-            <div class="btn-group" role="group" aria-label="Third group">
-                <button class="snip1582">Bàn 02</button>
-            </div>
-            <div class="btn-group" role="group" aria-label="Third group">
-                <button class="snip1582">Bàn 03</button>
-            </div>
-            <div class="btn-group" role="group" aria-label="Third group">
-                <button class="snip1582">Bàn 04</button>
-            </div>
-        </div>
-        <br>
-        <br>
-        <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-            <div class="btn-group" role="group" aria-label="Third group">
-                <button class="snip1582">Bàn 05</button>
-            </div>
-            <div class="btn-group" role="group" aria-label="Third group">
-                <button class="snip1582">Bàn 06</button>
-            </div>
-            <div class="btn-group" role="group" aria-label="Third group">
-                <button class="snip1582">Bàn 07</button>
-            </div>
-            <div class="btn-group" role="group" aria-label="Third group">
-                <button class="snip1582">Bàn 08</button>
-            </div>
-        </div>
-        <br>
-        <br>
-        <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-            <div class="btn-group" role="group" aria-label="Third group">
-                <button class="snip1582">Bàn 09</button>
-            </div>
-            <div class="btn-group" role="group" aria-label="Third group">
-                <button class="snip1582">Bàn 10</button>
-            </div>
-            <div class="btn-group" role="group" aria-label="Third group">
-                <button class="snip1582">Bàn 11</button>
-            </div>
-            <div class="btn-group" role="group" aria-label="Third group">
-                <button class="snip1582">Bàn 12</button>
-            </div>
-        </div>
-        <br>
-        <br>
-        <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-            <div class="btn-group" role="group" aria-label="Third group">
-                <button class="snip1582">Bàn 13</button>
-            </div>
-            <div class="btn-group" role="group" aria-label="Third group">
-                <button class="snip1582">Bàn 14</button>
-            </div>
-            <div class="btn-group" role="group" aria-label="Third group">
-                <button class="snip1582">Bàn 15</button>
-            </div>
-            <div class="btn-group" role="group" aria-label="Third group">
-                <button class="snip1582">Bàn 16</button>
-            </div>
-        </div>
-    </div>
 </div>
+    <!-- Page Content  -->
+<form>
+    Danh mục món ăn
+    <div id="category">
 
+    </div>
+</form>
+<table id="basic-datatable" class="table dt-responsive nowrap">
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Món ăn</th>
+        <th>Giá</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+    <tbody id="tbListProduct">
+    </tbody>
+</table>
+<script src="/resource/js/jquery-3.6.0.min.js"></script>
+<script src="/resource/bootstrap-4.6.0-dist/js/bootstrap.bundle.min.js"></script>
+<script src="/resource/bootstrap-4.6.0-dist/js/bundle.js"></script>
+<script src="/resource/bootstrap-4.6.0-dist/js/bootstrap.js"></script>
+
+<script src="/resource/js/sweetalert2.min.js"></script>
+<script src="/resource/page/js/app.js"></script>
 <!--validator-->
 <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
 <!--bootbox-->
@@ -160,6 +114,115 @@
             $('.collapse.in').toggleClass('in');
             $('a[aria-expanded=true]').attr('aria-expanded', 'false');
         });
+    });
+</script>
+<script>
+    function SelectProduct() {
+        $("form div").on("click", ".category", function () {
+            let id = $(this).data("id");
+
+            $.ajax({
+                headers: {
+                    'Accept':'application/json',
+                    'Content-Type':'application/json'
+                },
+                url: "/api/product/category/" + id,
+                type: "GET"
+            }).done(function (resp) {
+                let str = '';
+                $("#tbListProduct tr").remove();
+                $.each(resp, function(index, item) {
+
+                    str = `
+                        <tr id="tr_${item.id}">
+                            <th scope="row">${item.id}</th>
+                            <td>${item.name}</td>
+                            <td>${item.price}</td>
+                            <td>
+                                <button type="button" data-toggle="modal" data-target="#updateModal" class="btn btn-outline-primary plus"
+                                    data-id="${item.id}">
+                                    <i class="fa fa-plus-square"></i>
+                                </button>
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-outline-danger minus" data-id="${item.id}">
+                                    <i class="fa fa-minus-square"></i>
+                                </button>
+                            </td>
+
+                        </tr>
+                    `;
+
+                    $("#tbListProduct").prepend(str);
+                });
+
+            }).fail(function () {
+                alert("ERROR")
+            });
+        })
+    }
+
+    function getListProduct() {
+        $.ajax({
+            url: "/api/product",
+            type: "GET"
+        }).done(function (resp) {
+
+            let str = '';
+
+            $.each(resp, function(index, item) {
+
+                str = `
+                        <tr id="tr_${item.id}">
+                            <th scope="row">${item.id}</th>
+                            <td>${item.name}</td>
+                            <td>${item.price}</td>
+                            <td>
+                                <button type="button" class="btn btn-outline-primary plus"
+                                    data-id="${item.id}">
+                                    Chọn món
+                                </button>
+                            </td>
+
+                        </tr>
+                    `;
+                $("#tbListProduct").prepend(str);
+            });
+
+
+            handleEdit();
+
+            handleDelete();
+
+        }).fail(function () {
+            alert("ERROR")
+        });
+    }
+
+    function getAllCategory() {
+        return $.ajax({
+            url: "/api/category",
+            type: "GET"
+        }).done(function (resp) {
+
+            let str = '';
+
+            $.each(resp, function(index, item) {
+                str = `
+                    <button type="button" class="btn btn-outline-primary category" data-id="${item.id}">
+                    ${item.name}</button>
+                `;
+                $("#category").prepend(str);
+            })
+        }).fail(function () {
+            alert("ERROR")
+        });
+    }
+
+    $(document).ready(function () {
+        getAllCategory();
+        getListProduct();
+        SelectProduct();
     });
 </script>
 </body>

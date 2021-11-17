@@ -1,12 +1,21 @@
-/*
-   DEMO STYLE
-*/
-
 @import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
+*{
+    margin: 0;
+    padding: 0;
+}
 body {
     font-family: 'Poppins', sans-serif;
-    background: #fafafa;
 }
+
+/*custom css*/
+.container {
+    margin-left: auto !important;
+}
+.error {
+    color: red !important;
+}
+
+/*custom end*/
 
 p {
     font-family: 'Poppins', sans-serif;
@@ -287,3 +296,5 @@ a.article:hover {
 @-webkit-keyframes spWaveBe{from{-webkit-transform:scale(1,1);opacity:1}to{-webkit-transform:scale(1.5,1.5);opacity:0}}
 
 @keyframes spWaveBe{from{-webkit-transform:scale(1,1);opacity:1}to{-webkit-transform:scale(1.5,1.5);opacity:0}}
+
+
