@@ -3,7 +3,7 @@ package com.codegym.controller.api;
 import com.codegym.entity.Desk;
 import com.codegym.entity.Product;
 import com.codegym.service.product.IProductService;
-import com.codegym.service.table.ITableService;
+import com.codegym.service.table.IDeskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,7 +16,7 @@ import java.util.Optional;
 public class RestaurantAPI {
 //    Mọi người dán Autowired ở đây.
     @Autowired
-    ITableService tableService;
+IDeskService tableService;
 
     @Autowired
     private IProductService productService;
@@ -24,29 +24,23 @@ public class RestaurantAPI {
     @PostMapping("/product/create")
     public Product create(@RequestBody Product product) {
 
-        Product product1 = productService.save(product);
-
-        return product1;
+        return productService.save(product);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/product/{id}")
     public Optional<Product> createId(@PathVariable Long id) {
 
-        Optional<Product> product = productService.findById(id);
-
-        return product;
+        return productService.findById(id);
     }
 
 
     @PostMapping("/product/update")
     public Product update(@RequestBody Product product) {
 
-        Product product1 = productService.save(product);
-
-        return product1;
+        return productService.save(product);
     }
 
-    @GetMapping("/delete/{id}")
+    @GetMapping("/product/delete/{id}")
     public ResponseEntity<Boolean> delete(@PathVariable Long id) {
 
         productService.remove(id);
@@ -63,6 +57,11 @@ public class RestaurantAPI {
     @PostMapping("/desk/create")
     public Desk createTable (@RequestBody Desk desk) {
         return tableService.save(desk);
+    }
+
+    @GetMapping("/desk/getalldesk")
+    public Iterable<Desk> getAllDesk () {
+        return tableService.findAll();
     }
 }
 

@@ -6,7 +6,12 @@ $(document).ready(function () {
         $('.collapse.in').toggleClass('in');
         $('a[aria-expanded=true]').attr('aria-expanded', 'false');
     });
+    init();
 });
+
+init = function () {
+    getAllDesk ();
+}
 
 //Tạo bàn
 createTable = function () {
@@ -30,9 +35,11 @@ createTable = function () {
                   type: "POST",
                   data: JSON.stringify(desk)
               }).done (function (deskResp){
+                  name: $("#tableName").val("");
                   if(deskResp != null){
                       $.notify("Tạo bàn thành công", "success");
                   }
+                  getAllDesk();
               }).fail(function (){
                   $.notify("Tạo bàn không thành công", "error");
               })
@@ -43,5 +50,37 @@ createTable = function () {
   }
 }
 
-//viết api nhận bàn về lúc truy cập và hiển thị ửo mục danh sách bàn.
+
+//Get Table
+
+getAllDesk = function () {
+    $.ajax({
+        headers: {
+            'Accept':'application/json',
+            'Content-Type':'application/json'
+        },
+        url: "/api/desk/getalldesk",
+        type: "GET",
+    }).done(function (data) {
+        $(".wizard-navigation ul").empty();
+        $(".tab-content").empty();
+        $.each(data, function (index,item){
+            $(".wizard-navigation ul").append(
+                `
+                 <li><a href="#${item.id}" data-toggle="tab">${item.name}</a></li>
+                `
+            )
+            $(".tab-content").append(
+                `                
+                   <div class="tab-pane" id="${item.id}">
+		                 <div class="row">			                            
+							<h1>${item.name}</h1>
+		           </div>
+                `
+            )
+        })
+    }).fail(function (){
+        $.notify("Tải danh sách bàn không thành công", "error");
+    })
+}
 

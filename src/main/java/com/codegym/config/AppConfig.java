@@ -4,10 +4,10 @@ import com.codegym.service.product.IProductService;
 import com.codegym.service.product.ProductService;
 import com.codegym.service.role.IRoleService;
 import com.codegym.service.role.RoleService;
-import com.codegym.service.table.ITableService;
-import com.codegym.service.table.TableService;
 import com.codegym.service.user.IUserService;
 import com.codegym.service.user.UserService;
+import com.codegym.service.table.IDeskService;
+import com.codegym.service.table.DeskService;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -131,8 +131,8 @@ public class AppConfig implements WebMvcConfigurer, ApplicationContextAware {
     }
 
     @Bean
-    public ITableService tableService() {
-        return new TableService();
+    public IDeskService tableService() {
+        return new DeskService();
     }
 
     @Bean

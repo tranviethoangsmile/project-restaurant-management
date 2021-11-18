@@ -1,24 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>catogory</title>
+    <title>Title</title>
+    <!-- Home css -->
+    <link rel="stylesheet" href="/resource/css/home/home.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.js"></script>
+    <!-- master stylesheet -->
+    <link rel="stylesheet" href="/resource/assets/css/style.css">
+    <!-- Responsive stylesheet -->
+    <link rel="stylesheet" href="/resource/assets/css/responsive.css">
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <link rel="stylesheet" href="/resource/css/home/home.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
-    <!-- Our Custom CSS -->
-    <!-- Scrollbar Custom CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
-
-    <!-- Font Awesome JS -->
-    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
-    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
-
 </head>
 <body>
 <!--preloader-->
@@ -27,35 +22,80 @@
         <div class='af-sp af-sp-wave'></div>
     </div>
 </div>
-<!--end-->
-<div class="wrapper">
-    <!-- Sidebar  -->
-    <nav id="sidebar" >
-        <div class="sidebar-header">
-            <img src="/resource/img/01.jpg" style="border-radius:50%; width: 100px; height: 100px">
-            <h3>RESTAURANT</h3>
+
+<div class="boxed_wrapper">
+    <!--    Start mainmenu area-->
+    <section class="mainmenu-area stricky">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="inner-content clearfix">
+                        <nav class="main-menu style1 clearfix">
+                            <div class="navbar-header clearfix">
+                                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                </button>
+                            </div>
+                            <div class="navbar-collapse collapse clearfix">
+                                <ul class="navigation clearfix">
+                                    <li><a href="/admin">Quản Lý</a></li>
+                                    <li><a href="/desk">Bàn Phục Vụ</a></li>
+                                    <li><a href="/staff">Nhân Viên</a></li>
+                                    <li><a href="/product">Món Ăn</a></li>
+                                    <li><a href="/logout">Thoát</a></li>
+                                </ul>
+                            </div>
+                        </nav>
+
+                        <div class="mainmenu-right">
+                            <div class="toggler-button">
+                                <div class="nav-toggler hidden-bar-opener">
+                                    <div class="inner">
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <ul class="list components">
-            <li class="active">
-                <ul style="list-style-type: none !important;">
-                    <li>
-                        <a href="/admin" class="alert alert-danger" role="alert">
-                            Trang quản lý
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/logout" class="alert alert-danger" role="alert" >
-                            Thoát
-                        </a>
-                    </li>
-                </ul>
-            </li>
-        </ul>
-    </nav>
-
-    <!-- Page Content  -->
+    </section>
+    <!--End mainmenu area-->
 </div>
+<!-- Hidden Navigation Bar -->
+<section class="hidden-bar right-align">
+    <div class="hidden-bar-closer">
+        <button><span class="flaticon-remove"></span></button>
+    </div>
+    <div class="hidden-bar-wrapper">
+        <div class="contact-info-box">
+            <h2>Báo cáo</h2>
+        </div>
+        <div class="newsletter-form-box">
 
+        </div>
+        <div class="copy-right-text">
+
+        </div>
+    </div>
+</section>
+<script src="/resource/js/home/home.js"></script>
+<!-- main jQuery -->
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="/resource/assets/js/jquery.js"></script>
+<script src="/resource/assets/html5lightbox/html5lightbox.js"></script>
+<!-- html5lightbox js -->
+<script src="/resource/assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
+<!--Color Switcher-->
+<script src="/resource/assets/js/color-settings.js"></script>
+<!-- thm custom script -->
+<script src="/resource/assets/js/custom.js"></script>
 <!--validator-->
 <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
 <!--bootbox-->
@@ -70,18 +110,5 @@
 <!-- jQuery Custom Scroller CDN -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
 
-<!--Jquery-->
-<script type="text/javascript">
-    <!--    template-->
-    $(document).ready(function () {
-        $('#af-preloader').delay(500).fadeOut('slow')
-
-        $('#sidebarCollapse').on('click', function () {
-            $('#sidebar, #content').toggleClass('active');
-            $('.collapse.in').toggleClass('in');
-            $('a[aria-expanded=true]').attr('aria-expanded', 'false');
-        });
-    });
-</script>
 </body>
 </html>
