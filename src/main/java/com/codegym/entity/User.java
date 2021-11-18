@@ -37,4 +37,7 @@ public class User {
     @JsonIgnore
     @OneToMany (targetEntity = Order.class,fetch = FetchType.EAGER)
     private Set<Order> orders;
+
+    public User(String username, String encode) {
+    }
 }

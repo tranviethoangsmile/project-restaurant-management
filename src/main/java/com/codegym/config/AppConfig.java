@@ -1,5 +1,9 @@
 package com.codegym.config;
 
+import com.codegym.service.product.IProductService;
+import com.codegym.service.product.ProductService;
+import com.codegym.service.role.IRoleService;
+import com.codegym.service.role.RoleService;
 import com.codegym.service.table.ITableService;
 import com.codegym.service.table.TableService;
 import com.codegym.service.user.IUserService;
@@ -134,5 +138,15 @@ public class AppConfig implements WebMvcConfigurer, ApplicationContextAware {
     @Bean
     public IUserService userService() {
         return new UserService();
+    }
+
+    @Bean
+    public IProductService productService() {
+        return new ProductService();
+    }
+
+    @Bean
+    public IRoleService roleService() {
+        return new RoleService();
     }
 }
