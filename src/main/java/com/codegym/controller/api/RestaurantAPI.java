@@ -16,7 +16,7 @@ import java.util.Optional;
 public class RestaurantAPI {
 //    Mọi người dán Autowired ở đây.
     @Autowired
-IDeskService tableService;
+    IDeskService tableService;
 
     @Autowired
     private IProductService productService;

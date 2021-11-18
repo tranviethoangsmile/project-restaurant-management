@@ -9,6 +9,9 @@ import com.codegym.service.user.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,6 +24,9 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api/admin")
 public class AdminAPI {
+
+//    @Autowired
+//    AuthenticationManager authenticationManager;
 
     @Autowired
     IUserService userService;
@@ -59,4 +65,41 @@ public class AdminAPI {
         return new ResponseEntity<>(HttpStatus.CREATED);
 
     }
+
+//    	@PostMapping("/signin")
+//	    public ResponseEntity<?> login(@RequestBody UserDTO userDTO) {
+//            Authentication authentication = authenticationManager.authenticate(
+//                    new UsernamePasswordAuthenticationToken(userDTO.getUsername(), userDTO.getPassword()));
+//
+//            SecurityContextHolder.getContext().setAuthentication(authentication);
+//
+//            String jwt = jwtService.generateTokenLogin(authentication);
+//            UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+//            User currentUser = userService.findByEmail(userDTO.getEmail()).get();
+//
+//            JwtResponse jwtResponse = new JwtResponse(
+//                    jwt,
+//                    currentUser.getId(),
+//                    userDetails.getUsername(),
+//                    currentUser.getEmail(),
+//                    userDetails.getAuthorities()
+//            );
+//
+//            ResponseCookie springCookie = ResponseCookie.from("JWT", jwt)
+//                    .httpOnly(false)
+//                    .secure(false)
+//                    .path("/")
+//                    .maxAge(60 * 1000)
+////                .domain("spb-bank-transaction-jwt.herokuapp.com")
+////                .domain("bank-transaction.azurewebsites.net")
+//                    .domain("localhost")
+//                    .build();
+////        System.out.println(jwtResponse);
+//            return ResponseEntity
+//                    .ok()
+//                    .header(HttpHeaders.SET_COOKIE, springCookie.toString())
+//                    .body(jwtResponse);
+//
+//
+//        }
 }
