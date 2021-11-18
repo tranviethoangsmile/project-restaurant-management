@@ -9,12 +9,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@RequestMapping ("")
+@RequestMapping ("/")
 public class HomeController {
     @Autowired
     private IProductService productService;
 
     @GetMapping
+    private ModelAndView login() {
+        return new ModelAndView("/user/login");
+    }
+
+    @GetMapping("/home")
     private ModelAndView goHome () {
         ModelAndView modelAndView = new ModelAndView();
         Iterable<Product> products = productService.findAll();

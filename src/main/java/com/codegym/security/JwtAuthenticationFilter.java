@@ -1,6 +1,8 @@
 package com.codegym.security;
 
 
+import com.codegym.service.jwt.JwtService;
+import com.codegym.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -17,6 +19,12 @@ import java.io.IOException;
 import java.util.Arrays;
 
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
+
+    @Autowired
+    JwtService jwtService;
+
+    @Autowired
+    UserService userService;
 
     private String getBearerTokenRequest(HttpServletRequest request){
         String authHeadere = request.getHeader("Authorization");
@@ -54,18 +62,18 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     }
 
     private void setAuthentication(HttpServletRequest request, String authorizationValue) {
-//        if (authorizationValue != null && jwtService.validateJwtToken(authorizationValue)) {
-//
-//            String username = jwtService.getUserNameFromJwtToken(authorizationValue);
-//
-//            UserDetails userDetails = userService.loadUserByUsername(username);
-//
-//            UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
-//                    userDetails, null, userDetails.getAuthorities());
-//
-//            authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-//
-//            SecurityContextHolder.getContext().setAuthentication(authentication);
-//        }
+        if (authorizationValue != null && jwtService.validateJwtToken(authorizationValue)) {
+
+            String username = jwtService.getUserNameFromJwtToken(authorizationValue);
+
+            UserDetails userDetails = userService.loadUserByUsername(username);
+
+            UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
+                    userDetails, null, userDetails.getAuthorities());
+
+            authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+
+            SecurityContextHolder.getContext().setAuthentication(authentication);
+        }
     }
 }

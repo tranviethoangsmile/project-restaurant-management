@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.BeanIds;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -36,7 +37,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return new RestAuthenticationEntryPoint();
     }
 
-
+    @Bean(BeanIds.AUTHENTICATION_MANAGER)
     @Override
     public AuthenticationManager authenticationManager() throws Exception {
         return super.authenticationManager();
@@ -58,33 +59,25 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.httpBasic().authenticationEntryPoint(restServicesEntryPoint());
 
         http.authorizeRequests()
-                .antMatchers("/", "/api/admin/register", "/api/admin", "/login", "/logout").permitAll()
+                .antMatchers("/", "/api/admin/signup", "/api/admin", "/login", "/logout").permitAll()
                 .antMatchers("/admin/**").hasAnyAuthority("ADMIN")
 //                .antMatchers("/profile/**").authenticated()
 //                .antMatchers("/profile/**").access("hasRole('ROLE_USER')")
 //                .antMatchers(HttpMethod.GET,"/social/**").hasRole("ADMIN")
-                .antMatchers("/resources/**", "/static/**",
+                .antMatchers("/resource/**",
+                        "/assets/**",
                         "/css/**",
                         "/js/**",
-                        "/fonts/**",
-                        "/images/**",
-                        "/v2/api-docs",
-                        "/swagger-resources/configuration/ui",
-                        "/configuration/ui",
-                        "/swagger-resources",
-                        "/swagger-resources/configuration/security",
-                        "/configuration/security",
-                        "/swagger-ui.html",
-                        "/webjars/**").permitAll()
+                        "/WEB-INF/views/**").permitAll()
 
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
                 .loginProcessingUrl("/login")
-                .loginPage("/login")
+                .loginPage("/")
                 .usernameParameter("email")
                 .passwordParameter("password")
-                .defaultSuccessUrl("/")
+                .defaultSuccessUrl("/home")
                 .and()
                 .logout()
                 .logoutUrl("/logout")

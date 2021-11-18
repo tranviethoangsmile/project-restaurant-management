@@ -19,6 +19,7 @@ public class Role {
 
     private String name;
 
+
     @OneToMany(targetEntity = User.class, fetch = FetchType.EAGER)
     private List<User> users;
 
