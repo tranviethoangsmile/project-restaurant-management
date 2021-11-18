@@ -59,7 +59,7 @@ public class AdminAPI {
         User user = new User(userDTO.getUsername(),
 							 encoder.encode(userDTO.getPassword()));
         System.out.println(user.getUsername());
-        String strRole = userDTO.getRole();
+        String strRole = userDTO.getRole().getName();
 
         switch (strRole) {
             case "admin":

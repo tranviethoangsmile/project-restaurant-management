@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.experimental.Accessors;
 
 import javax.persistence.*;
 import javax.persistence.Table;
@@ -17,6 +18,7 @@ import java.util.Set;
 @AllArgsConstructor
 @Entity
 @Table(name = "users")
+@Accessors(chain = true)
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -38,6 +40,8 @@ public class User {
     @OneToMany (targetEntity = Order.class,fetch = FetchType.EAGER)
     private Set<Order> orders;
 
-    public User(String username, String encode) {
+    public User(String username, String password) {
+        this.username = username;
+        this.password = password;
     }
 }
