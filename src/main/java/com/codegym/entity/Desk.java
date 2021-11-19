@@ -20,7 +20,10 @@ public class Desk {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
-    private String status;
+
+    @Column(columnDefinition = "boolean default false")
+    private Boolean status = false;
+
     @JsonIgnore
     @OneToMany (targetEntity = Order.class,fetch = FetchType.EAGER)
     private Set<Order> orders;

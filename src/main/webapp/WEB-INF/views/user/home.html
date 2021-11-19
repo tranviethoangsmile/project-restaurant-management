@@ -1,32 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <!-- Home css -->
+    <link rel="stylesheet" href="/resource/css/home/home.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.js"></script>
+    <!-- master stylesheet -->
+    <link rel="stylesheet" href="/resource/assets/css/style.css">
+    <!-- Responsive stylesheet -->
+    <link rel="stylesheet" href="/resource/assets/css/responsive.css">
+
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <link rel="stylesheet" href="/resource/css/home/home.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
-    <!-- Our Custom CSS -->
-    <!-- CSS Files -->
-    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
-
-
-    <!-- Scrollbar Custom CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
-    <!--     Fonts and icons     -->
-    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
-
-    <!-- Font Awesome JS -->
-    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
-    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
-
 </head>
 <body>
 <!--preloader-->
@@ -35,50 +23,250 @@
         <div class='af-sp af-sp-wave'></div>
     </div>
 </div>
-<!--end-->
-<div class="wrapper">
-    <!-- Sidebar  -->
-    <nav id="sidebar" >
-        <div class="sidebar-header">
-            <img src="/resource/img/01.jpg" style="border-radius:50%; width: 100px; height: 100px">
-            <h3>RESTAURANT</h3>
+
+<div class="boxed_wrapper">
+<!--    Start mainmenu area-->
+    <section class="mainmenu-area stricky">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="inner-content clearfix">
+                        <nav class="main-menu style1 clearfix">
+                            <div class="navbar-header clearfix">
+                                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                </button>
+                            </div>
+                            <div class="navbar-collapse collapse clearfix">
+                                <ul class="navigation clearfix">
+                                    <li class="dropdown current"><a href="/admin">Quản Lý</a>
+                                    </li>
+                                    <li><a href="#">Cá Nhân</a></li>
+                                    <li class="dropdown"><a href="">Báo Cáo</a>
+                                    </li>
+                                    <li><a href="#">Thông Báo</a></li>
+                                    </li>
+                                    <li><a href="#">Thoát</a></li>
+                                </ul>
+                            </div>
+                        </nav>
+
+                        <div class="mainmenu-right">
+                            <div class="search-box-style1">
+                                <form class="search-form" method="post" action="http://st.ourhtmldemo.com/new/Dento/index.html">
+                                    <input type="search" name="search" placeholder="Search..." required>
+                                    <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+                                </form>
+                            </div>
+                            <div class="toggler-button">
+                                <div class="nav-toggler hidden-bar-opener">
+                                    <div class="inner">
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="content">
+                <div class="row">
+                    <div class="col-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="header-title">Danh sách bàn</h4>
+<!--                                <table id="basic-datatable1" class="table dt-responsive ">-->
+
+<!--                                    <tbody>-->
+<!--                                    <tr>-->
+<!--                                        <td style="height: 40px;"><button>bàn 1</button></td>-->
+<!--                                        <td><button>bàn 2</button></td>-->
+<!--                                        <td><button>bàn 3</button></td>-->
+<!--                                        <td><button>bàn 4</button></td>-->
+<!--                                    </tr>-->
+<!--                                    <tr>-->
+<!--                                        <td style="height: 40px;"><button>bàn 5</button></td>-->
+<!--                                        <td><button>bàn 6</button></td>-->
+<!--                                        <td><button>bàn 7</button></td>-->
+<!--                                        <td><button>bàn 8</button></td>-->
+<!--                                    </tr>-->
+<!--                                    <tr>-->
+<!--                                        <td style="height: 40px;"><button>bàn 9</button></td>-->
+<!--                                        <td><button>bàn 10</button></td>-->
+<!--                                        <td><button>bàn 11</button></td>-->
+<!--                                        <td><button>bàn 12</button></td>-->
+<!--                                    </tr>-->
+<!--                                    <tr>-->
+<!--                                        <td style="height: 40px;"><button>bàn 13</button></td>-->
+<!--                                        <td><button>bàn 14</button></td>-->
+<!--                                        <td><button>bàn 15</button></td>-->
+<!--                                        <td><button>bàn 16</button></td>-->
+<!--                                    </tr>-->
+<!--                                    <tr>-->
+<!--                                        <td style="height: 40px;"><button>bàn 17</button></td>-->
+<!--                                        <td><button>bàn 18</button></td>-->
+<!--                                        <td><button>bàn 19</button></td>-->
+<!--                                        <td><button>bàn 20</button></td>-->
+<!--                                    </tr>-->
+<!--                                    <tr>-->
+<!--                                        <td style="height: 40px;"><button>bàn 21</button></td>-->
+<!--                                        <td><button>bàn 22</button></td>-->
+<!--                                        <td><button>bàn 23</button></td>-->
+<!--                                        <td><button>bàn 24</button></td>-->
+<!--                                    </tr>-->
+<!--                                    </tbody>-->
+<!--                                </table>-->
+                                <form>
+                                    <div id="desk">
+
+                                    </div>
+                                </form>
+                            </div> <!-- end card body-->
+                        </div> <!-- end card -->
+                    </div><!-- end col-->
+                    <div class="col-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="header-title">Menu</h4>
+                                <p class="text-muted font-13 mb-4">
+                                </p>
+                                <form>
+                                    <button type="button" class="btn btn-outline-primary" id="all">
+                                        Tất cả</button>
+                                    <div id="category">
+                                    </div>
+                                </form>
+
+                                <table id="basic-datatable2" class="table dt-responsive nowrap">
+                                    <thead>
+                                    <tr>
+                                        <th>Món ăn</th>
+                                        <th>Gía</th>
+                                        <th></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody id="tbListProduct">
+
+                                    </tbody>
+                                </table>
+
+                            </div> <!-- end card body-->
+                        </div> <!-- end card -->
+                    </div><!-- end col-->
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="header-title">Basic Data Table</h4>
+                                <p class="text-muted font-13 mb-4">
+                                </p>
+
+                                <table id="basic-datatable" class="table dt-responsive nowrap">
+                                    <thead>
+                                    <tr>
+                                        <th>STT</th>
+                                        <th>Món ăn</th>
+                                        <th>Gía</th>
+                                        <th>Quantity</th>
+                                        <th>Tổng tiền</th>
+                                        <th colspan="3"></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>Thịt bò xào lá lốt</td>
+                                        <td>120000</td>
+                                        <td>2</td>
+                                        <td>240000</td>
+                                        <td><button>+</button></td>
+                                        <td><button>-</button></td>
+                                        <td><button>X</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>Thịt bò xào lá lốt</td>
+                                        <td>120000</td>
+                                        <td>2</td>
+                                        <td>240000</td>
+                                        <td><button>+</button></td>
+                                        <td><button>-</button></td>
+                                        <td><button>X</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>3</td>
+                                        <td>Thịt bò xào lá lốt</td>
+                                        <td>120000</td>
+                                        <td>2</td>
+                                        <td>240000</td>
+                                        <td><button>+</button></td>
+                                        <td><button>-</button></td>
+                                        <td><button>X</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>4</td>
+                                        <td>Thịt bò xào lá lốt</td>
+                                        <td>120000</td>
+                                        <td>2</td>
+                                        <td>240000</td>
+                                        <td><button>+</button></td>
+                                        <td><button>-</button></td>
+                                        <td><button>X</button></td>
+                                    </tr>
+                                    <tr>
+
+                                        <td colspan="3">Thành tiền tiền</td>
+                                        <td>5</td>
+                                        <td>1200000</td>
+                                        <td colspan="3"><button>Thanh toán</button></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div> <!-- end card body-->
+                        </div> <!-- end card -->
+                    </div><!-- end col-->
+
+                </div>
+            </div>
         </div>
-        <ul class="list components">
-            <li class="active">
-                 <ul style="list-style-type: none !important;">
-                    <li>
-                        <a href="/admin" class="alert alert-danger" role="alert">
-                            Trang quản lý
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/profile" class="alert alert-danger" role="alert">
-                            Cá nhân
-                        </a>
-                    </li>
-                    <li>
-                        <a href="javascript:;" class="alert alert-danger" role="alert" onclick="report.openModal()">
-                            Báo cáo
-                        </a>
-                    </li>
-                    <li>
-                        <a href="javascript:;" class="alert alert-danger" role="alert" onclick="notification.openModal()">
-                            Xem Thông báo
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/logout" class="alert alert-danger" role="alert" >
-                            Thoát
-                        </a>
-                    </li>
-                </ul>
-            </li>
-        </ul>
-    </nav>
+    </section>
+    <!--End mainmenu area-->
 </div>
-    <!-- Page Content  -->
+    <!-- Hidden Navigation Bar -->
+    <section class="hidden-bar right-align">
+        <div class="hidden-bar-closer">
+            <button><span class="flaticon-remove"></span></button>
+        </div>
+        <div class="hidden-bar-wrapper">
+            <div class="contact-info-box">
+                <h2>Thông báo</h2>
+            </div>
+            <div class="newsletter-form-box">
 
+            </div>
+            <div class="copy-right-text">
 
+            </div>
+        </div>
+    </section>
+
+<script src="/resource/js/home/home.js"></script>
+    <!-- main jQuery -->
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="/resource/assets/js/jquery.js"></script>
+<script src="/resource/assets/html5lightbox/html5lightbox.js"></script>
+<!-- html5lightbox js -->
+<script src="/resource/assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
+<!--Color Switcher-->
+<script src="/resource/assets/js/color-settings.js"></script>
+<!-- thm custom script -->
+<script src="/resource/assets/js/custom.js"></script>
 <!--validator-->
 <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
 <!--bootbox-->
@@ -92,19 +280,13 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
 <!-- jQuery Custom Scroller CDN -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
+<script src="/resource/nhi/js/jquery-3.6.0.min.js"></script>
+<script src="/resource/nhi/bootstrap-4.6.0-dist/js/bootstrap.bundle.min.js"></script>
+<script src="/resource/nhi/bootstrap-4.6.0-dist/js/bundle.js"></script>
+<script src="/resource/nhi/bootstrap-4.6.0-dist/js/bootstrap.js"></script>
 
-<!--Jquery-->
-<script type="text/javascript">
-    <!--    template-->
-    $(document).ready(function () {
-        $('#af-preloader').delay(500).fadeOut('slow')
+<script src="/resource/nhi/js/sweetalert2.min.js"></script>
+<script src="/resource/nhi/page/js/app.js"></script>
 
-        $('#sidebarCollapse').on('click', function () {
-            $('#sidebar, #content').toggleClass('active');
-            $('.collapse.in').toggleClass('in');
-            $('a[aria-expanded=true]').attr('aria-expanded', 'false');
-        });
-    });
-</script>
 </body>
 </html>
