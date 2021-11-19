@@ -20,21 +20,14 @@ function SelectProduct() {
 
                 str = `
                         <tr id="tr_${item.id}">
-                            <th scope="row">${item.id}</th>
-                            <td>${item.name}</td>
+                            <th scope="row">${item.name}</th>
                             <td>${item.price}</td>
                             <td>
-                                <button type="button" data-toggle="modal" data-target="#updateModal" class="btn btn-outline-primary plus"
+                                <button type="button" class="btn btn-outline-primary plus"
                                     data-id="${item.id}">
-                                    <i class="fa fa-plus-square"></i>
+                                    Chọn món
                                 </button>
                             </td>
-                            <td>
-                                <button type="button" class="btn btn-outline-danger minus" data-id="${item.id}">
-                                    <i class="fa fa-minus-square"></i>
-                                </button>
-                            </td>
-
                         </tr>
                     `;
 
@@ -61,8 +54,7 @@ function getListProduct() {
 
             str = `
                         <tr id="tr_${item.id}">
-                            <th scope="row">${item.id}</th>
-                            <td>${item.name}</td>
+                            <th scope="row">${item.name}</th>
                             <td>${item.price}</td>
                             <td>
                                 <button type="button" class="btn btn-outline-primary plus"

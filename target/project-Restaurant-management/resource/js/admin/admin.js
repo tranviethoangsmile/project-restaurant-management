@@ -1,4 +1,4 @@
-createTable = function () {
-    $("#table").modal("show");
-}
-<!--    template-->
+$(document).ready(function () {
+    $('#af-preloader').delay(500).fadeOut('slow')
+    // init();
+});

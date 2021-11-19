@@ -18,7 +18,7 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api")
 public class RestaurantAPI {
-//    Mọi người dán Autowired ở đây.
+    //    Mọi người dán Autowired ở đây.
     @Autowired
     IDeskService tableService;
     @Autowired
