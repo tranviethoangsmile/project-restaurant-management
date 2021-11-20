@@ -9,6 +9,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="project-restaurant-management" />
         <module name="project-Restaurant-management" />
+        <module name="project-restaurant-management" />
       </profile>
     </annotationProcessing>
   </component>

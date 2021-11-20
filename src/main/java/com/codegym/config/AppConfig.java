@@ -1,5 +1,7 @@
 package com.codegym.config;
 
+import com.codegym.service.category.CategoryService;
+import com.codegym.service.category.ICategoryService;
 import com.codegym.service.product.IProductService;
 import com.codegym.service.product.ProductService;
 import com.codegym.service.table.IDeskService;
@@ -98,9 +100,9 @@ public class AppConfig implements WebMvcConfigurer, ApplicationContextAware {
     public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
-        dataSource.setUrl("jdbc:mysql://localhost:3306/project_restaurant_management");
+        dataSource.setUrl("jdbc:mysql://localhost:3306/restaurant_management");
         dataSource.setUsername("root");
-        dataSource.setPassword("123123");
+        dataSource.setPassword("Nhi09092018");
         return dataSource;
     }
 
@@ -133,6 +135,11 @@ public class AppConfig implements WebMvcConfigurer, ApplicationContextAware {
     @Bean
     public IProductService productService() {
         return new ProductService();
+    }
+
+    @Bean
+    public ICategoryService categoryService() {
+        return new CategoryService();
     }
 
 }

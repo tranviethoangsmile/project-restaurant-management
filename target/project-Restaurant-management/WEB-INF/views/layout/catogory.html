@@ -12,16 +12,20 @@
     <link rel="stylesheet" href="/resource/assets/css/responsive.css">
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/resource/nhi/bootstrap-4.6.0-dist/css/bootstrap.min.css" rel="stylesheet" type="text/css" id="bootstrap-stylesheet">
+    <link rel="stylesheet" href="/resource/nhi/font-awesome-4.7.0/css/font-awesome.css">
+    <link rel="stylesheet" href="/resource/nhi/css/style.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
+
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
 </head>
 <body>
-<!--preloader-->
-<div id='af-preloader'>
-    <div class='af-preloader-wrap'>
-        <div class='af-sp af-sp-wave'></div>
-    </div>
-</div>
+<!--&lt;!&ndash;preloader&ndash;&gt;-->
+<!--<div id='af-preloader'>-->
+<!--    <div class='af-preloader-wrap'>-->
+<!--        <div class='af-sp af-sp-wave'></div>-->
+<!--    </div>-->
+<!--</div>-->
 
 <div class="boxed_wrapper">
     <!--    Start mainmenu area-->
@@ -63,10 +67,39 @@
                     </div>
                 </div>
             </div>
+            <div class="content">
+                <header>
+                    <form>
+                        <div class="form-group row">
+                            <div class="col-4">
+                                <label for="Name">Name</label>
+                                <input type="text" class="form-control" id="name">
+                            </div>
+                        </div>
+                        <button type="button" id="btnCreate" class="btn btn-primary">Create category</button>
+                    </form>
+                </header>
+                <div class="card-body">
+                    <h4 class="header-title">Danh mục </h4>
+                    <table id="basic-datatable" class="table dt-responsive nowrap">
+                        <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Name</th>
+                            <th colspan="3">Action</th>
+                        </tr>
+                        </thead>
+                        <tbody id="tbList">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     </section>
     <!--End mainmenu area-->
 </div>
+
+
 <!-- Hidden Navigation Bar -->
 <section class="hidden-bar right-align">
     <div class="hidden-bar-closer">
@@ -84,7 +117,39 @@
         </div>
     </div>
 </section>
-<script src="/resource/js/home/home.js"></script>
+
+<div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal update category</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group row">
+                        <div class="col-4">
+                            <label for="idE">ID</label>
+                            <input type="text" class="form-control" id="idE" readonly>
+                        </div>
+                        <div class="col-8">
+                            <label for="nameE">Name</label>
+                            <input type="text" class="form-control" id="nameE">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" id="btnUpdate" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/resource/js/category/category.js"></script>
 <!-- main jQuery -->
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -109,6 +174,15 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
 <!-- jQuery Custom Scroller CDN -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
+
+<script src="/resource/nhi/js/jquery-3.6.0.min.js"></script>
+<script src="/resource/nhi/bootstrap-4.6.0-dist/js/bootstrap.bundle.min.js"></script>
+<script src="/resource/nhi/bootstrap-4.6.0-dist/js/bundle.js"></script>
+<script src="/resource/nhi/bootstrap-4.6.0-dist/js/bootstrap.js"></script>
+
+<script src="/resource/nhi/js/sweetalert2.min.js"></script>
+<script src="/resource/nhi/page/js/app.js"></script>
+
 
 </body>
 </html>

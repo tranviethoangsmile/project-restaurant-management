@@ -19,9 +19,13 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
     private String name;
-    private BigDecimal priceUnit;
-    private Boolean status;
+    private BigDecimal price;
+
+    @Column(columnDefinition = "boolean default false")
+    private Boolean status = false;
+
     @ManyToOne
     @JoinColumn(name = "category_id", referencedColumnName = "id", nullable = false)
     private Category category;
