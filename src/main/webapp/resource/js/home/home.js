@@ -100,6 +100,7 @@ function getAllDesk() {
         url: "/api/desk/getalldesk",
         type: "GET"
     }).done(function (resp) {
+<<<<<<< HEAD
 
         let str = '';
 
@@ -109,6 +110,14 @@ function getAllDesk() {
                     ${item.name}</button>
                 `;
             $("#desk").prepend(str);
+=======
+        $.each(resp, function(index, item) {
+            $("#desk").prepend(
+                `
+                    <button type="button" style="width: 75px; margin: 10px" class="btn btn-outline-primary desk" data-id="${item.id}">
+                    ${item.name}</button>
+                `);
+>>>>>>> hoang_dev
         })
     }).fail(function () {
         alert("ERROR")

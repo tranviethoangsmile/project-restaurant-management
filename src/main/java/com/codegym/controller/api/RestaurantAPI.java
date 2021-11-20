@@ -92,9 +92,13 @@ public class RestaurantAPI {
     @PostMapping("/category/create")
     public Category createCategory(@RequestBody Category category) {
 
+<<<<<<< HEAD
         Category category1 = iCategoryService.save(category);
 
         return category1;
+=======
+        return iCategoryService.save(category);
+>>>>>>> hoang_dev
     }
 
     @GetMapping("/category/{id}")

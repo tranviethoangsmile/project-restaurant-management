@@ -27,8 +27,8 @@ public class Order {
     private Date createAt;
 
     @ManyToOne
-    @JoinColumn(name = "table_id", referencedColumnName = "id", nullable = false)
-    private Desk table;
+    @JoinColumn(name = "desk_id", referencedColumnName = "id", nullable = false)
+    private Desk desk;
 
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)
