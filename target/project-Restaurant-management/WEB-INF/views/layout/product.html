@@ -12,16 +12,21 @@
     <link rel="stylesheet" href="/resource/assets/css/responsive.css">
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/resource/nhi/bootstrap-4.6.0-dist/css/bootstrap.min.css" rel="stylesheet" type="text/css" id="bootstrap-stylesheet">
+    <link rel="stylesheet" href="/resource/nhi/font-awesome-4.7.0/css/font-awesome.css">
+    <link rel="stylesheet" href="/resource/nhi/css/style.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
+
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
 </head>
 <body>
-<!--preloader-->
-<div id='af-preloader'>
-    <div class='af-preloader-wrap'>
-        <div class='af-sp af-sp-wave'></div>
-    </div>
-</div>
+<!--&lt;!&ndash;preloader&ndash;&gt;-->
+<!--<div id='af-preloader'>-->
+<!--    <div class='af-preloader-wrap'>-->
+<!--        <div class='af-sp af-sp-wave'></div>-->
+<!--    </div>-->
+<!--</div>-->
 
 <div class="boxed_wrapper">
     <!--    Start mainmenu area-->
@@ -43,7 +48,7 @@
                                     <li><a href="/admin">Quản Lý</a></li>
                                     <li><a href="/desk">Bàn Phục Vụ</a></li>
                                     <li><a href="/staff">Nhân Viên</a></li>
-                                    <li><a href="/catogory">Danh Mục</a></li>
+                                    <li><a href="/product">Món Ăn</a></li>
                                     <li><a href="/logout">Thoát</a></li>
                                 </ul>
                             </div>
@@ -63,10 +68,50 @@
                     </div>
                 </div>
             </div>
+            <div class="content">
+                <header>
+                    <form>
+                        <div class="form-group row">
+                            <div class="col-4">
+                                <label for="Name">Name</label>
+                                <input type="text" class="form-control" id="name">
+                            </div>
+                            <div class="col-4">
+                                <label for="price">price</label>
+                                <input type="number" class="form-control" id="price">
+                            </div>
+                            <div class="col-4">
+                                <label for="category">category</label>
+                                <select id="category" class="select form-control">
+                                </select>
+                            </div>
+                        </div>
+                        <button type="button" id="btnCreate" class="btn btn-primary">Create product</button>
+                    </form>
+                </header>
+                <div class="card-body">
+                    <h4 class="header-title">Thực đơn </h4>
+                    <table id="basic-datatable" class="table dt-responsive nowrap table table-bordered table-striped table-hover mt-2">
+                        <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Name</th>
+                            <th>Price</th>
+                            <th>Status</th>
+                            <th>Category</th>
+                            <th colspan="2">Action</th>
+                        </tr>
+                        </thead>
+                        <tbody id="tbListProduct">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     </section>
     <!--End mainmenu area-->
 </div>
+
 <!-- Hidden Navigation Bar -->
 <section class="hidden-bar right-align">
     <div class="hidden-bar-closer">
@@ -84,12 +129,56 @@
         </div>
     </div>
 </section>
-<script src="/resource/js/home/home.js"></script>
+
+<div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal update product</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group row">
+                        <div class="col-1">
+                            <label for="idUp">ID</label>
+                            <input type="text" class="form-control" id="idUp" readonly>
+                        </div>
+                        <div class="col-3">
+                            <label for="nameUp">Name</label>
+                            <input type="text" class="form-control" id="nameUp">
+                        </div>
+                        <div class="col-3">
+                            <label for="priceUp">price</label>
+                            <input type="number" class="form-control" id="priceUp">
+                        </div>
+                        <div class="col-3">
+                            <label for="categoryUp">category</label>
+                            <select id="categoryUp" class="select form-control">
+                            </select>
+                        </div>
+                        <div class="custom-control custom-checkbox mb-3 col-2">
+                            <input type="checkbox" class="custom-control-input" id="statusUp" name="status">
+                            <label class="custom-control-label" style="padding: 0px 20px" for="statusUp">Status</label>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" id="btnUpdate" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/resource/js/product/product.js"></script>
 <!-- main jQuery -->
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="/resource/assets/js/jquery.js"></script>
-<script src="/resource/assets/html5lightbox/html5lightbox.js"></script>
 <!-- html5lightbox js -->
 <script src="/resource/assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
 <!--Color Switcher-->
@@ -109,6 +198,15 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
 <!-- jQuery Custom Scroller CDN -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
+
+<script src="/resource/nhi/js/jquery-3.6.0.min.js"></script>
+<script src="/resource/nhi/bootstrap-4.6.0-dist/js/bootstrap.bundle.min.js"></script>
+<script src="/resource/nhi/bootstrap-4.6.0-dist/js/bundle.js"></script>
+<script src="/resource/nhi/bootstrap-4.6.0-dist/js/bootstrap.js"></script>
+<script src="/resource/nhi/js/sweetalert2.min.js"></script>
+<script src="/resource/nhi/page/js/app.js"></script>
+
+
 
 </body>
 </html>

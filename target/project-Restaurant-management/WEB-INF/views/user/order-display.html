@@ -1,0 +1,180 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<th:block th:fragment="frm-order">
+    <div class="row" style="background-color: greenyellow;">
+        <div class="col-6">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="header-title">Danh sách bàn</h4>
+                    <table id="basic-datatable" class="table dt-responsive ">
+
+                        <tbody>
+                        <tr>
+                            <td style="height: 40px;"><button style="background: hotpink;">Bàn 01</button></td>
+                            <td><button style="background: hotpink;">Bàn 02</button ></td>
+                            <td><button style="background: hotpink;">Bàn 03</button></td>
+                            <td><button style="background: hotpink;">Bàn 04</button></td>
+                        </tr>
+                        <tr>
+                            <td style="height: 40px;"><button style="background: hotpink;">Bàn 05</button></td>
+                            <td><button style="background: hotpink;">Bàn 06</button></td>
+                            <td><button style="background: hotpink;">Bàn 07</button></td>
+                            <td><button style="background: hotpink;">Bàn 08</button></td>
+                        </tr>
+                        <tr>
+                            <td style="height: 40px;"><button style="background: hotpink;">Bàn 09</button></td>
+                            <td><button style="background: hotpink;">Bàn 10</button></td>
+                            <td><button style="background: hotpink;">Bàn 11</button></td>
+                            <td><button style="background: hotpink;">Bàn 12</button></td>
+                        </tr>
+                        <tr>
+                            <td style="height: 40px;"><button style="background: hotpink;">Bàn 13</button></td>
+                            <td><button style="background: hotpink;">Bàn 14</button></td>
+                            <td><button style="background: hotpink;">Bàn 15</button></td>
+                            <td><button style="background: hotpink;">Bàn 16</button></td>
+                        </tr>
+                        <tr>
+                            <td style="height: 40px;"><button style="background: hotpink;">Bàn 17</button></td>
+                            <td><button style="background: hotpink;">Bàn 18</button></td>
+                            <td><button style="background: hotpink;">Bàn 19</button></td>
+                            <td><button style="background: hotpink;">Bàn 20</button></td>
+                        </tr>
+                        <tr>
+                            <td style="height: 40px;"><button style="background: hotpink;">Bàn 21</button></td>
+                            <td><button style="background: hotpink;">Bàn 22</button></td>
+                            <td><button style="background: hotpink;">Bàn 23</button></td>
+                            <td><button style="background: hotpink;">Bàn 24</button></td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                </div> <!-- end card body-->
+            </div> <!-- end card -->
+        </div><!-- end col-->
+        <div class="col-6">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="header-title">Menu</h4>
+                    <p class="text-muted font-13 mb-4">
+                    </p>
+                    <button>Nước</button>
+                    <button>Bia</button>
+                    <button>Thịt bò</button>
+                    <button>Thịt heo</button>
+                    <button>Hải sản</button>
+                    <button>Lẩu</button>
+                    <button>Nướng</button>
+                    <button>Món ăn no</button>
+
+                    <table id="basic-datatable" class="table dt-responsive nowrap">
+                        <thead>
+                        <tr>
+                            <th>Món ăn</th>
+                            <th>Gía</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>Nước lọc</td>
+                            <td>6000</td>
+                            <td><button>Chọn món</button></td>
+                        </tr>
+                        <tr>
+                            <td>Coca</td>
+                            <td>6000</td>
+                            <td><button>Chọn món</button></td>
+                        </tr>
+                        <tr>
+                            <td>Bò húc</td>
+                            <td>6000</td>
+                            <td><button>Chọn món</button></td>
+                        </tr>
+                        <tr>
+                            <td>Nước yến</td>
+                            <td>6000</td>
+                            <td><button>Chọn món</button></td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                </div> <!-- end card body-->
+            </div> <!-- end card -->
+        </div><!-- end col-->
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="header-title">Thông tin món ăn</h4>
+                    <p class="text-muted font-13 mb-4">
+                    </p>
+
+                    <table id="basic-datatable" class="table dt-responsive nowrap">
+                        <thead>
+                        <tr>
+                            <th>STT</th>
+                            <th>Món ăn</th>
+                            <th>Gía</th>
+                            <th>Quantity</th>
+                            <th>Tổng tiền</th>
+                            <th colspan="3"></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Thịt bò xào lá lốt</td>
+                            <td>120000</td>
+                            <td>2</td>
+                            <td>240000</td>
+                            <td><button>+</button></td>
+                            <td><button>-</button></td>
+                            <td><button>X</button></td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Thịt bò xào lá lốt</td>
+                            <td>120000</td>
+                            <td>2</td>
+                            <td>240000</td>
+                            <td><button>+</button></td>
+                            <td><button>-</button></td>
+                            <td><button>X</button></td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>Thịt bò xào lá lốt</td>
+                            <td>120000</td>
+                            <td>2</td>
+                            <td>240000</td>
+                            <td><button>+</button></td>
+                            <td><button>-</button></td>
+                            <td><button>X</button></td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>Thịt bò xào lá lốt</td>
+                            <td>120000</td>
+                            <td>2</td>
+                            <td>240000</td>
+                            <td><button>+</button></td>
+                            <td><button>-</button></td>
+                            <td><button>X</button></td>
+                        </tr>
+                        <tr>
+
+                            <td colspan="3">Thành tiền tiền</td>
+                            <td>5</td>
+                            <td>1200000</td>
+                            <td colspan="3"><button style="background: darkturquoise;">Thanh toán</button></td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+
+                </div> <!-- end card body-->
+            </div> <!-- end card -->
+        </div><!-- end col-->
+
+    </div>
+</th:block>
