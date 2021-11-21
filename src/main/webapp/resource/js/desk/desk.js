@@ -10,7 +10,6 @@ $(document).ready(function () {
 });
 
 init = function () {
-    // getAllDesk ();
     getAllDeskForOption();
 }
 
@@ -39,9 +38,9 @@ createTable = function () {
                  $("#deskName").val("");
                   if(deskResp != null){
                       $.notify("Tạo bàn thành công", "success");
+                      getAllDeskForOption();
                   }
-                  getAllDesk();
-                  getAllDeskForOption();
+
               }).fail(function (){
                   $.notify("Tạo bàn không thành công", "error");
               })
@@ -69,8 +68,7 @@ getAllDeskForOption = function () {
             $(".desk-list .row").append(
                 `
                 <div class="col-xl-2">
-                    <h3>${item.name}</h3>
-                    <a href="#${item.id}" data-toggle="tab" class="btn btn-success" onclick="getDeskInfo(${item.id})">Kiểm tra</a>
+                    <a href="#${item.id}" data-toggle="tab" class="btn btn-success" onclick="getDeskInfo(${item.id})">${item.name}</a>
                 </div>
                 `
             )
@@ -125,30 +123,3 @@ getDeskInfo = function (id) {
         $.notify("Tải thông tin bàn không thành công", "error");
     })
 }
-
-// getAllDesk = function () {
-//     $.ajax({
-//         headers: {
-//             'Accept':'application/json',
-//             'Content-Type':'application/json'
-//         },
-//         url: "/api/desk/getalldesk",
-//         type: "GET",
-//     }).done(function (data) {
-//         // $(".tab-content").empty();
-//         $.each(data, function (index,desk){
-//                 $(".tab-content").append(
-//                     `
-//                    <div class="tab-pane" id="${desk.id}">
-// 		                 <div class="row">
-// 							<h1>${desk.name}</h1>
-// 		           </div>
-//                    `
-//                 )
-//         })
-//     }).fail(function (){
-//         $.notify("Tải danh sách bàn không thành công", "error");
-//     })
-// }
-//Thiết kế lại gao diện desk - thay bảng danh sách list desk bằng giao diện ô vuông. Click vào ô sẽ xuất hiện thông tin bàn ở pần dưới.
-

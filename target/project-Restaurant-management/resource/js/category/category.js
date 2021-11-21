@@ -18,7 +18,6 @@ $("#btnUpdate").on("click", function () {
 function handleDelete() {
     $("table tbody tr").on("click", ".delete", function () {
         let id = $(this).data("id");
-
         Swal.fire({
             title: 'Are you sure?',
             text: "You won't be able to revert this!",
@@ -67,10 +66,6 @@ function handleDelete() {
 function handleEdit() {
     $("table tbody tr").on("click", ".edit", function () {
         let id = $(this).data("id");
-        $("#updateModal").modal("show");
-        console.log("id = " + id);
-
-
         $.ajax({
             headers: {
                 'Accept':'application/json',
@@ -79,6 +74,7 @@ function handleEdit() {
             url: "/api/category/" + id,
             type: "GET"
         }).done(function (resp) {
+            $("#updateModal").modal("show");
             $("#idE").val(resp.id);
             $("#nameE").val(resp.name);
         }).fail(function () {
@@ -88,23 +84,29 @@ function handleEdit() {
 }
 
 function create() {
-    category.id = $("#id").val();
-    category.name=$("#name").val()
+    if($("#createCategory").valid()){
+        Swal.fire({
+            title: 'Bạn muốn lưu lại Danh Mục này không?',
+            showDenyButton: true,
+            confirmButtonText: 'Yes',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                category.id = $("#id").val();
+                category.name=$("#name").val()
+                $.ajax({
+                    headers: {
+                        'Accept':'application/json',
+                        'Content-Type':'application/json'
+                    },
+                    url: "/api/category/create",
+                    type: "POST",
+                    data: JSON.stringify(category)
 
-    $.ajax({
-        headers: {
-            'Accept':'application/json',
-            'Content-Type':'application/json'
-        },
-        url: "/api/category/create",
-        type: "POST",
-        data: JSON.stringify(category)
+                }).done(function (resp) {
+                    $("#name").val('');
+                    let str = '';
 
-    }).done(function (resp) {
-
-        let str = '';
-
-        str = `
+                    str = `
                     <tr id="tr_${resp.id}">
                             <th scope="row">${resp.id}</th>
                             <td>${resp.name}</td>
@@ -126,16 +128,23 @@ function create() {
                         </tr>
                 `;
 
-        $("#tbList").prepend(str);
+                    $("#tbList").prepend(str);
 
 
-        handleEdit();
+                    handleEdit();
 
-        handleDelete();
+                    handleDelete();
 
-    }).fail(function () {
-        alert("ERROR")
-    });
+                }).fail(function () {
+                    alert("ERROR")
+                });
+            } else if (result.isDenied) {
+                Swal.fire('Thông tin bàn chưa được lưu', '', 'info')
+            }
+        })
+
+    }
+
 }
 
 function update() {
@@ -152,7 +161,6 @@ function update() {
         type: "POST",
         data: JSON.stringify(category)
     }).done(function (resp) {
-
         let str = '';
 
         str = `
@@ -176,7 +184,7 @@ function update() {
                     </tr>
                 `;
         $("#tr_"+ category.id).replaceWith(str);
-        $("#updateModal").modal("hide");
+
 
         handleEdit();
 
