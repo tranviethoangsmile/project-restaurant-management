@@ -3,17 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <!-- Home css -->
+    <link rel="stylesheet" href="/resource/css/home/home.css">
     <!-- wizard   -->
     <link href="/resource/assets-desk/css/bootstrap.min.css" rel="stylesheet"/>
     <link href="/resource/assets-desk/css/material-bootstrap-wizard.css" rel="stylesheet"/>
-    <!-- Home css -->
-    <link rel="stylesheet" href="/resource/css/home/home.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.js"></script>
     <!-- master stylesheet -->
     <link rel="stylesheet" href="/resource/assets/css/style.css">
     <!-- Responsive stylesheet -->
     <link rel="stylesheet" href="/resource/assets/css/responsive.css">
-
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
@@ -61,17 +60,56 @@
 <div class="main-slider">
     <div class="content">
         <div class="row">
-            <div class="col-6">
+            <div class="col-4">
                 <div class="card">
                     <div class="card-body">
                         <h4 class="header-title">Danh sách bàn</h4>
-                            <div id="desk">
+                        <div id="desk">
 
-                            </div>
+                        </div>
                     </div> <!-- end card body-->
                 </div> <!-- end card -->
             </div><!-- end col-->
+            <div class="col-2">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="deskStatus">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="col-6">
+                <div class="card">
+                    <div class="card-body">
+                        <header><h2>Bàn 1</h2></header>
+                        <h3>Danh sách món ăn</h3>
+                        <table class="table table-hover">
+                            <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Tên</th>
+                                <th>Giá</th>
+                                <th>Số Lượng</th>
+                                <th>Thành Tiền</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>Vịt Quay</td>
+                                <td>150000</td>
+                                <td>2</td>
+                                <td>300000</td>
+                            </tr>
+                            </tbody>
+                            <tfoot>Tổng: 3000000</tfoot>
+                            <button class="btn btn-success">Thanh toán</button>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12">
                 <div class="card">
                     <div class="card-body">
                         <h4 class="header-title">Menu</h4>
@@ -89,7 +127,7 @@
                             <thead>
                             <tr>
                                 <th>Món ăn</th>
-                                <th>Gía</th>
+                                <th>Giá</th>
                                 <th></th>
                             </tr>
                             </thead>
@@ -98,102 +136,6 @@
                             </tbody>
                         </table>
 
-                    </div> <!-- end card body-->
-                </div> <!-- end card -->
-            </div><!-- end col-->
-        </div>
-        <div class="row">
-            <div class="col-12">
-                <div class="card">
-                    <div class="card-body">
-                        <table id="basic-datatable" class="table dt-responsive nowrap">
-                            <thead>
-                            <tr>
-                                <th>STT</th>
-                                <th>Món ăn</th>
-                                <th>Gía</th>
-                                <th>Quantity</th>
-                                <th>Tổng tiền</th>
-                                <th colspan="3"></th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>Thịt bò xào lá lốt</td>
-                                <td>120000</td>
-                                <td>2</td>
-                                <td>240000</td>
-                                <td>
-                                    <button type="button" class="btn btn-outline-primary">+</button>
-                                </td>
-                                <td>
-                                    <button type="button" class="btn btn-outline-primary">-</button>
-                                </td>
-                                <td>
-                                    <button type="button" class="btn btn-outline-primary">X</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>Thịt bò xào lá lốt</td>
-                                <td>120000</td>
-                                <td>2</td>
-                                <td>240000</td>
-                                <td>
-                                    <button type="button" class="btn btn-outline-primary">+</button>
-                                </td>
-                                <td>
-                                    <button type="button" class="btn btn-outline-primary">-</button>
-                                </td>
-                                <td>
-                                    <button type="button" class="btn btn-outline-primary">X</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>Thịt bò xào lá lốt</td>
-                                <td>120000</td>
-                                <td>2</td>
-                                <td>240000</td>
-                                <td>
-                                    <button type="button" class="btn btn-outline-primary">+</button>
-                                </td>
-                                <td>
-                                    <button type="button" class="btn btn-outline-primary">-</button>
-                                </td>
-                                <td>
-                                    <button type="button" class="btn btn-outline-primary">X</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>4</td>
-                                <td>Thịt bò xào lá lốt</td>
-                                <td>120000</td>
-                                <td>2</td>
-                                <td>240000</td>
-                                <td>
-                                    <button type="button" class="btn btn-outline-primary">+</button>
-                                </td>
-                                <td>
-                                    <button type="button" class="btn btn-outline-primary">-</button>
-                                </td>
-                                <td>
-                                    <button type="button" class="btn btn-outline-primary">X</button>
-                                </td>
-                            </tr>
-                            <tr>
-
-                                <td colspan="3">Thành tiền tiền</td>
-                                <td>5</td>
-                                <td>1200000</td>
-                                <td colspan="3">
-                                    <button type="button" class="btn btn-outline-primary">Thanh toán
-                                    </button>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
                     </div> <!-- end card body-->
                 </div> <!-- end card -->
             </div><!-- end col-->
@@ -223,8 +165,31 @@
     </div>
 </section>
 
+<!--modal-->
+<div class="modal fade" id="createOrder" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+            </div>
+            <div class="modal-body">
+                <div class="col-12">
+                    <div id="statusDesk">
 
-<script src="/resource/js/homepage/home.js"></script>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--end modal-->
+
+<script src="/resource/js/home/home.js"></script>
 <!--   Core JS Files-->
 <script src="/resource/assets-desk/js/jquery-2.2.4.min.js" type="text/javascript"></script>
 <script src="/resource/assets-desk/js/bootstrap.min.js" type="text/javascript"></script>
@@ -234,20 +199,9 @@
 <!--  More information about jquery.validate here: http://jqueryvalidation.org/	 -->
 <script type="text/javascript"
         src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
-<!-- main jQuery-->
-<script src="/resource/js/home/home.js"></script>
 <!-- main jQuery -->
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<!--<script src="/resource/assets/js/jquery.js"></script>-->
-<!--<script src="/resource/assets/html5lightbox/html5lightbox.js"></script>-->
-<!--&lt;!&ndash; html5lightbox js &ndash;&gt;-->
-<!--<script src="/resource/assets/js/jquery.mCustomScrollbar.concat.min.js"></script>-->
-<!--Color Switcher-->
-<!--<script src="/resource/assets/js/color-settings.js"></script>-->
-<!--&lt;!&ndash; thm custom script &ndash;&gt;-->
-<!--<script src="/resource/assets/js/custom.js"></script>-->
-
 <!--bootbox-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.min.js"></script>
 <!--Notify-->
@@ -262,15 +216,7 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"
         integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
         crossorigin="anonymous"></script>
-<!-- jQuery Custom Scroller CDN -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
-<script src="/resource/nhi/js/jquery-3.6.0.min.js"></script>
-<script src="/resource/nhi/bootstrap-4.6.0-dist/js/bootstrap.bundle.min.js"></script>
-<script src="/resource/nhi/bootstrap-4.6.0-dist/js/bundle.js"></script>
-<script src="/resource/nhi/bootstrap-4.6.0-dist/js/bootstrap.js"></script>
 
-<script src="/resource/nhi/js/sweetalert2.min.js"></script>
-<script src="/resource/nhi/page/js/app.js"></script>
 
 </body>
 </html>

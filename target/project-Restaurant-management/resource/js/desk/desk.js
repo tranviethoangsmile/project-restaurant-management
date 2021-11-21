@@ -68,11 +68,17 @@ getAllDeskForOption = function () {
             $(".desk-list .row").append(
                 `
                 <div class="col-xl-2">
-                    <a href="#${item.id}" data-toggle="tab" class="btn btn-success" onclick="getDeskInfo(${item.id})">${item.name}</a>
+                <button type="button" onclick="getStatusDesk(${item.id})" style="width: 75px; margin: 10px" class="btn btn-${item.status ? 'danger' : 'success'}">
+                    ${item.name}</button>   
                 </div>
                 `
             )
         })
+        // < a
+        // href = "#${item.id}"
+        // data - toggle = "tab"
+        // className = "btn btn-${item.status ? 'danger' : 'success'}"
+        // onClick = "getDeskInfo(${item.id})" >${item.name} < /a>
     }).fail(function (){
         $.notify("Tải danh sách bàn không thành công", "error");
     })

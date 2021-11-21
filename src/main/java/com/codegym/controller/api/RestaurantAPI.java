@@ -6,7 +6,7 @@ import com.codegym.entity.Product;
 import com.codegym.entity.dto.ProductDTO;
 import com.codegym.service.category.ICategoryService;
 import com.codegym.service.product.IProductService;
-import com.codegym.service.table.IDeskService;
+import com.codegym.service.desk.IDeskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +20,7 @@ import java.util.Optional;
 public class RestaurantAPI {
     //    Mọi người dán Autowired ở đây.
     @Autowired
-    IDeskService tableService;
+    IDeskService deskService;
     @Autowired
     private IProductService iProductService;
 
@@ -30,41 +30,31 @@ public class RestaurantAPI {
     @GetMapping("/product")
     public Iterable<ProductDTO> getListProduct() {
 
-        Iterable<ProductDTO> products = iProductService.findAllPDTO();
-
-        return products;
+        return iProductService.findAllPDTO();
     }
 
     @PostMapping("/product/create")
     public Product createProduct(@RequestBody Product product) {
 
-        Product product1 = iProductService.save(product);
-
-        return product1;
+        return iProductService.save(product);
     }
 
     @GetMapping("/product/{id}")
     public ProductDTO createIdProduct(@PathVariable Long id) {
 
-        ProductDTO product = iProductService.findByIdPDTO(id).get();
-
-        return product;
+        return iProductService.findByIdPDTO(id).get();
     }
 
     @GetMapping("/product/category/{id}")
     public List<ProductDTO> selectCategory(@PathVariable Long id) {
 
-        List<ProductDTO> product = iProductService.findByCategoryIdPDTO(id);
-
-        return product;
+        return iProductService.findByCategoryIdPDTO(id);
     }
 
     @PostMapping("/product/update")
     public Product updateProduct(@RequestBody Product product) {
 
-        Product product1 = iProductService.save(product);
-
-        return product1;
+        return iProductService.save(product);
     }
 
     @GetMapping("/product/delete/{id}")
@@ -84,9 +74,7 @@ public class RestaurantAPI {
     @GetMapping("/category")
     public Iterable<Category> getListCategory() {
 
-        Iterable<Category> categories = iCategoryService.findAll();
-
-        return categories;
+        return iCategoryService.findAll();
     }
 
     @PostMapping("/category/create")
@@ -98,17 +86,13 @@ public class RestaurantAPI {
     @GetMapping("/category/{id}")
     public Category createIdCategory(@PathVariable Long id) {
 
-        Category category = iCategoryService.findById(id).get();
-
-        return category;
+        return iCategoryService.findById(id).get();
     }
 
     @PostMapping("/category/update")
     public Category updateCategory(@RequestBody Category category) {
 
-        Category category1 = iCategoryService.save(category);
-
-        return category1;
+        return iCategoryService.save(category);
     }
 
     @GetMapping("/category/delete/{id}")
@@ -127,12 +111,27 @@ public class RestaurantAPI {
 
     @PostMapping("/desk/create")
     public Desk createTable (@RequestBody Desk desk) {
-        return tableService.save(desk);
+        return deskService.save(desk);
     }
 
     @GetMapping("/desk/getalldesk")
     public Iterable<Desk> getAllDesk () {
-        return tableService.findAll();
+        return deskService.findAll();
+    }
+
+    @GetMapping("/desk/getDeskById/{id}")
+    public Desk getDeskById (@PathVariable Long id) {
+        return deskService.findById(id).get();
+    }
+
+    @PutMapping("/desk/update/{id}")
+    public Desk updateDesk (@PathVariable Long id) {
+        Desk desk = deskService.findById(id).get();
+        Desk newDesk = new Desk();
+        newDesk.setId(desk.getId());
+        newDesk.setName(desk.getName());
+        newDesk.setStatus(!desk.getStatus());
+        return deskService.save(newDesk);
     }
 }
 

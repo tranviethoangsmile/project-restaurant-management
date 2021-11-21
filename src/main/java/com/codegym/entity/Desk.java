@@ -21,8 +21,7 @@ public class Desk {
     private Long id;
     private String name;
 
-    @Column(columnDefinition = "boolean default false")
-    private Boolean status = false;
+    private Boolean status;
 
     @JsonIgnore
     @OneToMany (targetEntity = Order.class,fetch = FetchType.EAGER)

@@ -30,33 +30,25 @@ public class ProductApi {
     @PostMapping("/product/create")
     public Product create(@RequestBody Product product) {
 
-        Product product1 = iProductService.save(product);
-
-        return product1;
+        return iProductService.save(product);
     }
 
     @GetMapping("/product/{id}")
     public ProductDTO createId(@PathVariable Long id) {
 
-        ProductDTO product = iProductService.findByIdPDTO(id).get();
-
-        return product;
+        return iProductService.findByIdPDTO(id).get();
     }
 
     @GetMapping("/product/category/{id}")
     public List<ProductDTO> selectCategory(@PathVariable Long id) {
 
-        List<ProductDTO> product = iProductService.findByCategoryIdPDTO(id);
-
-        return product;
+        return iProductService.findByCategoryIdPDTO(id);
     }
 
     @PostMapping("/product/update")
     public Product update(@RequestBody Product product) {
 
-        Product product1 = iProductService.save(product);
-
-        return product1;
+        return iProductService.save(product);
     }
 
     @GetMapping("/product/delete/{id}")
