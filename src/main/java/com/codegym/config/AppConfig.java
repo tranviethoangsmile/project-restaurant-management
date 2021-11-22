@@ -2,6 +2,8 @@ package com.codegym.config;
 
 import com.codegym.service.category.CategoryService;
 import com.codegym.service.category.ICategoryService;
+import com.codegym.service.order.IOrderService;
+import com.codegym.service.order.OrderService;
 import com.codegym.service.product.IProductService;
 import com.codegym.service.product.ProductService;
 import com.codegym.service.desk.IDeskService;
@@ -140,6 +142,11 @@ public class AppConfig implements WebMvcConfigurer, ApplicationContextAware {
     @Bean
     public ICategoryService categoryService() {
         return new CategoryService();
+    }
+
+    @Bean
+    public IOrderService orderService () {
+        return new OrderService();
     }
 
 }

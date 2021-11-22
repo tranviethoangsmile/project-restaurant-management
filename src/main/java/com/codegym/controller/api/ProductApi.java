@@ -22,9 +22,7 @@ public class ProductApi {
     @GetMapping("/product")
     public Iterable<ProductDTO> getList() {
 
-        Iterable<ProductDTO> products = iProductService.findAllPDTO();
-
-        return products;
+        return iProductService.findAllPDTO();
     }
 
     @PostMapping("/product/create")

@@ -1,13 +1,4 @@
-$(document).ready(function () {
-    $('#af-preloader').delay(500).fadeOut('slow')
 
-    $('#sidebarCollapse').on('click', function () {
-        $('#sidebar, #content').toggleClass('active');
-        $('.collapse.in').toggleClass('in');
-        $('a[aria-expanded=true]').attr('aria-expanded', 'false');
-    });
-    init();
-});
 
 init = function () {
     getAllDeskForOption();
@@ -68,17 +59,14 @@ getAllDeskForOption = function () {
             $(".desk-list .row").append(
                 `
                 <div class="col-xl-2">
-                <button type="button" onclick="getStatusDesk(${item.id})" style="width: 75px; margin: 10px" class="btn btn-${item.status ? 'danger' : 'success'}">
+                <a href = "#${item.id}" data-toggle = "tab"
+                <button onclick = "getDeskInfo(${item.id})" style=" margin: 10px" class="btn btn-${item.status ? 'danger' : 'success'}">
                     ${item.name}</button>   
+                    </a>
                 </div>
                 `
             )
         })
-        // < a
-        // href = "#${item.id}"
-        // data - toggle = "tab"
-        // className = "btn btn-${item.status ? 'danger' : 'success'}"
-        // onClick = "getDeskInfo(${item.id})" >${item.name} < /a>
     }).fail(function (){
         $.notify("Tải danh sách bàn không thành công", "error");
     })
@@ -129,3 +117,13 @@ getDeskInfo = function (id) {
         $.notify("Tải thông tin bàn không thành công", "error");
     })
 }
+$(document).ready(function (){
+    $('#af-preloader').delay(500).fadeOut('slow')
+
+    $('#sidebarCollapse').on('click', function () {
+        $('#sidebar, #content').toggleClass('active');
+        $('.collapse.in').toggleClass('in');
+        $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+    });
+    init();
+})

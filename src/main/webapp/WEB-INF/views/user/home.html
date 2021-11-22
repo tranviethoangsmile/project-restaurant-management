@@ -82,30 +82,30 @@
             <div class="col-6">
                 <div class="card">
                     <div class="card-body">
-                        <header><h2>Bàn 1</h2></header>
-                        <h3>Danh sách món ăn</h3>
-                        <table class="table table-hover">
-                            <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Tên</th>
-                                <th>Giá</th>
-                                <th>Số Lượng</th>
-                                <th>Thành Tiền</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>Vịt Quay</td>
-                                <td>150000</td>
-                                <td>2</td>
-                                <td>300000</td>
-                            </tr>
-                            </tbody>
-                            <tfoot>Tổng: 3000000</tfoot>
-                            <button class="btn btn-success">Thanh toán</button>
-                        </table>
+                           <form class="form-group">
+                               <div class="form-group">
+                                   <label for="desk-order"><h2>Bàn</h2></label>
+                                   <select class="form-control" id="desk-order">
+                                        <!--Danh sách để chọn bàn order-->
+                                   </select>
+                               </div>
+                               <table class="table table-hover">
+                                   <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th>Tên món</th>
+                                            <th>Giá</th>
+                                            <th>Số lượng</th>
+                                            <th>Thành Tiền</th>
+                                        </tr>
+                                   </thead>
+                                   <tbody class="productListOrder">
+                                        <!--Phần để xuất danh sách món ăn order-->
+                                   </tbody>
+                               </table>
+                               <button onclick="createOrderDetail()" type="button" class="btn btn-success">Nhập món</button>
+<!--                               <button onclick="getAllMenuSelect()" type="button" class="btn btn-default">Kiểm tra lại</button>-->
+                           </form>
                     </div>
                 </div>
             </div>
@@ -116,7 +116,7 @@
                         <p class="text-muted font-13 mb-4">
                         </p>
                         <form>
-                            <button type="button" class="btn btn-outline-primary" id="all">
+                            <button type="button" class="btn btn-success" id="all">
                                 Tất cả
                             </button>
                             <div id="category">
@@ -166,27 +166,37 @@
 </section>
 
 <!--modal-->
-<div class="modal fade" id="createOrder" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title" id="myModalLabel">Modal title</h4>
-            </div>
-            <div class="modal-body">
-                <div class="col-12">
-                    <div id="statusDesk">
-
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
-        </div>
-    </div>
-</div>
+<!--<div class="modal fade" id="menuSelected" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">-->
+<!--    <div class="modal-dialog">-->
+<!--        <div class="modal-content">-->
+<!--            <div class="modal-header">-->
+<!--                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>-->
+<!--                <h4 class="modal-title" id="myModalLabel">Modal title</h4>-->
+<!--            </div>-->
+<!--            <div class="modal-body">-->
+<!--                <div class="col-12">-->
+<!--                        <table>-->
+<!--                            <h2 id="DeskName"></h2>-->
+<!--                            <thead>-->
+<!--                            <tr>-->
+<!--                                <th>Tên món</th>-->
+<!--                                <th>Giá</th>-->
+<!--                                <th>Số lượng</th>-->
+<!--                                <th>Thành Tiền</th>-->
+<!--                            </tr>-->
+<!--                            </thead>-->
+<!--                            <tbody id="menu">-->
+<!--                            </tbody>-->
+<!--                        </table>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="modal-footer">-->
+<!--                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
+<!--                <button type="button" class="btn btn-primary">Save changes</button>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
 <!--end modal-->
 
 <script src="/resource/js/home/home.js"></script>
@@ -216,7 +226,5 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"
         integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
         crossorigin="anonymous"></script>
-
-
 </body>
 </html>

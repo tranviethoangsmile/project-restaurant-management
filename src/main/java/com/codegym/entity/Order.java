@@ -22,20 +22,10 @@ public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
-    private BigDecimal total;
-    private Date createAt;
-
     @ManyToOne
     @JoinColumn(name = "desk_id", referencedColumnName = "id", nullable = false)
     private Desk desk;
-
-    @ManyToOne
-    @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)
-    private User user;
-
     @JsonIgnore
     @OneToMany (targetEntity = OrderDetail.class,fetch = FetchType.EAGER)
     private Set<OrderDetail> orderDetails;
-
 }

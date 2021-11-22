@@ -2,9 +2,11 @@ package com.codegym.controller.api;
 
 import com.codegym.entity.Category;
 import com.codegym.entity.Desk;
+import com.codegym.entity.Order;
 import com.codegym.entity.Product;
 import com.codegym.entity.dto.ProductDTO;
 import com.codegym.service.category.ICategoryService;
+import com.codegym.service.order.IOrderService;
 import com.codegym.service.product.IProductService;
 import com.codegym.service.desk.IDeskService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,11 +23,15 @@ public class RestaurantAPI {
     //    Mọi người dán Autowired ở đây.
     @Autowired
     IDeskService deskService;
+
     @Autowired
     private IProductService iProductService;
 
     @Autowired
     private ICategoryService iCategoryService;
+
+    @Autowired
+    IOrderService orderService;
 
     @GetMapping("/product")
     public Iterable<ProductDTO> getListProduct() {
@@ -133,5 +139,14 @@ public class RestaurantAPI {
         newDesk.setStatus(!desk.getStatus());
         return deskService.save(newDesk);
     }
+
+
+    @PostMapping("/order/create")
+    public Order createOrder (@RequestBody Order order) {
+        return orderService.save(order);
+    }
+
+
+
 }
 
