@@ -1,5 +1,6 @@
 package com.codegym.config;
 
+import com.codegym.security.AuthTokenFilter;
 import com.codegym.service.product.IProductService;
 import com.codegym.service.product.ProductService;
 import com.codegym.service.role.IRoleService;
@@ -101,7 +102,7 @@ public class AppConfig implements WebMvcConfigurer, ApplicationContextAware {
     @Bean
     public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
+        dataSource.setDriverClassName("com.mysql.jdbc.Driver");
         dataSource.setUrl("jdbc:mysql://localhost:3306/project_restaurant_management");
         dataSource.setUsername("root");
         dataSource.setPassword("123456");
@@ -117,10 +118,10 @@ public class AppConfig implements WebMvcConfigurer, ApplicationContextAware {
 
     Properties additionalProperties() {
         Properties properties = new Properties();
-        properties.setProperty("hibernate.connection.useUnicode", "true");
-        properties.setProperty("hibernate.connection.charset", "UTF-8");
+        properties.setProperty("hibernate.connection.useUnicode","true");
+        properties.setProperty("hibernate.connection.charset","UTF-8");
         properties.setProperty("hibernate.hbm2ddl.auto", "update");
-        properties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL5InnoDBDialect");
+        properties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
         return properties;
     }
 
@@ -128,6 +129,7 @@ public class AppConfig implements WebMvcConfigurer, ApplicationContextAware {
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/resource/**").addResourceLocations("/resource/");
     }
+
 
     @Bean
     public IDeskService tableService() {
