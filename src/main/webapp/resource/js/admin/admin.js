@@ -10,6 +10,8 @@ convert = function (value) {
 
 init = function () {
     getOrderDetail();
+    getAllCategory();
+    getAllProduct();
 }
 
 getOrderDetail = function () {
@@ -21,12 +23,12 @@ getOrderDetail = function () {
         url: "https://61961269902243001762fa41.mockapi.io/orderdetail",
         type: "GET",
     }).done (function (data) {
-        var xValues = new Array();
+        var xValues = [];
         $.each(data,function (index,item) {
             xValues[index] = `${convert(item.CreataAt)}`
         })
         console.log(xValues)
-        var yValues = new Array();
+        var yValues = [];
         $.each(data,function (index,item){
             yValues[index] = `${item.price}`
         })
@@ -53,3 +55,86 @@ getOrderDetail = function () {
         alert("fail");
     })
 }
+
+//Nhận danh sách category
+$("all").on("click",function (){
+    getAllProduct();
+})
+getAllCategory = function () {
+    $.ajax({
+        headers: {
+            'Accept':'application/json',
+            'Content-Type':'application/json'
+        },
+        url: "/api/category/category",
+        type: "GET"
+    }).done(function (resp) {
+        $("#listCategory").empty();
+        $.each(resp,function (index,item){
+            $("#listCategory").append(
+                `
+                    <button type="button" class="btn btn-success" onclick="getAllProductOfCategory(${item.id})">${item.name}</button>
+                `
+            )
+        })
+    }).fail(function () {
+        $.notify("không tải được danh mục","error")
+    });
+}
+
+getAllProduct = function () {
+    $.ajax({
+        url: "/api/product",
+        type: "GET"
+    }).done(function (resp) {
+        $("#listProduct").empty();
+        $.each(resp,function (index,item){
+            $("#listProduct").prepend(
+                `
+                    <tr>
+                        <td>${item.id}</td>
+                        <td>${item.name}</td>
+                        <td>${item.category.name}</td>
+                        <td>${item.price}</td>
+                        <td><button class="btn btn-${item.status ? "danger" : "success"}">${item.status ? "hết hàng" : "còn hàng"}</button></td>
+                    </tr>
+                `
+            )
+        })
+    }).fail(function () {
+        $.notify("Không tải được danh sách món ăn","error")
+    });
+}
+
+//Nhận danh danh món ăn theo category
+
+getAllProductOfCategory = function (id) {
+    $.ajax({
+        headers: {
+            'Accept':'application/json',
+            'Content-Type':'application/json'
+        },
+        url: "/api/product/category/" + id,
+        type: "GET"
+    }).done(function (productOfCategory){
+        $("#listProduct").empty();
+        $.each(productOfCategory,function (index,item){
+            $("#listProduct").prepend(
+                `
+                 <tr>
+                        <td>${item.id}</td>
+                        <td>${item.name}</td>
+                        <td>${item.category.name}</td>
+                        <td>${item.price}</td>
+                        <td><button class="btn btn-${item.status ? "danger" : "success"}">${item.status ? "hết hàng" : "còn hàng"}</button></td>
+                    </tr>
+                `
+            )
+        })
+    }).fail (function () {
+        $.notify("Không tải được danh sách món ăn","error")
+    })
+}
+
+
+

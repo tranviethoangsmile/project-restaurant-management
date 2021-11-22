@@ -72,6 +72,37 @@
             <div class="col-xl-12">
                 <canvas id="myChart" style="width:100%; height: 100%"></canvas>
             </div>
+            <div class="col-xl-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="header-title">Menu</h4>
+                        <p class="text-muted font-13 mb-4">
+                        </p>
+                        <form>
+                            <button style="margin-bottom: 5px" type="button" class="btn btn-primary" onclick="getAllProduct()">
+                                Tất cả
+                            </button>
+                            <div id="listCategory">
+                            </div>
+                        </form>
+
+                        <table class="table dt-responsive nowrap">
+                            <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Tên</th>
+                                <th>Danh Mục</th>
+                                <th>Giá</th>
+                                <th>Trạng thái</th>
+                            </tr>
+                            </thead>
+                            <tbody id="listProduct">
+
+                            </tbody>
+                        </table>
+                    </div> <!-- end card body-->
+                </div> <!-- end card -->
+            </div><!-- end col-->
         </div> <!-- row -->
     </div> <!--  big container -->
 
@@ -101,12 +132,9 @@
 <!-- main jQuery -->
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script src="/resource/assets/js/jquery.js"></script>
-<script src="/resource/assets/html5lightbox/html5lightbox.js"></script>
+<!--<script src="/resource/assets/js/jquery.js"></script>-->
 <!-- html5lightbox js -->
 <script src="/resource/assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
-<!--Color Switcher-->
-<script src="/resource/assets/js/color-settings.js"></script>
 <!-- thm custom script -->
 <script src="/resource/assets/js/custom.js"></script>
 <!--validator-->

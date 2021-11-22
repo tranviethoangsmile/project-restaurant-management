@@ -1,4 +1,4 @@
-package com.codegym.service.table;
+package com.codegym.service.desk;
 
 import com.codegym.entity.Desk;
 import com.codegym.service.IGeneralService;

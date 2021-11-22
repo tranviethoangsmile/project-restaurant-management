@@ -2,10 +2,12 @@ package com.codegym.config;
 
 import com.codegym.service.category.CategoryService;
 import com.codegym.service.category.ICategoryService;
+import com.codegym.service.order.IOrderService;
+import com.codegym.service.order.OrderService;
 import com.codegym.service.product.IProductService;
 import com.codegym.service.product.ProductService;
-import com.codegym.service.table.IDeskService;
-import com.codegym.service.table.DeskService;
+import com.codegym.service.desk.IDeskService;
+import com.codegym.service.desk.DeskService;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -100,9 +102,9 @@ public class AppConfig implements WebMvcConfigurer, ApplicationContextAware {
     public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
-        dataSource.setUrl("jdbc:mysql://localhost:3306/restaurant_management");
+        dataSource.setUrl("jdbc:mysql://localhost:3306/project_restaurant_management");
         dataSource.setUsername("root");
-        dataSource.setPassword("Nhi09092018");
+        dataSource.setPassword("29061993");
         return dataSource;
     }
 
@@ -140,6 +142,11 @@ public class AppConfig implements WebMvcConfigurer, ApplicationContextAware {
     @Bean
     public ICategoryService categoryService() {
         return new CategoryService();
+    }
+
+    @Bean
+    public IOrderService orderService () {
+        return new OrderService();
     }
 
 }

@@ -20,7 +20,6 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-
     @JsonIgnore
     @OneToMany (targetEntity = Product.class,fetch = FetchType.EAGER)
     private Set<Product> products;
