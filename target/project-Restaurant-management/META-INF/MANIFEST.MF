@@ -1,10 +1,5 @@
 Manifest-Version: 1.0
 Created-By: IntelliJ IDEA
-<<<<<<< HEAD
 Built-By: ASUS
 Build-Jdk: 1.8
-=======
-Built-By: DELL
-Build-Jdk: version 1.8.0_45
->>>>>>> 928b31b9554ff918352a27d4dc32129942b14592
 
