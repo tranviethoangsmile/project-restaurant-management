@@ -31,4 +31,9 @@ public class OrderService implements IOrderService{
     public void remove(Long id) {
         orderRepository.deleteById(id);
     }
+
+    @Override
+    public Order getOrderByDeskId(Long id) {
+        return orderRepository.getOrderByDesk_Id(id);
+    }
 }

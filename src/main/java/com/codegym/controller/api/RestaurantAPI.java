@@ -1,12 +1,11 @@
 package com.codegym.controller.api;
 
-import com.codegym.entity.Category;
-import com.codegym.entity.Desk;
-import com.codegym.entity.Order;
-import com.codegym.entity.Product;
+import com.codegym.entity.*;
+import com.codegym.entity.dto.OrderDetailDTO;
 import com.codegym.entity.dto.ProductDTO;
 import com.codegym.service.category.ICategoryService;
 import com.codegym.service.order.IOrderService;
+import com.codegym.service.orderDetail.IOrderDetailService;
 import com.codegym.service.product.IProductService;
 import com.codegym.service.desk.IDeskService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +31,9 @@ public class RestaurantAPI {
 
     @Autowired
     IOrderService orderService;
+
+    @Autowired
+    IOrderDetailService orderDetailService;
 
     @GetMapping("/product")
     public Iterable<ProductDTO> getListProduct() {
@@ -146,6 +148,29 @@ public class RestaurantAPI {
         return orderService.save(order);
     }
 
+    @GetMapping("/order/getorderbydeskid/{id}")
+    public Order getOrderByDeskid (@PathVariable Long id) {
+        return orderService.getOrderByDeskId(id);
+    }
+
+    @GetMapping("/product/getproductby/{id}")
+    public Product getProductById (@PathVariable Long id) {
+        return iProductService.findById(id).get();
+    }
+
+
+    @PostMapping ("/orderdetail/create")
+    public OrderDetail createOrderDetail (@RequestBody OrderDetailDTO orderDetailDTO) {
+        System.out.println(orderDetailDTO);
+        Order order = orderService.findById(orderDetailDTO.getOrderId()).get();
+        Product product = iProductService.findById(orderDetailDTO.getProductId()).get();
+        OrderDetail orderDetail = new OrderDetail();
+        orderDetail.setOrder(order);
+        orderDetail.setProduct(product);
+        orderDetail.setQuantity(orderDetailDTO.getQuantity());
+        orderDetail.setUnitPrice(orderDetailDTO.getUnitPrice());
+        return orderDetailService.save(orderDetail);
+    }
 
 
 }
