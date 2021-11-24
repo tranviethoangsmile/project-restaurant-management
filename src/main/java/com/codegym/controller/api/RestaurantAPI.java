@@ -79,6 +79,18 @@ public class RestaurantAPI {
         return new ResponseEntity<Boolean>(true, HttpStatus.CREATED);
     }
 
+    @PutMapping ("/product/changerstatus/{id}")
+    public Product changerStatus (@PathVariable Long id) {
+        ProductDTO productDTO = iProductService.findByIdPDTO(id).get();
+        Product newProduct = new Product();
+        newProduct.setId(productDTO.getId());
+        newProduct.setName(productDTO.getName());
+        newProduct.setPrice(productDTO.getPrice());
+        newProduct.setStatus(!productDTO.isStatus());
+        newProduct.setCategory(productDTO.getCategory());
+        return iProductService.save(newProduct);
+    }
+
     @GetMapping("/category")
     public Iterable<Category> getListCategory() {
 
@@ -142,7 +154,6 @@ public class RestaurantAPI {
         return deskService.save(newDesk);
     }
 
-
     @PostMapping("/order/create")
     public Order createOrder (@RequestBody Order order) {
         return orderService.save(order);
@@ -170,6 +181,13 @@ public class RestaurantAPI {
         orderDetail.setQuantity(orderDetailDTO.getQuantity());
         orderDetail.setUnitPrice(orderDetailDTO.getUnitPrice());
         return orderDetailService.save(orderDetail);
+    }
+
+    @GetMapping("orderdetail/orderdetailofdeskid/{id}")
+    public List<OrderDetail> getOrderDetailOfDeskid (@PathVariable Long id) {
+        Desk desk = deskService.findById(id).get();
+        Order order = orderService.getOrderByDeskId(desk.getId());
+        return orderDetailService.findOrderDetailByOrder_id(order.getId());
     }
 
 

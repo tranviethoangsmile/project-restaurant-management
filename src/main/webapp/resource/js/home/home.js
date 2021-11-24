@@ -93,6 +93,7 @@ function getAllCategory() {
     });
 }
 
+
 function getAllDesk() {
     return $.ajax({
         url: "/api/desk/getalldesk",
@@ -222,6 +223,7 @@ $("#product-order").on("change",function () {
     })
 })
 
+//Nhận Product theo id
 getProductById = function (id) {
     $.ajax({
         headers: {
@@ -253,7 +255,7 @@ $("#desk-order").on("change",function (){
     getOrderByDeskId($("#desk-order").val());
 })
 
-
+//Nhận order theo Desk Id
 getOrderByDeskId = function (id) {
     $.ajax({
         headers: {
