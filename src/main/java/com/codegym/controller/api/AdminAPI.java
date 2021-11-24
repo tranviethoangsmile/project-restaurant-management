@@ -26,7 +26,7 @@ import javax.validation.Valid;
 
 
 @RestController
-@RequestMapping("/api/admin")
+@RequestMapping("/api")
 public class AdminAPI {
 
     @Autowired
@@ -36,15 +36,12 @@ public class AdminAPI {
     IUserService userService;
 
     @Autowired
-    IRoleService roleService;
-
-    @Autowired
     PasswordEncoder encoder;
 
     @Autowired
     private JwtUtils jwtUtils;
 
-    @PostMapping("/login")
+    @PostMapping("/admin/login")
 	public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
 
 		Authentication authentication = authenticationManager.authenticate(

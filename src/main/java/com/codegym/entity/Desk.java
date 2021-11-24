@@ -17,10 +17,12 @@ import java.util.Set;
 @Table(name = "desks")
 public class Desk {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    private String status;
+
+    private Boolean status;
+
     @JsonIgnore
     @OneToMany (targetEntity = Order.class,fetch = FetchType.EAGER)
     private Set<Order> orders;

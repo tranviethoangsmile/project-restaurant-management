@@ -1,10 +1,13 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
     <!-- Home css -->
     <link rel="stylesheet" href="/resource/css/home/home.css">
+    <!-- wizard   -->
+    <link href="/resource/assets-desk/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="/resource/assets-desk/css/material-bootstrap-wizard.css" rel="stylesheet"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.js"></script>
     <!-- master stylesheet -->
     <link rel="stylesheet" href="/resource/assets/css/style.css">
@@ -13,125 +16,215 @@
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
-
-
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
-
-    <link href="assets\css\bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
+          integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
 </head>
 <body>
-<!--preloader-->
 <div id='af-preloader'>
     <div class='af-preloader-wrap'>
         <div class='af-sp af-sp-wave'></div>
     </div>
 </div>
 
-<div class="boxed_wrapper">
-<!--    Start mainmenu area-->
-    <section class="mainmenu-area stricky">
-        <div class="container">
-            <div class="row">
-                <div class="col-xl-12">
-                    <div class="inner-content clearfix">
-                        <nav class="main-menu style1 clearfix">
-                            <div class="navbar-header clearfix">
-                                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                                    <span class="icon-bar"></span>
-                                    <span class="icon-bar"></span>
-                                    <span class="icon-bar"></span>
-                                </button>
-                            </div>
-                            <div class="navbar-collapse collapse clearfix">
-                                <ul class="navigation clearfix">
-                                    <li class="dropdown current"><a href="/admin">Quản Lý</a>
-                                    </li>
-                                    <li><a href="#">Cá Nhân</a></li>
-                                    <li class="dropdown"><a href="">Báo Cáo</a>
-                                    </li>
-                                    <li><a href="#">Thông Báo</a></li>
-                                    </li>
-                                    <li><a href="#">Thoát</a></li>
-                                </ul>
-                            </div>
-                        </nav>
 
-                        <div class="mainmenu-right">
-                            <div class="search-box-style1">
-                                <form class="search-form" method="post" action="http://st.ourhtmldemo.com/new/Dento/index.html">
-                                    <input type="search" name="search" placeholder="Search..." required>
-                                    <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
-                                </form>
-                            </div>
-                            <div class="toggler-button">
-                                <div class="nav-toggler hidden-bar-opener">
-                                    <div class="inner">
-                                        <span></span>
-                                        <span></span>
-                                        <span></span>
-                                    </div>
-                                </div>
-                            </div>
+<!--    Start mainmenu area-->
+<section class="mainmenu-area stricky">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="inner-content clearfix">
+                    <nav class="main-menu style1 clearfix">
+                        <div class="navbar-header clearfix">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse"
+                                    data-target=".navbar-collapse">
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                        </div>
+                        <div class="navbar-collapse collapse clearfix">
+                            <ul class="navigation clearfix">
+                                <li><a href="/admin">Quản Lý</a></li>
+                                <li><a href="/profile">Trang Cá Nhân</a></li>
+                                <li><a href="/logout">Thoát</a></li>
+                            </ul>
+                        </div>
+                    </nav>
+                    <!--End mainmenu area-->
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--End mainmenu area-->
+<div class="main-slider">
+    <div class="content">
+        <div class="row">
+            <div class="col-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="header-title">Danh sách bàn</h4>
+                        <div id="desk">
+
+                        </div>
+                    </div> <!-- end card body-->
+                </div> <!-- end card -->
+            </div><!-- end col-->
+            <div class="col-2">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="deskStatus">
+
                         </div>
                     </div>
                 </div>
             </div>
+            <div class="col-6">
+                <div class="card">
+                    <div class="card-body">
+                           <form class="form-group">
+                               <div class="form-group">
+                                   <label for="desk-order"><h2>Bàn</h2></label>
+                                   <select class="form-control" id="desk-order">
+                                        <!--Danh sách để chọn bàn order-->
+                                   </select>
+                               </div>
+                               <table class="table table-hover">
+                                   <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th>Tên món</th>
+                                            <th>Giá</th>
+                                            <th>Số lượng</th>
+                                            <th>Thành Tiền</th>
+                                        </tr>
+                                   </thead>
+                                   <tbody class="productListOrder">
+                                        <!--Phần để xuất danh sách món ăn order-->
+                                   </tbody>
+                               </table>
+                               <button onclick="createOrderDetail()" type="button" class="btn btn-success">Nhập món</button>
+<!--                               <button onclick="getAllMenuSelect()" type="button" class="btn btn-default">Kiểm tra lại</button>-->
+                           </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="header-title">Menu</h4>
+                        <p class="text-muted font-13 mb-4">
+                        </p>
+                        <form>
+                            <button type="button" class="btn btn-success" id="all">
+                                Tất cả
+                            </button>
+                            <div id="category">
+                            </div>
+                        </form>
+
+                        <table id="basic-datatable2" class="table dt-responsive nowrap">
+                            <thead>
+                            <tr>
+                                <th>Món ăn</th>
+                                <th>Giá</th>
+                                <th></th>
+                            </tr>
+                            </thead>
+                            <tbody id="tbListProduct">
+
+                            </tbody>
+                        </table>
+
+                    </div> <!-- end card body-->
+                </div> <!-- end card -->
+            </div><!-- end col-->
         </div>
-    </section>
-    <!--End mainmenu area-->
+    </div>
 </div>
-    <!-- Hidden Navigation Bar -->
-    <section class="hidden-bar right-align">
-        <div class="hidden-bar-closer">
-            <button><span class="flaticon-remove"></span></button>
+
+<!-- Hidden Navigation Bar -->
+<section class="hidden-bar right-align">
+    <div class="hidden-bar-closer">
+        <button><span class="flaticon-remove"></span></button>
+    </div>
+    <div class="hidden-bar-wrapper">
+        <div class="contact-info-box">
+
+            <h2>Báo cáo</h2>
+
+            <h2>Thông báo</h2>
+
         </div>
-        <div class="hidden-bar-wrapper">
-            <div class="contact-info-box">
-                <h2>Thông báo</h2>
-            </div>
-            <div class="newsletter-form-box">
+        <div class="newsletter-form-box">
 
-            </div>
-            <div class="copy-right-text">
-
-            </div>
         </div>
-    </section>
+        <div class="copy-right-text">
 
+        </div>
+    </div>
+</section>
 
-<th:block th:replace="/user/order-display :: frm-order"></th:block>
-
-<script type="text/javascript" src="/resource/assets/js/validation-front-end.js"></script>
-
-
-
+<!--modal-->
+<!--<div class="modal fade" id="menuSelected" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">-->
+<!--    <div class="modal-dialog">-->
+<!--        <div class="modal-content">-->
+<!--            <div class="modal-header">-->
+<!--                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>-->
+<!--                <h4 class="modal-title" id="myModalLabel">Modal title</h4>-->
+<!--            </div>-->
+<!--            <div class="modal-body">-->
+<!--                <div class="col-12">-->
+<!--                        <table>-->
+<!--                            <h2 id="DeskName"></h2>-->
+<!--                            <thead>-->
+<!--                            <tr>-->
+<!--                                <th>Tên món</th>-->
+<!--                                <th>Giá</th>-->
+<!--                                <th>Số lượng</th>-->
+<!--                                <th>Thành Tiền</th>-->
+<!--                            </tr>-->
+<!--                            </thead>-->
+<!--                            <tbody id="menu">-->
+<!--                            </tbody>-->
+<!--                        </table>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="modal-footer">-->
+<!--                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
+<!--                <button type="button" class="btn btn-primary">Save changes</button>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+<!--end modal-->
 
 <script src="/resource/js/home/home.js"></script>
-    <!-- main jQuery -->
+<!--   Core JS Files-->
+<script src="/resource/assets-desk/js/jquery-2.2.4.min.js" type="text/javascript"></script>
+<script src="/resource/assets-desk/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="/resource/assets-desk/js/jquery.bootstrap.js" type="text/javascript"></script>
+<!--  Plugin for the Wizard -->
+<script src="/resource/assets-desk/js/material-bootstrap-wizard.js"></script>
+<!--  More information about jquery.validate here: http://jqueryvalidation.org/	 -->
+<script type="text/javascript"
+        src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
+<!-- main jQuery -->
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script src="/resource/assets/js/jquery.js"></script>
-<script src="/resource/assets/html5lightbox/html5lightbox.js"></script>
-<!-- html5lightbox js -->
-<script src="/resource/assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
-<!--Color Switcher-->
-<script src="/resource/assets/js/color-settings.js"></script>
-<!-- thm custom script -->
-<script src="/resource/assets/js/custom.js"></script>
-<!--validator-->
-<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
 <!--bootbox-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.min.js"></script>
 <!--Notify-->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/notify/0.4.2/notify.min.js" integrity="sha512-efUTj3HdSPwWJ9gjfGR71X9cvsrthIA78/Fvd/IN+fttQVy7XWkOAXb295j8B3cmm/kFKVxjiNYzKw9IQJHIuQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<!-- jQuery CDN - Slim version (=without AJAX) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/notify/0.4.2/notify.min.js"
+        integrity="sha512-efUTj3HdSPwWJ9gjfGR71X9cvsrthIA78/Fvd/IN+fttQVy7XWkOAXb295j8B3cmm/kFKVxjiNYzKw9IQJHIuQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <!-- Popper.JS -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"
+        integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
+        crossorigin="anonymous"></script>
 <!-- Bootstrap JS -->
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
-<!-- jQuery Custom Scroller CDN -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
-
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"
+        integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
+        crossorigin="anonymous"></script>
 </body>
 </html>

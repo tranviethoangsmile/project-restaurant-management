@@ -1,9 +1,13 @@
 package com.codegym.service.product;
 
 import com.codegym.entity.Product;
+import com.codegym.entity.dto.ProductDTO;
+
 import com.codegym.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 import java.util.Optional;
 
@@ -31,4 +35,21 @@ public class ProductService implements IProductService{
     public void remove(Long id) {
         productRepository.deleteById(id);
     }
+
+
+    @Override
+    public List<ProductDTO> findAllPDTO() {
+        return productRepository.findAllPDTO();
+    }
+
+    @Override
+    public Optional<ProductDTO> findByIdPDTO(Long id) {
+        return productRepository.findByIdPDTO(id);
+    }
+
+    @Override
+    public List<ProductDTO> findByCategoryIdPDTO(Long id) {
+        return productRepository.findByCategoryIdPDTO(id);
+    }
+
 }

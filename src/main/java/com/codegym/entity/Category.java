@@ -17,10 +17,9 @@ import java.util.Set;
 @Table(name = "categories")
 public class Category {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-
     @JsonIgnore
     @OneToMany (targetEntity = Product.class,fetch = FetchType.EAGER)
     private Set<Product> products;

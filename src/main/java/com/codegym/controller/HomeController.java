@@ -5,6 +5,7 @@ import com.codegym.service.product.IProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -21,17 +22,17 @@ public class HomeController {
     }
 
     @GetMapping("/home")
-    @PreAuthorize("hasAnyAuthority('USER') or hasAnyAuthority('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     private ModelAndView goHome () {
         ModelAndView modelAndView = new ModelAndView();
-//        Iterable<Product> products = productService.findAll();
+        Iterable<Product> products = productService.findAll();
         modelAndView.setViewName("/user/home");
-//        modelAndView.addObject("products", products);
+        modelAndView.addObject("products", products);
         return modelAndView;
     }
 
     @GetMapping("/admin")
-    @PreAuthorize("hasAnyAuthority('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     private ModelAndView goAdmin () {
         ModelAndView modelAndView = new ModelAndView("/user/admin");
         return modelAndView;

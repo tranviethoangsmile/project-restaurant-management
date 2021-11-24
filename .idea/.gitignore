@@ -1,0 +1,21 @@
+# Default ignored files
+/shelf/
+/workspace.xml
+# Datasource local storage ignored files
+/dataSources/
+/dataSources.local.xml
+# Editor-based HTTP Client requests
+/httpRequests/
+/taget/
+/webContexts.xml
+/vcs.xml
+/uiDesigner.xml
+/runConfigurations.xml
+/project-restaurant-management.iml
+/misc.xml
+/jsLibraryMappings.xml
+/jpa-buddy.xml
+/jarRepositories.xml
+/encodings.xml
+/shelf
+/com/codegym/config

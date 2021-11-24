@@ -1,14 +1,19 @@
 package com.codegym.config;
 
-import com.codegym.security.AuthTokenFilter;
+//import com.codegym.security.AuthTokenFilter;
+import com.codegym.service.desk.DeskService;
+import com.codegym.service.desk.IDeskService;
 import com.codegym.service.product.IProductService;
 import com.codegym.service.product.ProductService;
 import com.codegym.service.role.IRoleService;
 import com.codegym.service.role.RoleService;
 import com.codegym.service.user.IUserService;
 import com.codegym.service.user.UserService;
-import com.codegym.service.table.IDeskService;
-import com.codegym.service.table.DeskService;
+
+import com.codegym.service.category.CategoryService;
+import com.codegym.service.category.ICategoryService;
+import com.codegym.service.order.IOrderService;
+import com.codegym.service.order.OrderService;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -149,4 +154,15 @@ public class AppConfig implements WebMvcConfigurer, ApplicationContextAware {
     public IRoleService roleService() {
         return new RoleService();
     }
+
+    @Bean
+    public ICategoryService categoryService() {
+        return new CategoryService();
+    }
+
+    @Bean
+    public IOrderService orderService () {
+        return new OrderService();
+    }
+
 }
