@@ -44,40 +44,6 @@ public class AdminAPI {
     @Autowired
     private JwtUtils jwtUtils;
 
-
-//    	@PostMapping("/login")
-//	    public ResponseEntity<?> login(@RequestBody UserDTO userDTO) {
-//            Authentication authentication = authenticationManager.authenticate(
-//                    new UsernamePasswordAuthenticationToken(userDTO.getUsername(), userDTO.getPassword()));
-//
-//            SecurityContextHolder.getContext().setAuthentication(authentication);
-//
-//            String jwt = jwtService.generateTokenLogin(authentication);
-//            UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-//            User currentUser = userService.findByUsername(userDTO.getUsername()).get();
-//
-//            JwtResponse jwtResponse = new JwtResponse(
-//                    jwt,
-//                    currentUser.getId(),
-//                    userDetails.getUsername(),
-//                    currentUser.getUsername(),
-//                    userDetails.getAuthorities()
-//            );
-//
-//            ResponseCookie springCookie = ResponseCookie.from("JWT", jwt)
-//                    .httpOnly(false)
-//                    .secure(false)
-//                    .path("/")
-//                    .maxAge(60 * 1000)
-//                    .domain("localhost")
-//                    .build();
-//            return ResponseEntity
-//                    .ok()
-//                    .header(HttpHeaders.SET_COOKIE, springCookie.toString())
-//                    .body(jwtResponse);
-//
-//        }
-
     @PostMapping("/login")
 	public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
 
@@ -89,7 +55,6 @@ public class AdminAPI {
 		String jwt = jwtUtils.generateJwtToken(authentication);
 		UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
 		User currentUser = userService.findByUsername(loginRequest.getUsername()).get();
-//		System.out.println(currentUser.getUsername());
 
 		JwtResponse jwtResponse =new JwtResponse(
 				jwt,

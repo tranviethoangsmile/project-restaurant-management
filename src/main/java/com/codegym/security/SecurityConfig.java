@@ -16,6 +16,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
 @EnableWebSecurity
@@ -24,6 +25,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     UserDetailsService userDetailsService;
+
+    @Autowired
+    RestAuthenticationEntryPoint restAuthenticationEntryPoint;
 
     @Bean
     public AuthTokenFilter authTokenFilter() {
@@ -51,41 +55,69 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         authenticationManagerBuilder.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
     }
 
+//    @Override
+//    protected void configure(HttpSecurity http) throws Exception {
+//        http.csrf().ignoringAntMatchers("/**");
+//        http.httpBasic().authenticationEntryPoint(restServicesEntryPoint());
+//
+//        http.authorizeRequests()
+//                .antMatchers("/", "/api/admin/**", "/login", "/logout").permitAll()
+////                .antMatchers("/home", "/admin").hasAnyAuthority("ROLE_ADMIN")
+//                .antMatchers("/resource/**",
+//                        "/assets/**",
+//                        "/css/**",
+//                        "/js/**",
+//                        "/WEB-INF/views/**").permitAll()
+//
+//                .anyRequest().authenticated()
+//                .and()
+//                .formLogin()
+//                .loginProcessingUrl("/login")
+//                .loginPage("/")
+//                .usernameParameter("username")
+//                .passwordParameter("password")
+//                .defaultSuccessUrl("/home")
+//                .and()
+//                .logout()
+//                .logoutUrl("/logout")
+//                .logoutSuccessUrl("/login")
+//                .deleteCookies("JWT")
+//                .invalidateHttpSession(true)
+//                .and()
+//                .csrf().disable();
+//
+//        http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+//        http.cors();
+//    }
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().ignoringAntMatchers("/**");
-        http.httpBasic().authenticationEntryPoint(restServicesEntryPoint());
 
-        http.authorizeRequests()
-                .antMatchers("/", "/api/admin/**", "/login", "/logout").permitAll()
-                .antMatchers("/admin/**").hasAnyAuthority("ADMIN")
-//                .antMatchers("/profile/**").authenticated()
-//                .antMatchers("/profile/**").access("hasRole('ROLE_USER')")
-//                .antMatchers(HttpMethod.GET,"/social/**").hasRole("ADMIN")
-                .antMatchers("/resource/**",
-                        "/assets/**",
-                        "/css/**",
-                        "/js/**",
-                        "/WEB-INF/views/**").permitAll()
+        http.csrf().disable()
+                .exceptionHandling().authenticationEntryPoint(restAuthenticationEntryPoint).and()
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+        //CSRF ( Cross Site Request Forgery) là kĩ thuật tấn công bằng cách sử dụng quyền chứng thực của người sử dụng đối với 1 website khác
 
-                .anyRequest().authenticated()
-                .and()
-                .formLogin()
-                .loginProcessingUrl("/login")
-                .loginPage("/")
-                .usernameParameter("email")
-                .passwordParameter("password")
-                .defaultSuccessUrl("/home")
-                .and()
-                .logout()
-                .logoutUrl("/logout")
-                .logoutSuccessUrl("/login")
-                .deleteCookies("JWT")
-                .invalidateHttpSession(true)
-                .and()
-                .csrf().disable();
+        // Các trang không yêu cầu login
+        http.authorizeRequests().antMatchers("/api/admin/**", "/", "/login", "/logout").permitAll();
 
-        http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-        http.cors();
+        // Khi người dùng đã login, với vai trò XX.
+        // Nhưng truy cập vào trang yêu cầu vai trò YY,
+        // Ngoại lệ AccessDeniedException sẽ ném ra.
+        http.authorizeRequests().and().exceptionHandling().accessDeniedPage("/403");
+
+        // Cấu hình cho Login Form.
+        http.authorizeRequests().and().formLogin()//
+                // Submit URL của trang login
+                .loginProcessingUrl("/login") // Submit URL
+                .loginPage("/")//
+                .defaultSuccessUrl("/home")	//đây Khi đăng nhập thành công thì vào trang này. userAccountInfo sẽ được khai báo trong controller để hiển thị trang view tương ứng
+                .failureUrl("/login?error=true")		// Khi đăng nhập sai username và password thì nhập lại
+                .usernameParameter("username")			// tham số này nhận từ form login ở bước 3 có input  name='username'
+                .passwordParameter("password")			// tham số này nhận từ form login ở bước 3 có input  name='password'
+                // Cấu hình cho Logout Page.
+                .and().logout().logoutUrl("/logout").logoutSuccessUrl("/login");
+
+        http.addFilterBefore(authTokenFilter(), UsernamePasswordAuthenticationFilter.class);
     }
 }

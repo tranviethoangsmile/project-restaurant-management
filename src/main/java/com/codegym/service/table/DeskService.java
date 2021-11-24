@@ -3,9 +3,11 @@ package com.codegym.service.table;
 import com.codegym.entity.Desk;
 import com.codegym.repository.TablesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
+@Service
 public class DeskService implements IDeskService {
     @Autowired
     TablesRepository tablesRepository;
