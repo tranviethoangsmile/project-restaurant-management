@@ -143,6 +143,23 @@ public class RestaurantAPI {
     public Desk getDeskById (@PathVariable Long id) {
         return deskService.findById(id).get();
     }
+    @GetMapping("/desk/delete/{id}")
+    public ResponseEntity <Boolean> delete(@PathVariable Long id) {
+
+        deskService.remove(id);
+
+        Optional<Desk> desk = deskService.findById(id);
+        if (desk.isPresent()) {
+            return new ResponseEntity<Boolean>(false, HttpStatus.NO_CONTENT);
+        }
+
+        return new ResponseEntity<Boolean>(true, HttpStatus.CREATED);
+    }
+
+    @PostMapping ("/desk/edit")
+    public Desk editDesk (@RequestBody Desk desk) {
+        return deskService.save(desk);
+    }
 
     @PutMapping("/desk/update/{id}")
     public Desk updateDesk (@PathVariable Long id) {
