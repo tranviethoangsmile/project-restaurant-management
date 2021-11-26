@@ -3,6 +3,7 @@ package com.codegym.controller.api;
 import com.codegym.entity.*;
 import com.codegym.entity.dto.OrderDetailDTO;
 import com.codegym.entity.dto.ProductDTO;
+import com.codegym.service.bill.IBillService;
 import com.codegym.service.category.ICategoryService;
 import com.codegym.service.order.IOrderService;
 import com.codegym.service.orderDetail.IOrderDetailService;
@@ -34,6 +35,9 @@ public class RestaurantAPI {
 
     @Autowired
     IOrderDetailService orderDetailService;
+
+    @Autowired
+    IBillService billService;
 
     @GetMapping("/product")
     public Iterable<ProductDTO> getListProduct() {
@@ -206,6 +210,13 @@ public class RestaurantAPI {
         Order order = orderService.getOrderByDeskId(desk.getId());
         return orderDetailService.findOrderDetailByOrder_id(order.getId());
     }
+
+    @PostMapping("/bill/create")
+    public Bill createBill (@RequestBody Bill bill) {
+        System.out.println(bill);
+        return billService.save(bill);
+    }
+
 
 
 }

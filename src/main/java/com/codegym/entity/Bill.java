@@ -8,6 +8,7 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 @Getter
 @Setter
@@ -21,13 +22,11 @@ public class Bill {
     private Long id;
     private Date createAt;
     private BigDecimal total;
-
-    @ManyToOne
-    @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)
-    private User user;
-
-    @ManyToOne
-    @JoinColumn(name = "order_id", referencedColumnName = "id", nullable = false)
-    private Order order;
+    private String customerName;
+    private Long order_id;
+    private Long desk_id;
+//    @ManyToOne
+//    @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)
+//    private User user;
 
 }

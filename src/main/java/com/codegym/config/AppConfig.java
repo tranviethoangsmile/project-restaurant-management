@@ -1,5 +1,7 @@
 package com.codegym.config;
 
+import com.codegym.service.bill.BillService;
+import com.codegym.service.bill.IBillService;
 import com.codegym.service.category.CategoryService;
 import com.codegym.service.category.ICategoryService;
 import com.codegym.service.order.IOrderService;
@@ -154,6 +156,11 @@ public class AppConfig implements WebMvcConfigurer, ApplicationContextAware {
     @Bean
     public IOrderDetailService orderDetailService () {
         return new OrderDetailService();
+    }
+
+    @Bean
+    public IBillService billService () {
+        return new BillService();
     }
 
 }
