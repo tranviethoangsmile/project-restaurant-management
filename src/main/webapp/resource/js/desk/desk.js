@@ -104,8 +104,7 @@ deskModify = function (id) {
                             <button onclick="changerStatus(${deskResp.id})" style="width: 75px; text-align: center" title="Thay đổi trạng thái"  class="btn btn-primary"><i class="fa fa-exchange-alt"></i></button>
                             <button onclick="editDeskInfo(${deskResp.id})" style="width: 75px" class="btn btn-success" title="Sửa thông tin bàn"><i class="fa fa-edit"></i></button>
                             <button onclick="deleteDesk(${deskResp.id})" style="width: 75px" title="Xoá bàn" class="btn btn-danger"><i class="fa fa-trash"></i></button>
-                    </div>
-                                                                    
+                    </div>                                                  
                 `
         )
 
@@ -234,6 +233,24 @@ createOrder = function (desk) {
     })
 }
 
+//Nhận order bằng desk_id.
+
+getOrderByDeskId = function (id) {
+    $.ajax({
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        url: "/api/order/getorderbydeskid/" + id,
+        type: "GET"
+    }).done(function (order){
+        console.log(order);
+        $("#order_id").val(order.id);
+    }).fail(function (){
+        $.notify("order fail","error")
+    })
+}
+
 //xoá bàn
 deleteDesk = function (id) {
     Swal.fire({
@@ -274,6 +291,7 @@ deleteDesk = function (id) {
 
 //Nhận thông tin order của bàn
 getOrderDetailOfDesk = function (id) {
+    console.log(id);
     $("#product_list_of_desk").empty();
     $("#total").empty();
     $.ajax({
@@ -394,54 +412,66 @@ billNotPrint = function (id){
     }).done(function (billResp){
         $("#bill").modal("hide");
         console.log(billResp);
+        changerStatusAfterPayment(billResp.desk_id);
         $.notify("Đã xong", "success");
     }).fail(function (){
         $.notify("Tạo Bill lỗi", "error");
     })
 }
 
-//Nhận thông tin của bàn
-
-getDeskById = function (id) {
+//thay đổi trạng thái sau khi thanh toán.
+changerStatusAfterPayment = function (id){
     $.ajax({
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        },
-        url: "/api/desk/getDeskById/" + id,
-        type: "GET",
-    }).done(function (deskResp){
-        console.log(deskResp);
-        createNewDesk(deskResp.name);
-    }).fail(function (){
-        $.notify("bàn lỗi","error");
-    })
-}
-
-//tạo bàn mới sau khi thanh toán
-createNewDesk = function (deskName) {
-    let desk = {
-        name: deskName,
-        status: false
-    }
-    $.ajax({
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        },
-        url: "/api/desk/create",
-        type: "POST",
-        data: JSON.stringify(desk)
+        url: '/api/desk/update/' + id,
+        type: 'PUT'
     }).done(function (deskResp) {
-        $("#deskName").val("");
-        if (deskResp != null) {
-            $.notify("Tạo bàn thành công", "success");
-            getAllDeskForOption();
-        }
+        getAllDeskForOption();
     }).fail(function () {
-        $.notify("Tạo bàn không thành công", "error");
+        $.notify("cập nhật không thành công", "error");
     })
 }
+
+// //Nhận thông tin của bàn
+// getDeskById = function (id) {
+//     $.ajax({
+//         headers: {
+//             'Accept': 'application/json',
+//             'Content-Type': 'application/json'
+//         },
+//         url: "/api/desk/getDeskById/" + id,
+//         type: "GET",
+//     }).done(function (deskResp){
+//         console.log(deskResp);
+//         createNewDesk(deskResp.name);
+//     }).fail(function (){
+//         $.notify("bàn lỗi","error");
+//     })
+// }
+//
+// //tạo bàn mới sau khi thanh toán
+// createNewDesk = function (deskName) {
+//     let desk = {
+//         name: deskName,
+//         status: false
+//     }
+//     $.ajax({
+//         headers: {
+//             'Accept': 'application/json',
+//             'Content-Type': 'application/json'
+//         },
+//         url: "/api/desk/create",
+//         type: "POST",
+//         data: JSON.stringify(desk)
+//     }).done(function (deskResp) {
+//         $("#deskName").val("");
+//         if (deskResp != null) {
+//             $.notify("Tạo bàn thành công", "success");
+//             getAllDeskForOption();
+//         }
+//     }).fail(function () {
+//         $.notify("Tạo bàn không thành công", "error");
+//     })
+// }
 
 //format Number
 function formatNumber (num) {
@@ -457,5 +487,3 @@ $(document).ready(function () {
     });
     init();
 })
-
-//tìm cách thêm orderID về thanh menu bàn để nhận orderdetail

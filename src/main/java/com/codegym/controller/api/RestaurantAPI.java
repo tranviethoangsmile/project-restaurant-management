@@ -206,8 +206,10 @@ public class RestaurantAPI {
 
     @GetMapping("orderdetail/orderdetailofdeskid/{id}")
     public List<OrderDetail> getOrderDetailOfDeskid (@PathVariable Long id) {
-        Desk desk = deskService.findById(id).get();
-        Order order = orderService.getOrderByDeskId(desk.getId());
+//        System.out.println(id);
+//        Desk desk = deskService.findById(id).get();
+//        System.out.println(desk.getId());
+        Order order = orderService.getOrderByDeskId(id);
         return orderDetailService.findOrderDetailByOrder_id(order.getId());
     }
 

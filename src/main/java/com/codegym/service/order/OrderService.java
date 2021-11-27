@@ -34,6 +34,6 @@ public class OrderService implements IOrderService{
 
     @Override
     public Order getOrderByDeskId(Long id) {
-        return orderRepository.getOrderByDesk_Id(id);
+        return orderRepository.getMaxOrderLastByDesk_Id(id);
     }
 }
