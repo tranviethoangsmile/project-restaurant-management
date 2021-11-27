@@ -96,7 +96,7 @@ getAllProduct = function () {
                         <td>${item.name}</td>
                         <td>${item.category.name}</td>
                         <td>${item.price}</td>
-                        <td><button class="btn btn-${item.status ? "danger" : "success"}">${item.status ? "hết hàng" : "còn hàng"}</button></td>
+                        <td><button type="button" onclick="changerStatusOfProduct(${item.id})" class="btn btn-${item.status ? "danger" : "success"}">${item.status ? "hết hàng" : "còn hàng"}</button></td>
                     </tr>
                 `
             )
@@ -104,6 +104,36 @@ getAllProduct = function () {
     }).fail(function () {
         $.notify("Không tải được danh sách món ăn","error")
     });
+}
+
+changerStatusOfProduct = function (id) {
+    Swal.fire({
+        title: 'Thay đổi trạng thái',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Thay đổi'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            $.ajax({
+                headers: {
+                    'Accept':'application/json',
+                    'Content-Type':'application/json'
+                },
+                url: "/api/product/changerstatus/" + id,
+                type: "PUT"
+            }).done(function (product){
+                if(product != null){
+                    getAllProduct();
+                    $.notify("Thay đổi thành công", "success");
+                }
+            }).fail(function (){
+                $.notify("Trạng thái chưa thay đổi", "error");
+            })
+        }
+    })
+
 }
 
 //Nhận danh danh món ăn theo category
@@ -126,7 +156,8 @@ getAllProductOfCategory = function (id) {
                         <td>${item.name}</td>
                         <td>${item.category.name}</td>
                         <td>${item.price}</td>
-                        <td><button class="btn btn-${item.status ? "danger" : "success"}">${item.status ? "hết hàng" : "còn hàng"}</button></td>
+                        <td><button type="button" onclick="changerStatusOfProduct(${item.id})" class="btn btn-${item.status ? "danger" : "success"}">${item.status ? "hết hàng" : "còn hàng"}</button></td>
+
                     </tr>
                 `
             )

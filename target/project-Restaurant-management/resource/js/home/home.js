@@ -93,6 +93,7 @@ function getAllCategory() {
     });
 }
 
+
 function getAllDesk() {
     return $.ajax({
         url: "/api/desk/getalldesk",
@@ -135,7 +136,7 @@ getStatusDesk = function (id) {
         $(".deskStatus").prepend(
             `
                 <h2>${desk.name}</h2>
-                <span>Tình trạng:</span> 
+                <span>Trạng thái:</span> 
                 <h3 style=" color: red">${desk.status ? 'Có khách' : 'bàn trống'}</h3>
                 <button onclick="${desk.status ? 'payment' : 'changerStatus'}(${desk.id})" class="btn btn-${desk.status ? 'success': 'danger'}">${desk.status ? 'Thanh Toán' : 'Mở Bàn'}</button>
             `
@@ -189,34 +190,128 @@ getAllProduct = function () {
         url: "/api/product",
         type: "GET"
     }).done(function (productList) {
-        $(".productListOrder").empty();
+        $("#product-order").empty();
         $.each(productList, function (index, product) {
-            $(".productListOrder").prepend(
+            $("#product-order").prepend(
                 `
-                <tr> 
-                    <td><input id="product_id" value="${product.id}" readonly hidden></td>
-                    <td><input id="productName" value="${product.name}" readonly></td>
-                    <td><input id="productPrice_${product.id}" value="${product.price}" readonly></td>
-                    <td><input id="quantity_${product.id}" oninput="getUnitPrice(${product.id})" type="number" data-rule-required="true" data-msg-required="Không được bỏ trống" ></td>
-                    <td><input id="unitPrice_${product.id}" readonly></td>
-                </tr>
+                <option value="${product.id}"><h3>${product.name}</h3></option>
                 `
             )
         })
-
-
     }).fail(function () {
         $.notify("Không tải được product","error")
     });
 }
 
-// Nhận giá lúc thay đổi số lượng món ăn
-getUnitPrice = function (id) {
-    let quantity = $("#quantity_" + id).val();
-    let price = $("#productPrice_" + id ).val();
-    let unitPrice = quantity * price;
-    $("#unitPrice_" + id).val(unitPrice);
+//Nhận giá lúc lựa chọn sản phẩm.
+$("#product-order").on("change",function () {
+    $("#product-price").empty();
+    $("#product-selected").text($("#product-order :selected").text());
+    let id = $("#product-order").val();
+    $.ajax({
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        url: "/api/product/getproductby/" + id,
+        type: "GET"
+    }).done(function (product){
+        $("#product-price").val(product.price);
+        $("#price-selected").text(product.price + ' vnđ')
+    }).fail(function (){
+        $.notify("không lấy được giá sản phẩm","error");
+    })
+})
+
+//Nhận Product theo id
+getProductById = function (id) {
+    $.ajax({
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        url: "/api/product/getproductby/" + id,
+        type: "GET"
+    }).done(function (product){
+        console.log(product);
+    }).fail(function (){
+        $.notify("không lấy được  sản phẩm","error");
+    })
 }
+
+// oninput nhập số lượng vào và hiển thị ở phần thông tin
+$("#product-quantity").on("input",function (){
+    let price = $("#product-price").val();
+    let quantity = $("#product-quantity").val();
+    $("#quantity-selected").text(quantity);
+    let unitPrice = price * quantity;
+    $("#total-selected").text(unitPrice + ' vnđ');
+    $("#product-unitPrice").val(unitPrice);
+})
+
+//Nhận tên bàn ở phần thông tin
+$("#desk-order").on("change",function (){
+    $("#desk-selected").text($("#desk-order :selected").text());
+    getOrderByDeskId($("#desk-order").val());
+})
+
+//Nhận order theo Desk Id
+getOrderByDeskId = function (id) {
+    $.ajax({
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        url: "/api/order/getorderbydeskid/" + id,
+        type: "GET"
+    }).done(function (order){
+        console.log(order);
+        $("#order_id").val(order.id);
+    }).fail(function (){
+        $.notify("order fail","error")
+    })
+}
+
+
+
+
+//Tạo order cho bàn
+createOrderDetail = function () {
+    if($("#createOrderDetail").valid()){
+        Swal.fire({
+            title: 'Bạn có muốn lưu lại không?',
+            showDenyButton: true,
+            confirmButtonText: 'Lưu',
+            denyButtonText: `Kiểm tra lại`,
+        }).then((result) => {
+            if (result.isConfirmed) {
+                let orderDetailDTO = {
+                    orderId : $("#order_id").val(),
+                    productId: $("#product-order").val(),
+                    quantity : $("#product-quantity").val(),
+                    unitPrice : $("#product-unitPrice").val(),
+                }
+                $.ajax({
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    url: "/api/orderdetail/create",
+                    type: "POST",
+                    data: JSON.stringify(orderDetailDTO)
+                }).done (function (orderDetailResp){
+                    $.notify("Gọi món thành công","success")
+                    console.log(orderDetailResp);
+                }).fail(function (){
+                    $.notify("Tạo order lỗi","error")
+                })
+            } else if (result.isDenied) {
+                $.notify("Chưa lưu","error")
+            }
+        })
+    }
+}
+
 
 
 init = function () {
