@@ -287,9 +287,10 @@ createOrderDetail = function () {
             if (result.isConfirmed) {
                 let orderDetailDTO = {
                     orderId : $("#order_id").val(),
-                    productId: $("#product-order").val(),
                     quantity : $("#product-quantity").val(),
                     unitPrice : $("#product-unitPrice").val(),
+                    productName: $("#product-order :selected").text(),
+                    productPrice: $("#product-price").val()
                 }
                 $.ajax({
                     headers: {

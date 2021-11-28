@@ -195,28 +195,35 @@ public class RestaurantAPI {
     public OrderDetail createOrderDetail (@RequestBody OrderDetailDTO orderDetailDTO) {
         System.out.println(orderDetailDTO);
         Order order = orderService.findById(orderDetailDTO.getOrderId()).get();
-        Product product = iProductService.findById(orderDetailDTO.getProductId()).get();
         OrderDetail orderDetail = new OrderDetail();
         orderDetail.setOrder(order);
-        orderDetail.setProduct(product);
         orderDetail.setQuantity(orderDetailDTO.getQuantity());
         orderDetail.setUnitPrice(orderDetailDTO.getUnitPrice());
+        orderDetail.setProductName(orderDetailDTO.getProductName());
+        orderDetail.setProductPrice(orderDetailDTO.getProductPrice());
         return orderDetailService.save(orderDetail);
     }
 
-    @GetMapping("orderdetail/orderdetailofdeskid/{id}")
+    @GetMapping("/orderdetail/orderdetailofdeskid/{id}")
     public List<OrderDetail> getOrderDetailOfDeskid (@PathVariable Long id) {
-//        System.out.println(id);
-//        Desk desk = deskService.findById(id).get();
-//        System.out.println(desk.getId());
         Order order = orderService.getOrderByDeskId(id);
         return orderDetailService.findOrderDetailByOrder_id(order.getId());
+    }
+
+    @GetMapping("/orderdetail/getorderdetailbyorderid/{id}")
+    public List<OrderDetail> getOrderDetailByOrderIdOrderDetails (@PathVariable Long id) {
+        return orderDetailService.findOrderDetailByOrder_id(id);
     }
 
     @PostMapping("/bill/create")
     public Bill createBill (@RequestBody Bill bill) {
         System.out.println(bill);
         return billService.save(bill);
+    }
+
+    @GetMapping("/bill/getallbill")
+    public Iterable<Bill> getABill () {
+        return billService.findAll();
     }
 
 
