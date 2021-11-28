@@ -313,8 +313,8 @@ getOrderDetailOfDesk = function (id) {
                 `
                 <tr>
                     <td>${index + 1}</td>
-                    <td>${item.product.name}</td>
-                    <td>${formatNumber(item.product.price)}</td>
+                    <td>${item.productName}</td>
+                    <td>${formatNumber(item.productPrice)}</td>
                     <td>${item.quantity}</td>
                     <td>${formatNumber(item.unitPrice)}</td>               
                 </tr>            
@@ -364,8 +364,8 @@ paymentForm = function (id) {
                 `
                 <tr>
                     <td>${index + 1}</td>
-                    <td>${item.product.name}</td>
-                    <td>${formatNumber(item.product.price)}</td>
+                    <td>${item.productName}</td>
+                    <td>${formatNumber(item.productPrice)}</td>
                     <td>${item.quantity}</td>
                     <td>${formatNumber(item.unitPrice)}</td>               
                 </tr>            

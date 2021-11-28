@@ -3,8 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.js"></script>
     <!-- Home css -->
     <link rel="stylesheet" href="/resource/css/admin/admin.css">
+    <!--datatable-->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
     <!-- wizard   -->
     <link href="/resource/assets-desk/css/bootstrap.min.css" rel="stylesheet"/>
     <link href="/resource/assets-desk/css/material-bootstrap-wizard.css" rel="stylesheet"/>
@@ -76,12 +79,27 @@
             <div class="col-xl-12">
                 <canvas id="myChart" style="width:100%; height: 100%"></canvas>
             </div>
-            <div class="col-xl-12">
+            <div style="margin-top: 10px" class="col-xl-6">
+                <table id="list-bill-show" class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                        <!--<th>Nhân viên</th>-->
+                            <th>Thời gian</th>
+                            <th>Khách hàng</th>
+                            <th>Tổng Tiền</th>
+                            <th>Chi tiết</th>
+                        </tr>
+                    </thead>
+                    <tbody id="list-bill">
+                <!--hiển thị danh sách bill-->
+                    </tbody>
+                </table>
+            </div>
+            <div style="margin-top: 10px" class="col-xl-6">
                 <div class="card">
                     <div class="card-body">
                         <h4 class="header-title">Menu</h4>
-                        <p class="text-muted font-13 mb-4">
-                        </p>
                         <form>
                             <button style="margin-bottom: 5px" type="button" class="btn btn-primary" onclick="getAllProduct()">
                                 Tất cả
@@ -89,8 +107,7 @@
                             <div id="listCategory">
                             </div>
                         </form>
-
-                        <table class="table dt-responsive nowrap">
+                        <table class="table table-hover">
                             <thead>
                             <tr>
                                 <th>#</th>
@@ -101,7 +118,7 @@
                             </tr>
                             </thead>
                             <tbody id="listProduct">
-
+                                <!--DANH SÁCH SẢN PHẨM-->
                             </tbody>
                         </table>
                     </div> <!-- end card body-->
@@ -109,9 +126,37 @@
             </div><!-- end col-->
         </div> <!-- row -->
     </div> <!--  big container -->
-
-
 </section>
+
+<!--Hiển thị chi tiết bill-->
+<div class="modal fade" id="billDetail" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Chi tiết hoá đơn</h5>
+            </div>
+            <div class="modal-body">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Tên Món</th>
+                            <th>Giá</th>
+                            <th>Số lượng</th>
+                            <th>Đơn giá</th>
+                        </tr>
+                    </thead>
+                    <tbody id="bill-list-detail">
+                        <!--Hiển thị chi tiết bill-->
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" disabled>In Hoá Đơn</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 <!-- Hidden Navigation Bar -->
@@ -131,10 +176,12 @@
     </div>
 </section>
 <script src="/resource/js/adminPage/admin.js"></script>
+<!--datatable-->
+<script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
 <!--chart-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
 <!--  Core JS Files-->
-<script src="/resource/assets-desk/js/jquery-2.2.4.min.js" type="text/javascript"></script>
+<!--<script src="/resource/assets-desk/js/jquery-2.2.4.min.js" type="text/javascript"></script>-->
 <script src="/resource/assets-desk/js/bootstrap.min.js" type="text/javascript"></script>
 <script src="/resource/assets-desk/js/jquery.bootstrap.js" type="text/javascript"></script>
 <!--  Plugin for the Wizard -->

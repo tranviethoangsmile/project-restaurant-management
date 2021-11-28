@@ -11,7 +11,7 @@ public class BillService implements IBillService{
     BillRepository billRepository;
     @Override
     public Iterable<Bill> findAll() {
-        return null;
+        return billRepository.findAll();
     }
 
     @Override
