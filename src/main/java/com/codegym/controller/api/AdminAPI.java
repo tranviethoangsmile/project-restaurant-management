@@ -19,14 +19,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.codegym.service.role.IRoleService;
 import com.codegym.service.user.IUserService;
 
 import javax.validation.Valid;
 
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/admin")
 public class AdminAPI {
 
     @Autowired
@@ -41,7 +40,7 @@ public class AdminAPI {
     @Autowired
     private JwtUtils jwtUtils;
 
-    @PostMapping("/admin/login")
+    @PostMapping("/login")
 	public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
 
 		Authentication authentication = authenticationManager.authenticate(

@@ -22,12 +22,12 @@ public class HomeController {
     }
 
     @GetMapping("/home")
-    @PreAuthorize("hasRole('ADMIN')")
+//    @PreAuthorize("hasRole('ADMIN')")
     private ModelAndView goHome () {
         ModelAndView modelAndView = new ModelAndView();
-        Iterable<Product> products = productService.findAll();
+//        Iterable<Product> products = productService.findAll();
         modelAndView.setViewName("/user/home");
-        modelAndView.addObject("products", products);
+//        modelAndView.addObject("products", products);
         return modelAndView;
     }
 

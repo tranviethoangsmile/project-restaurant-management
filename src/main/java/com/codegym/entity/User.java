@@ -24,13 +24,21 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "full_name",nullable = false)
     private String fullName;
+
+    @Column(nullable = false)
     private String username;
+
+    @Column(nullable = false)
     private String password;
+
     private Date dob;
     private String address;
+
+    @Column(nullable = false)
     private String phone;
-    private String status;
+    private Boolean status;
 
     @ManyToOne
     @JoinColumn(name = "role_id")
