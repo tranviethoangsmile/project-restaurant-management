@@ -14,7 +14,7 @@ function formatNumber (num) {
 }
 
 init = function () {
-    getOrderDetail();
+    chartStatistics();
     getAllCategory();
     getAllProduct();
     getAllBill();
@@ -65,7 +65,7 @@ billDetail = function (id){
                     <td>${orderdetail.productName}</td>
                     <td>${orderdetail.productPrice}</td>
                     <td>${orderdetail.quantity}</td>
-                    <td>${orderdetail.unitPrice}</td>
+                    <td>${formatNumber(orderdetail.unitPrice)} vnđ</td>
                 </tr>
                 `
             )
@@ -75,29 +75,29 @@ billDetail = function (id){
     })
 }
 
-//test chart
-getOrderDetail = function () {
+//Thống kê
+chartStatistics = function () {
     $.ajax({
         headers: {
             'Accept':'application/json',
             'Content-Type':'application/json'
         },
-        url: "https://61961269902243001762fa41.mockapi.io/orderdetail",
+        url: "/api/bill/getallbill",
         type: "GET",
     }).done (function (data) {
         var xValues = [];
         $.each(data,function (index,item) {
-            xValues[index] = `${convert(item.CreataAt)}`
+            xValues[index] = `${convert(item.createAt)}`
         })
         console.log(xValues)
         var yValues = [];
         $.each(data,function (index,item){
-            yValues[index] = `${item.price}`
+            yValues[index] = `${item.total}`
         })
         console.log(yValues);
-        var barColors =  ["red", "green", "blue","purple","brow","orange","gray","yellow"]
+        var barColors =  "orange";
         new Chart("myChart", {
-            type: "bar",
+            type: "line",
             data: {
                 labels: xValues,
                 datasets: [{

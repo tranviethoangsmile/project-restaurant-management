@@ -35,7 +35,7 @@ public class HomeController {
         return modelAndView;
     }
 
-    @GetMapping ("/catogory")
+    @GetMapping ("/category")
     private ModelAndView goCatogory () {
         ModelAndView modelAndView = new ModelAndView("/layout/catogory");
         return modelAndView;

@@ -215,6 +215,11 @@ public class RestaurantAPI {
         return orderDetailService.findOrderDetailByOrder_id(id);
     }
 
+    @GetMapping("/orderdetail/getallorderdetail")
+    public Iterable<OrderDetail> getAllOrderDetail () {
+        return orderDetailService.findAll();
+    }
+
     @PostMapping("/bill/create")
     public Bill createBill (@RequestBody Bill bill) {
         System.out.println(bill);
