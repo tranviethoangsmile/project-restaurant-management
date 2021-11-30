@@ -4,18 +4,18 @@ init = function () {
 }
 
 $("#btn-add").on("click", function () {
-        let user
-        let day = $('select[name=selectDay] option').filter(':selected').val();
-        let month = $('select[name=selectMonth] option').filter(':selected').val();
-        let year = $('select[name=selectYear] option').filter(':selected').val();
-        let dob = day + "/" + month + "/" + year;
-        let obj = {
-            "username" : $('#username').val(),
-            "password" : $('#password').val(),
-            "fullName" : $('#name').val(),
-            "address" : $('#address').val(),
-            "phone" : $('#phone').val(),
-            "dob" : dob
+    let user
+    let day = $('select[name=selectDay] option').filter(':selected').val();
+    let month = $('select[name=selectMonth] option').filter(':selected').val();
+    let year = $('select[name=selectYear] option').filter(':selected').val();
+    let dob = day + "/" + month + "/" + year;
+    let obj = {
+        "username" : $('#username').val(),
+        "password" : $('#password').val(),
+        "fullName" : $('#name').val(),
+        "address" : $('#address').val(),
+        "phone" : $('#phone').val(),
+        "dob" : dob
     }
     $.ajax({
         url: "http://localhost:8080/api/user",
@@ -40,16 +40,10 @@ $("#btn-add").on("click", function () {
                         </button>
                     </td>
                     <td>
-                         <a href='javascript:;' class='edit btn btn-primary btn-sm' title='edit student' data-id="${result.id}">
+                         <a href='javascript:;' class='edit btn btn-warning btn-sm' title='edit student' data-id="${result.id}">
                         <i class='fa fa-edit'></i>
                     </a>
-                    <a href='javascript:;' class='btn ${result.status ? 'btn-warning' : 'btn-secondary'} btn-sm'
-                    title='${item.status ? 'inactive' : 'active'} student' onclick='student.changeStatus(${item.id}, ${item.status})'>
-                        <i class='fa ${item.status ? 'fa-lock' : 'fa-lock-open'}'></i>
-                    </a>
-                    <a href='javascript:;' class='btn btn-danger btn-sm' title='remove student' onclick='student.remove(${item.id})'>
-                        <i class='fa fa-trash'></i>
-                    </a>
+                
                     </td>
                 </tr>
             `)
@@ -89,7 +83,7 @@ function update() {
         type: "POST",
         data: JSON.stringify(obj),
         success: function (result) {
-            $("#listUser tbody").prepend(`
+            $('#listUser a[data-id="' + id + '"]').parent().parent().replaceWith(`
                 <tr id="user_${result.id}" style="text-align: center">
                     <td>${result.id}</td>
                     <td>${result.fullName}</td>
@@ -103,19 +97,25 @@ function update() {
                         </button>
                     </td>
                     <td>
-                         <a href='javascript:;' class='edit btn btn-primary btn-sm' title='edit student' data-id="${result.id}" data-bs-toggle="modal" data-bs-target="#addUserModal">
+                         <a href='javascript:;' class='edit btn btn-warning btn-sm' title='edit student' data-id="${result.id}" data-bs-toggle="modal" data-bs-target="#addUserModal">
                         <i class='fa fa-edit'>Edit</i>
-                    </a>
-                    <a href='javascript:;' class='btn ${result.status ? 'btn-warning' : 'btn-secondary'} btn-sm'
-                    title='${item.status ? 'inactive' : 'active'} student' onclick='student.changeStatus(${item.id}, ${item.status})'>
-                        <i class='fa ${item.status ? 'fa-lock' : 'fa-lock-open'}'></i>
-                    </a>
-                    <a href='javascript:;' class='btn btn-danger btn-sm' title='remove student' onclick='student.remove(${item.id})'>
-                        <i class='fa fa-trash'></i>
-                    </a>
+                        </a>
+                    
                     </td>
                 </tr>
-            `)
+            `);
+
+            $(".edit").on("click", function (e) {
+                e.preventDefault();
+                let id = $(this).data("id");
+                $("#addUserModal").show();
+                getUser(id);
+            })
+
+            // $('#EditUserModal').hide();
+            $('#frmCreateEmployee')[0].reset();
+
+
         }
     })
 }
@@ -143,13 +143,40 @@ getAllUser = function () {
                                 </button>
                             </td>
                             <td>
-                              <a href='javascript:;' class='edit btn btn-warning btn-sm' title='edit student' data-id="${item.id}" data-bs-toggle="modal" data-bs-target="#addUserModal">
+                              <a href='javascript:;' class='edit btn btn-warning btn-sm' title='edit student' data-id="${item.id}">
                                 <i class='fa fa-edit'>Edit</i>
                             </td>
                         </tr>
                     `;
             $("#listUser tbody").prepend(str);
         });
+
+        $(".edit").on("click", function (e) {
+            e.preventDefault();
+            let id = $(this).data("id");
+            $("#addUserModal").show();
+            getUser(id);
+        })
+    })
+}
+
+getUser = function(id) {
+    $.ajax({
+        url: "http://localhost:8080/api/user/" + id,
+        type: "GET"
+    }).done(function (data) {
+        console.log(data);
+        $("#nameUp").val(data.fullName);
+        $("#addressUp").val(data.address);
+        $("#phoneUp").val(data.phone);
+
+        let dateString = data.dob.slice(0, 10);
+        console.log(dateString);
+        let arr = dateString.split("-");
+
+        $("#dayUp").val(arr[2]).change();
+        $("#monthUp").val(arr[1]).change();
+        $("#yearUp").val(arr[0]).change();
     })
 }
 

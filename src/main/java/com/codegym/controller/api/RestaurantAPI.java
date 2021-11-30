@@ -1,12 +1,12 @@
 package com.codegym.controller.api;
 
-import com.codegym.entity.Category;
-import com.codegym.entity.Desk;
-import com.codegym.entity.Order;
-import com.codegym.entity.Product;
+import com.codegym.entity.*;
+import com.codegym.entity.dto.OrderDetailDTO;
 import com.codegym.entity.dto.ProductDTO;
+import com.codegym.service.bill.IBillService;
 import com.codegym.service.category.ICategoryService;
 import com.codegym.service.order.IOrderService;
+import com.codegym.service.orderDetail.IOrderDetailService;
 import com.codegym.service.product.IProductService;
 import com.codegym.service.desk.IDeskService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +34,12 @@ public class RestaurantAPI {
 
     @Autowired
     IOrderService orderService;
+
+    @Autowired
+    IOrderDetailService orderDetailService;
+
+    @Autowired
+    IBillService billService;
 
     @GetMapping("/product")
 //    @PreAuthorize("hasRole('ADMIN')")
@@ -78,6 +84,18 @@ public class RestaurantAPI {
         }
 
         return new ResponseEntity<Boolean>(true, HttpStatus.CREATED);
+    }
+
+    @PutMapping ("/product/changerstatus/{id}")
+    public Product changerStatus (@PathVariable Long id) {
+        ProductDTO productDTO = iProductService.findByIdPDTO(id).get();
+        Product newProduct = new Product();
+        newProduct.setId(productDTO.getId());
+        newProduct.setName(productDTO.getName());
+        newProduct.setPrice(productDTO.getPrice());
+        newProduct.setStatus(!productDTO.isStatus());
+        newProduct.setCategory(productDTO.getCategory());
+        return iProductService.save(newProduct);
     }
 
     @GetMapping("/category")
@@ -132,6 +150,23 @@ public class RestaurantAPI {
     public Desk getDeskById (@PathVariable Long id) {
         return deskService.findById(id).get();
     }
+    @GetMapping("/desk/delete/{id}")
+    public ResponseEntity <Boolean> delete(@PathVariable Long id) {
+
+        deskService.remove(id);
+
+        Optional<Desk> desk = deskService.findById(id);
+        if (desk.isPresent()) {
+            return new ResponseEntity<Boolean>(false, HttpStatus.NO_CONTENT);
+        }
+
+        return new ResponseEntity<Boolean>(true, HttpStatus.CREATED);
+    }
+
+    @PostMapping ("/desk/edit")
+    public Desk editDesk (@RequestBody Desk desk) {
+        return deskService.save(desk);
+    }
 
     @PutMapping("/desk/update/{id}")
     public Desk updateDesk (@PathVariable Long id) {
@@ -143,10 +178,55 @@ public class RestaurantAPI {
         return deskService.save(newDesk);
     }
 
-
     @PostMapping("/order/create")
     public Order createOrder (@RequestBody Order order) {
         return orderService.save(order);
+    }
+
+    @GetMapping("/order/getorderbydeskid/{id}")
+    public Order getOrderByDeskid (@PathVariable Long id) {
+        return orderService.getOrderByDeskId(id);
+    }
+
+    @GetMapping("/product/getproductby/{id}")
+    public Product getProductById (@PathVariable Long id) {
+        return iProductService.findById(id).get();
+    }
+
+
+    @PostMapping ("/orderdetail/create")
+    public OrderDetail createOrderDetail (@RequestBody OrderDetailDTO orderDetailDTO) {
+        System.out.println(orderDetailDTO);
+        Order order = orderService.findById(orderDetailDTO.getOrderId()).get();
+        OrderDetail orderDetail = new OrderDetail();
+        orderDetail.setOrder(order);
+        orderDetail.setQuantity(orderDetailDTO.getQuantity());
+        orderDetail.setUnitPrice(orderDetailDTO.getUnitPrice());
+        orderDetail.setProductName(orderDetailDTO.getProductName());
+        orderDetail.setProductPrice(orderDetailDTO.getProductPrice());
+        return orderDetailService.save(orderDetail);
+    }
+
+    @GetMapping("/orderdetail/orderdetailofdeskid/{id}")
+    public List<OrderDetail> getOrderDetailOfDeskid (@PathVariable Long id) {
+        Order order = orderService.getOrderByDeskId(id);
+        return orderDetailService.findOrderDetailByOrder_id(order.getId());
+    }
+
+    @GetMapping("/orderdetail/getorderdetailbyorderid/{id}")
+    public List<OrderDetail> getOrderDetailByOrderIdOrderDetails (@PathVariable Long id) {
+        return orderDetailService.findOrderDetailByOrder_id(id);
+    }
+
+    @PostMapping("/bill/create")
+    public Bill createBill (@RequestBody Bill bill) {
+        System.out.println(bill);
+        return billService.save(bill);
+    }
+
+    @GetMapping("/bill/getallbill")
+    public Iterable<Bill> getABill () {
+        return billService.findAll();
     }
 
 

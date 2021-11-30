@@ -2,6 +2,7 @@ package com.codegym.service.user;
 
 import com.codegym.entity.User;
 import com.codegym.entity.dto.UserDTO;
+import com.codegym.entity.dto.UserUpdateDTO;
 import com.codegym.service.IGeneralService;
 
 import java.text.ParseException;
@@ -14,5 +15,7 @@ public interface IUserService extends IGeneralService<User> {
 
     User create(UserDTO userDTO) throws ParseException;
 
-    User update(UserDTO userDTO);
+    User update(Long id, UserUpdateDTO userDTO) throws ParseException;
+
+    UserUpdateDTO userDTOById(Long id);
 }

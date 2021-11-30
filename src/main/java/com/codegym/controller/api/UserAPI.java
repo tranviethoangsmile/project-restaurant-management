@@ -3,6 +3,7 @@ package com.codegym.controller.api;
 import com.codegym.entity.Category;
 import com.codegym.entity.User;
 import com.codegym.entity.dto.UserDTO;
+import com.codegym.entity.dto.UserUpdateDTO;
 import com.codegym.service.user.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -30,18 +31,26 @@ public class UserAPI {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<User> findUserById(@PathVariable Long id) {
-        Optional<User> user = userService.findById(id);
-        if (!user.isPresent()) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }else {
-            return new ResponseEntity<>(user.get(),HttpStatus.OK);
-        }
+    public ResponseEntity<UserUpdateDTO> findUserById(@PathVariable Long id) {
+//        Optional<User> user = userService.findById(id);
+//        if (!user.isPresent()) {
+//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+//        }else {
+//            return new ResponseEntity<>(user.get(),HttpStatus.OK);
+//        }
+        UserUpdateDTO userUpdateDTO = userService.userDTOById(id);
+        return new ResponseEntity<>(userUpdateDTO,HttpStatus.OK);
+
     }
 
     @PostMapping("/edit/{id}")
-    public User updateCategory(@PathVariable("id")Long id,@RequestBody UserDTO userDTO) {
+    public ResponseEntity<User> updateCategory(@PathVariable("id")Long id,@RequestBody UserUpdateDTO userDTO) throws ParseException {
+        User user = userService.update(id, userDTO);
 
-        return null;
+        if (user == null) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        } else {
+            return new ResponseEntity<>(user, HttpStatus.OK);
+        }
     }
 }

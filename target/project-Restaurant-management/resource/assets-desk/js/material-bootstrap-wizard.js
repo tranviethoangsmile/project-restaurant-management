@@ -67,13 +67,13 @@ $(document).ready(function(){
             var $total = navigation.find('li').length;
             var $wizard = navigation.closest('.wizard-card');
 
-            $first_li = navigation.find('li:first-child a').html();
-            $moving_div = $('<div class="moving-tab">' + $first_li + '</div>');
-            $('.wizard-card .wizard-navigation').append($moving_div);
+            // $first_li = navigation.find('li:first-child a').html();
+            // $moving_div = $('<div class="moving-tab">' + $first_li + '</div>');
+            // $('.wizard-card .wizard-navigation').append($moving_div);
 
-            refreshAnimation($wizard, index);
+            // refreshAnimation($wizard, index);
 
-            $('.moving-tab').css('transition','transform 0s');
+            // $('.moving-tab').css('transition','transform 0s');
        },
 
         onTabClick : function(tab, navigation, index){
@@ -101,11 +101,11 @@ $(document).ready(function(){
                 $($wizard).find('.btn-finish').hide();
             }
 
-            button_text = navigation.find('li:nth-child(' + $current + ') a').html();
+            // button_text = navigation.find('li:nth-child(' + $current + ') a').html();
 
-            setTimeout(function(){
-                $('.moving-tab').text(button_text);
-            }, 150);
+            // setTimeout(function(){
+            //     $('.moving-tab').text(button_text);
+            // }, 150);
 
             var checkbox = $('.footer-checkbox');
 
@@ -176,9 +176,9 @@ $(window).resize(function(){
         index = $wizard.bootstrapWizard('currentIndex');
         refreshAnimation($wizard, index);
 
-        $('.moving-tab').css({
-            'transition': 'transform 0s'
-        });
+        // $('.moving-tab').css({
+        //     'transition': 'transform 0s'
+        // });
     });
 });
 
@@ -217,12 +217,12 @@ function refreshAnimation($wizard, index){
         vertical_level = vertical_level * 38;
     }
 
-    $wizard.find('.moving-tab').css('width', step_width);
-    $('.moving-tab').css({
-        'transform':'translate3d(' + move_distance + 'px, ' + vertical_level +  'px, 0)',
-        'transition': 'all 0.5s cubic-bezier(0.29, 1.42, 0.79, 1)'
-
-    });
+    // $wizard.find('.moving-tab').css('width', step_width);
+    // $('.moving-tab').css({
+    //     'transform':'translate3d(' + move_distance + 'px, ' + vertical_level +  'px, 0)',
+    //     'transition': 'all 0.5s cubic-bezier(0.29, 1.42, 0.79, 1)'
+    //
+    // });
 }
 
 materialDesign = {

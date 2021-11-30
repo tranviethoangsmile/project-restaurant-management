@@ -21,11 +21,12 @@ public class OrderDetail {
     private Long id;
 
     private Integer quantity;
-    private BigDecimal unitPricep;
-
-    @ManyToOne
-    @JoinColumn(name = "product_id", referencedColumnName = "id", nullable = false)
-    private Product product;
+    private BigDecimal unitPrice;
+//    @ManyToOne
+//    @JoinColumn(name = "product_id", referencedColumnName = "id", nullable = false)
+//    private Product product;
+    private String productName;
+    private BigDecimal productPrice;
 
     @ManyToOne
     @JoinColumn(name = "order_id", referencedColumnName = "id", nullable = false)

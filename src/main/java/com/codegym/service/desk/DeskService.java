@@ -28,6 +28,6 @@ public class DeskService implements IDeskService {
 
     @Override
     public void remove(Long id) {
-
+        deskRepository.deleteById(id);
     }
 }
