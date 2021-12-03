@@ -23,6 +23,7 @@ public class RoleService implements IRoleService{
         return roleRepository.findById(id);
     }
 
+
     @Override
     public Role save(Role role) {
         return roleRepository.save(role);
