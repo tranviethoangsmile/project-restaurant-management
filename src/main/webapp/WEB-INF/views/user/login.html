@@ -39,7 +39,7 @@
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
-            url: location.origin +"/api/admin/login",
+            url: location.origin +"/api/auth/login",
             data: JSON.stringify(account)
         }).done((data) => {
             // console.log(data);

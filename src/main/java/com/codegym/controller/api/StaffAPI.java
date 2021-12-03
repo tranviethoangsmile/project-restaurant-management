@@ -1,33 +1,33 @@
 package com.codegym.controller.api;
 
-import com.codegym.entity.Category;
+import com.codegym.entity.Staff;
 import com.codegym.entity.User;
+import com.codegym.entity.dto.StaffDTO;
 import com.codegym.entity.dto.UserDTO;
 import com.codegym.entity.dto.UserUpdateDTO;
-import com.codegym.service.user.IUserService;
+import com.codegym.service.staff.IStaffService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/user")
-public class UserAPI {
+public class StaffAPI {
     @Autowired
-    IUserService userService;
+    IStaffService staffService;
 
     @PostMapping
-    public ResponseEntity<User> create(@RequestBody UserDTO userDTO) throws ParseException {
-        return new ResponseEntity<>(userService.create(userDTO), HttpStatus.CREATED);
+    public ResponseEntity<Staff> create(@RequestBody StaffDTO staffDTO) throws ParseException {
+        return new ResponseEntity<>(staffService.create(staffDTO), HttpStatus.CREATED);
     }
 
     @GetMapping
-    public Iterable<User> getList() {
+    public Iterable<Staff> getList() {
 
-        return userService.findAll();
+        return staffService.findAll();
     }
 
     @GetMapping("/{id}")
@@ -38,19 +38,19 @@ public class UserAPI {
 //        }else {
 //            return new ResponseEntity<>(user.get(),HttpStatus.OK);
 //        }
-        UserUpdateDTO userUpdateDTO = userService.userDTOById(id);
+        UserUpdateDTO userUpdateDTO = staffService.userDTOById(id);
         return new ResponseEntity<>(userUpdateDTO,HttpStatus.OK);
 
     }
 
     @PostMapping("/edit/{id}")
-    public ResponseEntity<User> updateCategory(@PathVariable("id")Long id,@RequestBody UserUpdateDTO userDTO) throws ParseException {
-        User user = userService.update(id, userDTO);
+    public ResponseEntity<Staff> updateCategory(@PathVariable("id")Long id,@RequestBody UserUpdateDTO userDTO) throws ParseException {
+        Staff staff = staffService.update(id, userDTO);
 
-        if (user == null) {
+        if (staff == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         } else {
-            return new ResponseEntity<>(user, HttpStatus.OK);
+            return new ResponseEntity<>(staff, HttpStatus.OK);
         }
     }
 }

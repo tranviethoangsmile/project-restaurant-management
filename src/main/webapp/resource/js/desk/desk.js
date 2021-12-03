@@ -58,12 +58,12 @@ getAllDeskForOption = function () {
                 $(".desk-list .row").append(
                     `
                 <div class="col-xl-2">
-                    <button onclick="deskModify(${item.id})" 
-                        type="button" 
-                        style="border-radius: 35%; width: 110%" 
-                        class="btn btn-outline-secondary"> 
+                    <button onclick="deskModify(${item.id})"
+                        type="button"
+                        style="border-radius: 35%; width: 110%"
+                        class="btn btn-outline-secondary">
                             ${item.name}
-                    </button>                            
+                    </button>
                 </div>
                 `
                 )
@@ -100,11 +100,11 @@ deskModify = function (id) {
         $(".desk_option").prepend(
             `
                     <div class="row" style="margin-left: 10px">
-                            <h2>${deskResp.name}</h2>                        
+                            <h2>${deskResp.name}</h2>
                             <button onclick="changerStatus(${deskResp.id})" style="width: 75px; text-align: center" title="Thay đổi trạng thái"  class="btn btn-primary"><i class="fa fa-exchange-alt"></i></button>
                             <button onclick="editDeskInfo(${deskResp.id})" style="width: 75px" class="btn btn-success" title="Sửa thông tin bàn"><i class="fa fa-edit"></i></button>
                             <button onclick="deleteDesk(${deskResp.id})" style="width: 75px" title="Xoá bàn" class="btn btn-danger"><i class="fa fa-trash"></i></button>
-                    </div>                                                  
+                    </div>
                 `
         )
 
@@ -137,7 +137,7 @@ editDeskInfo = function (id) {
                <button class="btn btn-success" type="button" onclick="saveEditDesk()">Lưu</button>
                <button class="btn btn-danger" type="button" onclick="closeEditModal()">Huỷ</button>
             </form>
-          
+
             `
         )
     }).fail(function () {
@@ -316,8 +316,8 @@ getOrderDetailOfDesk = function (id) {
                     <td>${item.productName}</td>
                     <td>${formatNumber(item.productPrice)}</td>
                     <td>${item.quantity}</td>
-                    <td>${formatNumber(item.unitPrice)}</td>               
-                </tr>            
+                    <td>${formatNumber(item.unitPrice)}</td>
+                </tr>
                `
             );
         })
@@ -328,7 +328,7 @@ getOrderDetailOfDesk = function (id) {
                     <th>${formatNumber(total)} vnđ</th>
                  </tr>
                  <tr>
-                      <td style="text-align: right; margin-right: 30px" colspan="5"><button onclick="paymentForm(${desk_id})" class="btn btn-success">Thanh toán</button></td>              
+                      <td style="text-align: right; margin-right: 30px" colspan="5"><button onclick="paymentForm(${desk_id})" class="btn btn-success">Thanh toán</button></td>
                  </tr>
             `
         )
@@ -367,8 +367,8 @@ paymentForm = function (id) {
                     <td>${item.productName}</td>
                     <td>${formatNumber(item.productPrice)}</td>
                     <td>${item.quantity}</td>
-                    <td>${formatNumber(item.unitPrice)}</td>               
-                </tr>            
+                    <td>${formatNumber(item.unitPrice)}</td>
+                </tr>
                `
             );
         })
@@ -379,7 +379,7 @@ paymentForm = function (id) {
                     <th><input type="text" id="total_bill_pay" value="${total}" readonly hidden> ${formatNumber(total)} vnđ</th>
                  </tr>
                  <tr>
-                      <td style="text-align: right; margin-right: 30px" colspan="4"><button type="button" onclick="billPrint()" class="btn btn-success" disabled>In Hoá Đơn</button></td>              
+                      <td style="text-align: right; margin-right: 30px" colspan="4"><button type="button" onclick="billPrint()" class="btn btn-success" disabled>In Hoá Đơn</button></td>
                       <td style="text-align: right; margin-right: 30px" colspan="4"><button type="button" onclick="billNotPrint(${desk_id})" class="btn btn-success">Không in hoá đơn</button></td>
                  </tr>
             `
@@ -392,7 +392,7 @@ paymentForm = function (id) {
     })
 }
 
-//Thanh toán không in hoá đơn
+// Thanh toán không in hoá đơn
 billNotPrint = function (id){
     let bill = {
         createAt: new Date(),
@@ -413,9 +413,12 @@ billNotPrint = function (id){
         $("#bill").modal("hide");
         console.log(billResp);
         changerStatusAfterPayment(billResp.desk_id);
-        $.notify("Đã xong", "success");
+        $("#product_list_of_desk").empty();
+        $("#total").empty();
+        $("#desk_name_bill").text('');
+        $.notify("Đã thanh toán", "success");
     }).fail(function (){
-        $.notify("Tạo Bill lỗi", "error");
+        $.notify("Thanh toán lỗi", "error");
     })
 }
 
@@ -430,49 +433,6 @@ changerStatusAfterPayment = function (id){
         $.notify("cập nhật không thành công", "error");
     })
 }
-
-// //Nhận thông tin của bàn
-// getDeskById = function (id) {
-//     $.ajax({
-//         headers: {
-//             'Accept': 'application/json',
-//             'Content-Type': 'application/json'
-//         },
-//         url: "/api/desk/getDeskById/" + id,
-//         type: "GET",
-//     }).done(function (deskResp){
-//         console.log(deskResp);
-//         createNewDesk(deskResp.name);
-//     }).fail(function (){
-//         $.notify("bàn lỗi","error");
-//     })
-// }
-//
-// //tạo bàn mới sau khi thanh toán
-// createNewDesk = function (deskName) {
-//     let desk = {
-//         name: deskName,
-//         status: false
-//     }
-//     $.ajax({
-//         headers: {
-//             'Accept': 'application/json',
-//             'Content-Type': 'application/json'
-//         },
-//         url: "/api/desk/create",
-//         type: "POST",
-//         data: JSON.stringify(desk)
-//     }).done(function (deskResp) {
-//         $("#deskName").val("");
-//         if (deskResp != null) {
-//             $.notify("Tạo bàn thành công", "success");
-//             getAllDeskForOption();
-//         }
-//     }).fail(function () {
-//         $.notify("Tạo bàn không thành công", "error");
-//     })
-// }
-
 //format Number
 function formatNumber (num) {
     return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")

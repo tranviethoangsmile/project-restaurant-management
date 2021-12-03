@@ -1,18 +1,15 @@
-package com.codegym.security.service;
+package com.codegym.entity;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
 
-import com.codegym.entity.User;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-
-
-public class UserDetailsImpl implements UserDetails {
-
+public class UserPrinciple implements UserDetails {
     private static final long serialVersionUID = 1L;
 
     private final Long id;
@@ -21,35 +18,37 @@ public class UserDetailsImpl implements UserDetails {
 
     private final String password;
 
-    private Collection<? extends GrantedAuthority> roles;
+    private final Collection<? extends GrantedAuthority> roles;
 
-    public UserDetailsImpl(Long id, String username, String password,
-                           Collection<? extends GrantedAuthority> roles) {
+    public UserPrinciple(Long id,
+                         String username, String password,
+                         Collection<? extends GrantedAuthority> roles) {
         this.id = id;
         this.username = username;
         this.password = password;
         this.roles = roles;
     }
 
-    public static UserDetailsImpl build(User user) {
+    public static UserPrinciple build(User user) {
         List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
-        SimpleGrantedAuthority authority = new SimpleGrantedAuthority(user.getRole().getName());
+        SimpleGrantedAuthority authority = new SimpleGrantedAuthority(user.getRole().getCode());
         authorities.add(authority);
 
-        return new UserDetailsImpl(
+        return new UserPrinciple(
                 user.getId(),
                 user.getUsername(),
                 user.getPassword(),
-                authorities);
-    }
-
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return roles;
+                authorities
+        );
     }
 
     public Long getId() {
         return id;
+    }
+
+    @Override
+    public String getUsername() {
+        return username;
     }
 
     @Override
@@ -58,9 +57,10 @@ public class UserDetailsImpl implements UserDetails {
     }
 
     @Override
-    public String getUsername() {
-        return username;
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return roles;
     }
+
 
     @Override
     public boolean isAccountNonExpired() {
@@ -84,12 +84,15 @@ public class UserDetailsImpl implements UserDetails {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o)
-            return true;
-        if (o == null || getClass() != o.getClass())
-            return false;
-        UserDetailsImpl user = (UserDetailsImpl) o;
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        UserPrinciple user = (UserPrinciple) o;
         return Objects.equals(id, user.id);
     }
 
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
 }

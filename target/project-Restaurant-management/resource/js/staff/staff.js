@@ -125,6 +125,7 @@ getAllUser = function () {
         url: "http://localhost:8080/api/user",
         type: "GET"
     }).done(function (data) {
+        console.log(data);
         let str = '';
 
         $.each(data, function (index, item) {
