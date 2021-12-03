@@ -490,13 +490,14 @@ getOrderByDeskId = function (id) {
     })
 }
 
-getOrderDetailOfDesk = function (id){
+getOrderDetailOfDesk = function (desk_id){
     $.ajax({
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         },
-        url: "/api/orderdetail/orderdetailofdeskid/" + id,
+        // url: "/api/orderdetail/orderdetailofdeskid/" + id,
+        url: "/api/orderdetail/order-detail-of-deskid/" + desk_id,
         type: "GET",
     }).done(function (orderdetails) {
         console.log(orderdetails);
@@ -504,10 +505,10 @@ getOrderDetailOfDesk = function (id){
         let btn_pay = $("#btn_pay");
         btn_pay.empty();
         let total = 0;
-        let desk_id;
-        $.each(orderdetails,function (index,orderDetail){
+        // let desk_id;
+        $.each(orderdetails, function (index, orderDetail){
             total += orderDetail.unitPrice;
-            desk_id = orderDetail.order.desk.id;
+            // desk_id = orderDetail.order.desk.id;
             $("#orderDetail_of_desk").append(
                 `
                 <tr>
