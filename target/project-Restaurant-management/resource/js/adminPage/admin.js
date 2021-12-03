@@ -152,8 +152,9 @@ getAllProduct = function () {
     }).done(function (resp) {
         $("#listProduct").empty();
         $.each(resp,function (index,item){
-            $("#listProduct").prepend(
+            $("#listProduct").append(
                 `
+                
                     <tr>
                         <td>${item.id}</td>
                         <td>${item.name}</td>

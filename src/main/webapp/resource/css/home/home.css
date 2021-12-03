@@ -25,4 +25,15 @@
     width: 100%;
     overflow: scroll;
 }
+#productList {
+    height: 400px;
+    width: 100%;
+    overflow: scroll;
+}
 
+.desk-list {
+    min-height: 50px;
+    max-height: 75px;
+    width: 100%;
+    overflow: scroll;
+}

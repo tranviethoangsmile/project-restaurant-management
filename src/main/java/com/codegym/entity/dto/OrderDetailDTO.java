@@ -53,4 +53,15 @@ public class OrderDetailDTO {
     public void setUnitPrice(BigDecimal unitPrice) {
         this.unitPrice = unitPrice;
     }
+
+    @Override
+    public String toString() {
+        return "OrderDetailDTO{" +
+                "orderId=" + orderId +
+                ", quantity=" + quantity +
+                ", unitPrice=" + unitPrice +
+                ", productName='" + productName + '\'' +
+                ", productPrice=" + productPrice +
+                '}';
+    }
 }
