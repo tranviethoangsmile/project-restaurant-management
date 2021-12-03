@@ -22,9 +22,6 @@ public class OrderDetail {
 
     private Integer quantity;
     private BigDecimal unitPrice;
-//    @ManyToOne
-//    @JoinColumn(name = "product_id", referencedColumnName = "id", nullable = false)
-//    private Product product;
     private String productName;
     private BigDecimal productPrice;
 

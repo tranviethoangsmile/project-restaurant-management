@@ -194,7 +194,7 @@ function createProduct() {
                             <th scope="row">${resp.id}</th>
                             <td>${resp.name}</td>
                             <td>${resp.price}</td>
-                            <td>${resp.status}</td>
+                            <td>${resp.status ? "hết hàng": "còn hàng"}</td>
                             <td>${resp.category.name}</td>
                             <td>
                                 <button type="button" data-toggle="modal" data-target="#updateModal" class="btn btn-outline-primary edit"

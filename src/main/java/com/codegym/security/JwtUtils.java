@@ -1,8 +1,10 @@
 package com.codegym.security;
 
+import java.security.SignatureException;
 import java.util.Date;
 
 import com.codegym.security.service.UserDetailsImpl;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -11,6 +13,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
 
 import io.jsonwebtoken.*;
+
 
 @Component
 @PropertySource("classpath:application.properties")
@@ -30,8 +33,8 @@ public class JwtUtils {
 		return Jwts.builder()
 				.setSubject((userPrincipal.getUsername()))
 				.setIssuedAt(new Date())
-				.setExpiration(new Date((new Date()).getTime() + jwtExpirationMs * 60 * 60))
-				.signWith(SignatureAlgorithm.HS512, jwtSecret)
+				.setExpiration(new Date((new Date()).getTime() + (long) jwtExpirationMs * 60 * 60))
+//				.signWith(SignatureAlgorithm.HS512, jwtSecret)
 				.compact();
 	}
 
@@ -44,8 +47,6 @@ public class JwtUtils {
         try {
             Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(authToken);
             return true;
-        } catch (SignatureException e) {
-            logger.error("Invalid JWT signature: {}", e.getMessage());
         } catch (MalformedJwtException e) {
             logger.error("Invalid JWT token: {}", e.getMessage());
         } catch (ExpiredJwtException e) {
