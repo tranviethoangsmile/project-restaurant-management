@@ -60,7 +60,7 @@ getAllDeskForOption = function () {
                 <div class="col-xl-2">
                     <button onclick="deskModify(${item.id})"
                         type="button"
-                        style="border-radius: 35%; width: 110%"
+                        style="border-radius: 35%; width: 100px"
                         class="btn btn-outline-secondary">
                             ${item.name}
                     </button>
