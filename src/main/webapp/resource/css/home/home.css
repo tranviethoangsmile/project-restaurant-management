@@ -25,4 +25,8 @@
     width: 100%;
     overflow: scroll;
 }
-
+#productList {
+    height: 400px;
+    width: 100%;
+    overflow: scroll;
+}

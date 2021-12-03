@@ -324,11 +324,11 @@ getOrderDetailOfDesk = function (id) {
         $("#total").append(
             `
                 <tr>
-                    <th colspan="4"><b>Tổng</b></th>
-                    <th>${formatNumber(total)} vnđ</th>
+                    <th colspan="4"><b>Tổng: </b></th>
+                    <th><h2>${formatNumber(total)} vnđ</h2></th>
                  </tr>
                  <tr>
-                      <td style="text-align: right; margin-right: 30px" colspan="5"><button onclick="paymentForm(${desk_id})" class="btn btn-success">Thanh toán</button></td>
+                      <td><button onclick="paymentForm(${desk_id})" class="btn btn-success">Thanh toán</button></td>
                  </tr>
             `
         )
