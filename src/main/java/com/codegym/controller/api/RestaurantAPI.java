@@ -1,6 +1,7 @@
 package com.codegym.controller.api;
 
 import com.codegym.entity.*;
+import com.codegym.entity.dto.IOrderDetailSumDTO;
 import com.codegym.entity.dto.OrderDetailDTO;
 import com.codegym.entity.dto.ProductDTO;
 import com.codegym.service.bill.IBillService;
@@ -12,7 +13,6 @@ import com.codegym.service.desk.IDeskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -211,6 +211,12 @@ public class RestaurantAPI {
     public List<OrderDetail> getOrderDetailOfDeskid (@PathVariable Long id) {
         Order order = orderService.getOrderByDeskId(id);
         return orderDetailService.findOrderDetailByOrder_id(order.getId());
+    }
+
+    @GetMapping("/orderdetail/order-detail-of-deskid/{id}")
+    public List<IOrderDetailSumDTO> getAllIOrderDetailSumDTOByOrderId (@PathVariable Long id) {
+        Order order = orderService.getOrderByDeskId(id);
+        return orderDetailService.getAllIOrderDetailSumDTOByOrderId(order.getId());
     }
 
     @GetMapping("/orderdetail/getorderdetailbyorderid/{id}")
