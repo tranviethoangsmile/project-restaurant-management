@@ -1,5 +1,15 @@
 package com.codegym.config;
 
+//import com.codegym.security.AuthTokenFilter;
+import com.codegym.service.desk.DeskService;
+import com.codegym.service.desk.IDeskService;
+import com.codegym.service.product.IProductService;
+import com.codegym.service.product.ProductService;
+import com.codegym.service.role.IRoleService;
+import com.codegym.service.role.RoleService;
+import com.codegym.service.user.IUserService;
+import com.codegym.service.user.UserService;
+
 import com.codegym.service.bill.BillService;
 import com.codegym.service.bill.IBillService;
 import com.codegym.service.category.CategoryService;
@@ -8,10 +18,6 @@ import com.codegym.service.order.IOrderService;
 import com.codegym.service.order.OrderService;
 import com.codegym.service.orderDetail.IOrderDetailService;
 import com.codegym.service.orderDetail.OrderDetailService;
-import com.codegym.service.product.IProductService;
-import com.codegym.service.product.ProductService;
-import com.codegym.service.desk.IDeskService;
-import com.codegym.service.desk.DeskService;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -46,7 +52,7 @@ import java.util.Properties;
 @EnableWebMvc
 @EnableTransactionManagement
 @EnableJpaRepositories("com.codegym.repository")
-@ComponentScan("com.codegym.controller")
+@ComponentScan("com.codegym")
 @EnableSpringDataWebSupport
 public class AppConfig implements WebMvcConfigurer, ApplicationContextAware {
 
@@ -105,7 +111,7 @@ public class AppConfig implements WebMvcConfigurer, ApplicationContextAware {
     @Bean
     public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
+        dataSource.setDriverClassName("com.mysql.jdbc.Driver");
         dataSource.setUrl("jdbc:mysql://localhost:3306/project_restaurant_management");
         dataSource.setUsername("root");
         dataSource.setPassword("29061993");
@@ -121,8 +127,8 @@ public class AppConfig implements WebMvcConfigurer, ApplicationContextAware {
 
     Properties additionalProperties() {
         Properties properties = new Properties();
-        properties.setProperty("hibernate.connection.useUnicode", "true");
-        properties.setProperty("hibernate.connection.charset", "UTF-8");
+        properties.setProperty("hibernate.connection.useUnicode","true");
+        properties.setProperty("hibernate.connection.charset","UTF-8");
         properties.setProperty("hibernate.hbm2ddl.auto", "update");
         properties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL5InnoDBDialect");
         return properties;
@@ -139,8 +145,18 @@ public class AppConfig implements WebMvcConfigurer, ApplicationContextAware {
     }
 
     @Bean
+    public IUserService userService() {
+        return new UserService();
+    }
+
+    @Bean
     public IProductService productService() {
         return new ProductService();
+    }
+
+    @Bean
+    public IRoleService roleService() {
+        return new RoleService();
     }
 
     @Bean

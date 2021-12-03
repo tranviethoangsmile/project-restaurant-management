@@ -12,6 +12,7 @@ import com.codegym.service.desk.IDeskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,7 +21,8 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api")
 public class RestaurantAPI {
-    //    Mọi người dán Autowired ở đây.
+//    Mọi người dán Autowired ở đây.
+
     @Autowired
     IDeskService deskService;
 
@@ -40,6 +42,7 @@ public class RestaurantAPI {
     IBillService billService;
 
     @GetMapping("/product")
+//    @PreAuthorize("hasRole('ADMIN')")
     public Iterable<ProductDTO> getListProduct() {
 
         return iProductService.findAllPDTO();
@@ -230,7 +233,6 @@ public class RestaurantAPI {
     public Iterable<Bill> getABill () {
         return billService.findAll();
     }
-
 
 
 }

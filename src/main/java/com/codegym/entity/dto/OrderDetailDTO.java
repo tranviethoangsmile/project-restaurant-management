@@ -7,12 +7,8 @@ import lombok.Setter;
 
 import java.math.BigDecimal;
 
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
 public class OrderDetailDTO {
-    private Long OrderId;
+    private Long orderId;
     private Integer quantity;
     private BigDecimal unitPrice;
     private String productName;
@@ -35,11 +31,11 @@ public class OrderDetailDTO {
     }
 
     public Long getOrderId() {
-        return OrderId;
+        return orderId;
     }
 
     public void setOrderId(Long orderId) {
-        OrderId = orderId;
+        this.orderId = orderId;
     }
 
     public Integer getQuantity() {

@@ -17,7 +17,7 @@ import java.util.Set;
 @Table(name = "desks")
 public class Desk {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private Boolean status;

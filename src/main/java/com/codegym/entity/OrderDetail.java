@@ -19,6 +19,7 @@ public class OrderDetail {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
     private Integer quantity;
     private BigDecimal unitPrice;
     private String productName;
