@@ -102,34 +102,100 @@ function handleEdit() {
     })
 }
 
+
 function createProduct() {
-    category.id = $("#category").val();
-    category.name=$("#category :selected").text();
+    // category.id = $("#category").val();
+    // category.name=$("#category :selected").text();
+    //
+    // product.name = $("#name").val();
+    // product.price = $("#price").val();
+    // product.category = category
+    // console.log(product);
+    //
+    // $.ajax({
+    //     headers: {
+    //         'Accept':'application/json',
+    //         'Content-Type':'application/json'
+    //     },
+    //     url: "/api/product/create",
+    //     type: "POST",
+    //     data: JSON.stringify(product)
+    //
+    // }).done(function (resp) {
+    //
+    //     let str = '';
+    //
+    //     str = `
+    //                 <tr id="tr_${resp.id}">
+    //                         <th scope="row">${resp.id}</th>
+    //                         <td>${resp.name}</td>
+    //                         <td>${resp.price}</td>
+    //                         <td>${resp.status ? "hết hàng": "còn hàng"}</td>
+    //                         <td>${resp.category.name}</td>
+    //                         <td>
+    //                             <button type="button" data-toggle="modal" data-target="#updateModal" class="btn btn-outline-primary edit"
+    //                                 data-id="${resp.id}"
+    //                             >
+    //                                 <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+    //                                 Edit
+    //                             </button>
+    //                         </td>
+    //                         <td>
+    //                             <button type="button" class="btn btn-outline-danger delete" data-id="${resp.id}">
+    //                                 <i class="fa fa-trash-o" aria-hidden="true"></i>
+    //                                 Delete
+    //                             </button>
+    //                         </td>
+    //
+    //                     </tr>
+    //             `;
+    //
+    //     $("#tbListProduct").prepend(str);
+    //     $("#createProduct")
+    //
+    //
+    //     handleEdit();
+    //
+    //     handleDelete();
+    //
+    // }).fail(function () {
+    //     alert("ERROR")
+    // });
 
-    product.name = $("#name").val();
-    product.price = $("#price").val();
-    product.category = category
-    console.log(product);
+    if($("#createProduct").valid()){
+        Swal.fire({
+            title: 'Bạn muốn lưu lại món ăn này không?',
+            showDenyButton: true,
+            confirmButtonText: 'Yes',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                category.id = $("#category").val();
+                category.name=$("#category :selected").text();
 
-    $.ajax({
-        headers: {
-            'Accept':'application/json',
-            'Content-Type':'application/json'
-        },
-        url: "/api/product/create",
-        type: "POST",
-        data: JSON.stringify(product)
+                product.name = $("#name").val();
+                product.price = $("#price").val();
+                product.category = category
+                console.log(product);
 
-    }).done(function (resp) {
+                $.ajax({
+                    headers: {
+                        'Accept':'application/json',
+                        'Content-Type':'application/json'
+                    },
+                    url: "/api/product/create",
+                    type: "POST",
+                    data: JSON.stringify(product)
 
-        let str = '';
+                }).done(function (resp) {
 
-        str = `
+                    let str = '';
+
+                    str = `
                     <tr id="tr_${resp.id}">
                             <th scope="row">${resp.id}</th>
                             <td>${resp.name}</td>
                             <td>${resp.price}</td>
-                            <td>${resp.status}</td>
+                            <td>${resp.status ? "hết hàng": "còn hàng"}</td>
                             <td>${resp.category.name}</td>
                             <td>
                                 <button type="button" data-toggle="modal" data-target="#updateModal" class="btn btn-outline-primary edit"
@@ -149,16 +215,23 @@ function createProduct() {
                         </tr>
                 `;
 
-        $("#tbListProduct").prepend(str);
+                    $("#tbListProduct").prepend(str);
 
 
-        handleEdit();
+                    handleEdit();
 
-        handleDelete();
+                    handleDelete();
 
-    }).fail(function () {
-        alert("ERROR")
-    });
+                }).fail(function () {
+                    alert("ERROR")
+                });
+            } else if (result.isDenied) {
+                Swal.fire('Thông tin bàn chưa được lưu', '', 'info')
+            }
+        })
+
+    }
+
 }
 
 function updateProduct() {
@@ -190,7 +263,7 @@ function updateProduct() {
                         <th scope="row">${resp.id}</th>
                         <td>${resp.name}</td>
                         <td>${resp.price}</td>
-                        <td>${resp.status}</td>
+                        <td>${resp.status ? "hết hàng": "còn hàng"}</td>
                         <td>${resp.category.name}</td>
                         <td>
                             <button type="button" data-toggle="modal" data-target="#updateModal" class="btn btn-outline-primary edit"
@@ -237,7 +310,7 @@ function getListProduct() {
                             <th scope="row">${item.id}</th>
                             <td>${item.name}</td>
                             <td>${item.price}</td>
-                            <td>${item.status}</td>
+                            <td>${resp.status ? "hết hàng": "còn hàng"}</td>
                             <td>${item.category.name}</td>
                             <td>
                                 <button type="button" data-toggle="modal" data-target="#updateModal" class="btn btn-outline-primary edit"

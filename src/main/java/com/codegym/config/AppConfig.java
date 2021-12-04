@@ -7,8 +7,6 @@ import com.codegym.service.product.IProductService;
 import com.codegym.service.product.ProductService;
 import com.codegym.service.role.IRoleService;
 import com.codegym.service.role.RoleService;
-import com.codegym.service.user.IUserService;
-import com.codegym.service.user.UserService;
 
 import com.codegym.service.bill.BillService;
 import com.codegym.service.bill.IBillService;
@@ -18,6 +16,8 @@ import com.codegym.service.order.IOrderService;
 import com.codegym.service.order.OrderService;
 import com.codegym.service.orderDetail.IOrderDetailService;
 import com.codegym.service.orderDetail.OrderDetailService;
+import com.codegym.service.user.IUserService;
+import com.codegym.service.user.UserService;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -111,8 +111,8 @@ public class AppConfig implements WebMvcConfigurer, ApplicationContextAware {
     @Bean
     public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-        dataSource.setUrl("jdbc:mysql://localhost:3306/project_restaurant_management");
+        dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
+        dataSource.setUrl("jdbc:mysql://localhost:3306/project_restaurant_management?characterEncoding=UTF-8");
         dataSource.setUsername("root");
         dataSource.setPassword("123123");
         return dataSource;

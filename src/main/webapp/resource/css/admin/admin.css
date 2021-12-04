@@ -21,6 +21,7 @@
 
 @keyframes spWaveBe{from{-webkit-transform:scale(1,1);opacity:1}to{-webkit-transform:scale(1.5,1.5);opacity:0}}
 
+<<<<<<< HEAD
 .category_list {
     display: inherit;
     overflow-x: scroll;
@@ -36,3 +37,10 @@
 /*    width: 25px;*/
 /*    overflow-x: scroll;*/
 /*}*/
+=======
+#allProduct{
+    height: 500px;
+    width: 100%;
+    overflow: scroll;
+}
+>>>>>>> dev
