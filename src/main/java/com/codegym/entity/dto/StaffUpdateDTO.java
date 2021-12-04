@@ -3,17 +3,20 @@ package com.codegym.entity.dto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-public class UserUpdateDTO {
+
+import java.util.Date;
+
+public class StaffUpdateDTO {
     private Long id;
     private String fullName;
     private String address;
     private String phone;
-    private String dob;
+    private Date dob;
 
-    public UserUpdateDTO() {
+    public StaffUpdateDTO() {
     }
 
-    public UserUpdateDTO(Long id, String fullName, String address, String phone, String dob) {
+    public StaffUpdateDTO(Long id, String fullName, String address, String phone, Date dob) {
         this.id = id;
         this.fullName = fullName;
         this.address = address;
@@ -53,11 +56,11 @@ public class UserUpdateDTO {
         this.phone = phone;
     }
 
-    public String getDob() {
+    public Date getDob() {
         return dob;
     }
 
-    public void setDob(String dob) {
+    public void setDob(Date dob) {
         this.dob = dob;
     }
 }

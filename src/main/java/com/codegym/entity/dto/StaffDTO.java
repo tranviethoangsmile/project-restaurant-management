@@ -1,5 +1,8 @@
 package com.codegym.entity.dto;
 
+import com.codegym.entity.Role;
+import com.codegym.entity.Staff;
+import com.codegym.entity.User;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,7 +23,23 @@ public class StaffDTO {
     private String phone;
     private Date dob;
 
-    private UserDTO userDTO;
+    private Role role;
 
-    private RoleDTO roleDTO;
+    public User toUser() {
+        return new User()
+                .setId(0L)
+                .setUsername(username)
+                .setPassword(password)
+                .setRole(role);
+    }
+
+    public Staff toStaff(User user) {
+        return new Staff()
+                .setUser(user)
+                .setFullName(fullName)
+                .setAddress(address)
+                .setPhone(phone)
+                .setDob(dob);
+    }
+
 }

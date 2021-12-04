@@ -3,11 +3,11 @@ package com.codegym.service.staff;
 import com.codegym.entity.Role;
 import com.codegym.entity.Staff;
 import com.codegym.entity.User;
+import com.codegym.entity.dto.RoleDTO;
 import com.codegym.entity.dto.StaffDTO;
 import com.codegym.entity.dto.UserDTO;
-import com.codegym.entity.dto.UserUpdateDTO;
+import com.codegym.entity.dto.StaffUpdateDTO;
 import com.codegym.repository.StaffRepository;
-import com.codegym.repository.UserRepository;
 import com.codegym.service.role.IRoleService;
 import com.codegym.service.user.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +15,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.Optional;
 
 
@@ -24,6 +22,9 @@ import java.util.Optional;
 public class StaffService implements IStaffService {
     @Autowired
     StaffRepository staffRepository;
+
+    @Autowired
+    StaffService staffService;
 
     @Autowired
     PasswordEncoder encoder;
@@ -72,69 +73,86 @@ public class StaffService implements IStaffService {
 
     @Override
     public Staff create(StaffDTO staffDTO) throws ParseException {
-        Staff staff = new Staff();
-        staff.setFullName(staffDTO.getFullName());
 
-        staff.setAddress(staffDTO.getAddress());
-        staff.setPhone(staffDTO.getPhone());
+        UserDTO userDTO = new UserDTO();
+        RoleDTO roleDTO = new RoleDTO();
+        roleDTO.setId(2L);
 
-//        Date date = new SimpleDateFormat("dd/MM/yyyy").parse(staffDTO.getDob());
-        staff.setDob(staff.getDob());
-        staff.setStatus(true);
+        Optional<Role> role = roleService.findById(2L);
+//        role.setId(2L);
 
-        User user = new User();
-        user.setUsername(staffDTO.getUsername());
-        user.setPassword(encoder.encode(staffDTO.getPassword()));
+        userDTO.setUsername(staffDTO.getUsername());
+        userDTO.setPassword(staffDTO.getPassword());
+        userDTO.setRole(roleDTO);
 
-        Role role = new Role();
-        role.setCode("ROLE_USER");
+        User user = userService.save(userDTO.toUser());
+
+//        Role role = roleService.findByName("ROLE_USER");
+//        user.setRole(role);
+
+//        userService.save(user);
+//        userService.findByUsername(user.getUsername());
+//        staff.setUser(user);
+
+//        Staff staff = new Staff();
+//        staff.setUser(userDTO.toUser());
+//        staff.setFullName(staffDTO.getFullName());
+//        staff.setAddress(staffDTO.getAddress());
+//        staff.setPhone(staffDTO.getPhone());
+
+        //        Date date = new SimpleDateFormat("dd/MM/yyyy").parse(staffDTO.getDob());
+//        staff.setDob(staff.getDob());
+//        staff.setStatus(false);
+
+        Staff staff = staffDTO.toStaff(user);
 
         return staffRepository.save(staff);
     }
 
     @Override
-    public Staff update(Long id, UserUpdateDTO userDTO) throws ParseException {
-        Optional<Staff> user = staffRepository.findById(id);
+    public Staff update(Long id, StaffUpdateDTO staffUpdateDTO) throws ParseException {
+        Optional<Staff> staff = staffRepository.findById(id);
 
-        if(user.isPresent()) {
+        if(staff.isPresent()) {
 
-            if (userDTO.getFullName() != null && !user.get().getFullName().equals(userDTO.getFullName())) {
-                user.get().setFullName(userDTO.getFullName());
+            if (staffUpdateDTO.getFullName() != null && !staff.get().getFullName().equals(staffUpdateDTO.getFullName())) {
+                staff.get().setFullName(staffUpdateDTO.getFullName());
             }
 
-            if (userDTO.getAddress() != null && !user.get().getAddress().equals(userDTO.getAddress())) {
-                user.get().setAddress(userDTO.getAddress());
+            if (staffUpdateDTO.getAddress() != null && !staff.get().getAddress().equals(staffUpdateDTO.getAddress())) {
+                staff.get().setAddress(staffUpdateDTO.getAddress());
             }
 
-            if (userDTO.getPhone() != null && !user.get().getPhone().equals(userDTO.getPhone())) {
-                user.get().setPhone(userDTO.getPhone());
+            if (staffUpdateDTO.getPhone() != null && !staff.get().getPhone().equals(staffUpdateDTO.getPhone())) {
+                staff.get().setPhone(staffUpdateDTO.getPhone());
             }
 
-            Date date = new SimpleDateFormat("dd/MM/yyyy").parse(userDTO.getDob());
-            if (date != null && !user.get().getDob().equals(date)) {
-                user.get().setDob(date);
+//            Date date = new SimpleDateFormat("dd/MM/yyyy").parse(staffUpdateDTO.getDob());
+            if (staffUpdateDTO.getDob() != null && !staff.get().getDob().equals(staffUpdateDTO.getDob())) {
+                staff.get().setDob(staffUpdateDTO.getDob());
             }
 
-            return staffRepository.save(user.get());
+
+            return staffRepository.save(staff.get());
         }
 
         return null;
     }
 
     @Override
-    public UserUpdateDTO userDTOById(Long id) {
+    public StaffUpdateDTO staffDTOById(Long id) {
 
-        Optional<Staff> user = staffRepository.findById(id);
-        UserUpdateDTO userUpdateDTO = new UserUpdateDTO();
+        Optional<Staff> staff = staffRepository.findById(id);
+        StaffUpdateDTO staffUpdateDTO = new StaffUpdateDTO();
 
-        if (user.isPresent()) {
-            userUpdateDTO.setId(id);
-            userUpdateDTO.setFullName(user.get().getFullName());
-            userUpdateDTO.setAddress(user.get().getAddress());
-            userUpdateDTO.setPhone(user.get().getPhone());
-            userUpdateDTO.setDob(user.get().getDob().toInstant().toString());
+        if (staff.isPresent()) {
+            staffUpdateDTO.setId(id);
+            staffUpdateDTO.setFullName(staff.get().getFullName());
+            staffUpdateDTO.setAddress(staff.get().getAddress());
+            staffUpdateDTO.setPhone(staff.get().getPhone());
+            staffUpdateDTO.setDob(staff.get().getDob());
 
-            return userUpdateDTO;
+            return staffUpdateDTO;
         }
 
         return null;

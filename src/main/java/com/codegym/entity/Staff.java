@@ -19,9 +19,8 @@ import java.util.Date;
 @Accessors(chain = true)
 public class Staff {
     @Id
-    @GeneratedValue(generator = "uuid")
-    @GenericGenerator(name = "uuid", strategy = "uuid2")
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @Column(name = "full_name",nullable = false)
     private String fullName;
@@ -35,12 +34,13 @@ public class Staff {
     @Column(nullable = false)
     private String phone;
 
-    private Boolean status = false;
+    @Column(columnDefinition = "boolean default false")
+    private Boolean status;
 
     @Column(columnDefinition = "boolean default false")
     private boolean deleted;
 
     @OneToOne
-    @JoinColumn(name = "user_id", nullable = false)
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
 }
