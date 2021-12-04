@@ -59,7 +59,7 @@ $("#btn-add").on("click", function () {
         data: JSON.stringify(staff),
         success: function (result) {
             $("#listUser tbody").prepend(`
-                <tr id="user_${result.id}" style="text-align: center">
+                <tr id="staff_${result.id}" style="text-align: center">
                     <td>${result.id}</td>
                     <td>${result.fullName}</td>
                     <td>${result.phone}</td>
@@ -68,14 +68,16 @@ $("#btn-add").on("click", function () {
                     <td>
                         <span class="badge ${result.status ? 'bg-success' : 'bg-warning'}">${result.status ? 'Đi làm' : 'Nghỉ làm'}</span>
                     
-                        <a href='javascript:;' class='btn ${result.status ? 'btn-warning' : 'btn-secondary'} btn-sm'
-                            title='${result.status ? 'inactive' : 'active'} employee' data-id="${result.id}">
-                        <i class='fa ${result.status ? 'fa-lock' : 'fa-lock-open'}'>abc</i>
-                        </a>
+                        
                     </td>
                     <td>
+                        <a href='javascript:;' class='btn change-status ${result.status ? 'btn-success' : 'btn-secondary'} btn-sm'
+                            title='${result.status ? 'inactive' : 'active'} employee' data-id="${result.id}">
+                        <i class='fa ${result.status ? 'fa-lock' : 'fa-lock-open'} status' >abc</i>
+                        </a>
+                    
                          <a href='javascript:;' class='edit btn btn-warning btn-sm' title='edit student' data-id="${result.id}">
-                        <i class='fa fa-edit'></i>
+                        <i class='fa fa-edit'>Edit</i>
                     </a>
                 
                     </td>
@@ -92,6 +94,71 @@ $("#listUser").on("click",".edit", function (){
     $("#EditUserModal").modal('show')
 })
 
+function changeSattus() {
+
+    Swal.fire({
+        title: `${status ? 'Inactive' : 'Active'}  Staff?`,
+        text:  `Do you want to ${status ? 'inactive' : 'active'} the staff now?`,
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, Change status!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            $.ajax({
+                url: `api/staff/change-status/` + staff.id,
+                method: "POST",
+                dataType: 'json',
+                contentType: 'application/json',
+                success: function (result) {
+                    console.log(result);
+                    $("#staff_"+staff.id).replaceWith(`
+                     <tr id="staff_${result.id}" style="text-align: center">
+                    <td>${result.id}</td>
+                    <td>${result.fullName}</td>
+                    <td>${result.phone}</td>
+                    <td>${result.dob}</td>
+                    <td>${result.address}</td>
+                    <td>
+                        <span class="badge ${result.status ? 'bg-success' : 'bg-warning'}">${result.status ? 'Đi làm' : 'Nghỉ làm'}</span>
+                    
+                        
+                    </td>
+                    <td>
+                        <a href='javascript:;' class='btn change-status ${result.status ? 'btn-success' : 'btn-secondary'} btn-sm'
+                            title='${result.status ? 'inactive' : 'active'} employee' data-id="${result.id}">
+                        <i class='fa ${result.status ? 'fa-lock' : 'fa-lock-open'} ' >Change</i>
+                        </a>
+                    
+                         <a href='javascript:;' class='edit btn btn-warning btn-sm' title='edit student' data-id="${result.id}">
+                        <i class='fa fa-edit'>Edit</i>
+                    </a>
+                
+                    </td>
+                </tr>`)
+
+                    Swal.fire(
+                        'Changed!',
+                        'Your status has been change.',
+                        'success'
+                    )
+                    $(".change-status").on("click",function()  {
+                        staff.id = $(this).data("id");
+                        console.log("id: " + staff.id);
+                        changeSattus();
+                    })
+                }
+            })
+
+        }
+    })
+
+
+}
+
+
+
 $("#btnEdit").on("click", function (){
     update();
 })
@@ -102,10 +169,10 @@ function update() {
     delete staff.deleted;
 
     staff.id = $("#id").val();
-    staff.fullName = $('#name').val();
-    staff.address = $('#address').val();
-    staff.phone = $('#phone').val();
-    staff.dob = $('#dob').val();
+    staff.fullName = $('#nameUp').val();
+    staff.address = $('#addressUp').val();
+    staff.phone = $('#phoneUp').val();
+    staff.dob = $('#dobUp').val();
     $.ajax({
         url: "http://localhost:8080/api/staff/edit/" + staff.id,
         headers: {
@@ -115,7 +182,8 @@ function update() {
         type: "POST",
         data: JSON.stringify(staff),
         success: function (result) {
-            $('#listUser a[data-id="' + id + '"]').parent().parent().replaceWith(`
+            console.log(result);
+            $('#listUser a[data-id="' + staff.id + '"]').parent().parent().replaceWith(`
                 <tr id="user_${result.id}" style="text-align: center">
                     <td>${result.id}</td>
                     <td>${result.fullName}</td>
@@ -125,12 +193,14 @@ function update() {
                     <td>
                         <span class="badge ${result.status ? 'bg-success' : 'bg-warning'}">${result.status ? 'Đi làm' : 'Nghỉ làm'}</span>
                     
-                        <a href='javascript:;' class='btn ${result.status ? 'btn-warning' : 'btn-secondary'} btn-sm'
-                            title='${result.status ? 'inactive' : 'active'} employee' data-id="${result.id}">
-                        <i class='fa ${result.status ? 'fa-lock' : 'fa-lock-open'}'>abc</i>
-                        </a>
+                        
                     </td>
                     <td>
+                        <a href='javascript:;' class='btn change-status ${result.status ? 'btn-success' : 'btn-secondary'} btn-sm'
+                            title='${result.status ? 'inactive' : 'active'} employee' data-id="${result.id}">
+                        <i class='fa ${result.status ? 'fa-lock' : 'fa-lock-open'}'>Change</i>
+                        </a>
+                    
                          <a href='javascript:;' class='edit btn btn-warning btn-sm' title='edit student' data-id="${result.id}" data-bs-toggle="modal" data-bs-target="#addUserModal">
                         <i class='fa fa-edit'>Edit</i>
                         </a>
@@ -146,7 +216,7 @@ function update() {
                 getUser(id);
             })
 
-            // $('#EditUserModal').hide();
+            $('#EditUserModal').modal("hide");
             $('#frmCreateEmployee')[0].reset();
 
 
@@ -165,7 +235,7 @@ getAllUser = function () {
         $.each(data, function (index, item) {
 
             str = `           
-                        <tr id="user_${item.id}" style="text-align: center"> 
+                        <tr id="staff_${item.id}" style="text-align: center"> 
                             <td>${item.id}</td>
                             <td>${item.fullName}</td>
                             <td>${item.phone}</td>
@@ -174,12 +244,14 @@ getAllUser = function () {
                             <td>
                                 <span class="badge ${item.status ? 'bg-success' : 'bg-warning'}">${item.status ? 'Đi làm' : 'Nghỉ làm'}</span>
                     
-                                <a href='javascript:;' class='btn ${item.status ? 'btn-warning' : 'btn-secondary'} btn-sm'
-                                    title='${item.status ? 'inactive' : 'active'} employee' data-id="${item.id}">
-                                <i class='fa ${item.status ? 'fa-lock' : 'fa-lock-open'}'>abc</i>
-                                </a>
+                                
                             </td>
                             <td>
+                                <a href='javascript:;' class='btn change-status ${item.status ? 'btn-warning' : 'btn-secondary'} btn-sm'
+                                    title='${item.status ? 'inactive' : 'active'} employee' data-id="${item.id}">
+                                <i class='fa ${item.status ? 'fa-lock' : 'fa-lock-open'} '>Change</i>
+                                </a>
+                            
                               <a href='javascript:;' class='edit btn btn-warning btn-sm' title='edit student' data-id="${item.id}">
                                 <i class='fa fa-edit'>Edit</i>
                             </td>
@@ -187,6 +259,12 @@ getAllUser = function () {
                     `;
             $("#listUser tbody").prepend(str);
         });
+        console.log("hello");
+        $(".change-status").on("click",function()  {
+            staff.id = $(this).data("id");
+
+            changeSattus();
+        })
 
         $(".edit").on("click", function (e) {
             e.preventDefault();
@@ -206,7 +284,7 @@ getUser = function(id) {
         $("#nameUp").val(data.fullName);
         $("#addressUp").val(data.address);
         $("#phoneUp").val(data.phone);
-        $("#dobUp").val(data.dob);
+        $("#dobUp").val(moment(data.dob, "YYYY-MM-DD").format("YYYY-MM-DD"));
     })
 }
 

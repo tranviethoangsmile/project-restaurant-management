@@ -56,20 +56,6 @@ public class StaffService implements IStaffService {
         staffRepository.deleteById(id);
     }
 
-//    @Override
-//    public Optional<Staff> findByUsername(String username) {
-//        return staffRepository.findByUsername(username);
-//    }
-//
-//    @Override
-//    public Boolean existsByUsername(String username) {
-//        return staffRepository.existsByUsername(username);
-//    }
-
-//    @Override
-//    public Staff create(StaffDTO staffDTO) throws ParseException {
-//        return null;
-//    }
 
     @Override
     public Staff create(StaffDTO staffDTO) throws ParseException {
@@ -81,28 +67,11 @@ public class StaffService implements IStaffService {
         Optional<Role> role = roleService.findById(2L);
 //        role.setId(2L);
 
-        userDTO.setUsername(staffDTO.getUsername());
-        userDTO.setPassword(staffDTO.getPassword());
+        userDTO.setUsername(staffDTO.getUser().getUsername());
+        userDTO.setPassword(staffDTO.getUser().getPassword());
         userDTO.setRole(roleDTO);
 
         User user = userService.save(userDTO.toUser());
-
-//        Role role = roleService.findByName("ROLE_USER");
-//        user.setRole(role);
-
-//        userService.save(user);
-//        userService.findByUsername(user.getUsername());
-//        staff.setUser(user);
-
-//        Staff staff = new Staff();
-//        staff.setUser(userDTO.toUser());
-//        staff.setFullName(staffDTO.getFullName());
-//        staff.setAddress(staffDTO.getAddress());
-//        staff.setPhone(staffDTO.getPhone());
-
-        //        Date date = new SimpleDateFormat("dd/MM/yyyy").parse(staffDTO.getDob());
-//        staff.setDob(staff.getDob());
-//        staff.setStatus(false);
 
         Staff staff = staffDTO.toStaff(user);
 
@@ -110,26 +79,26 @@ public class StaffService implements IStaffService {
     }
 
     @Override
-    public Staff update(Long id, StaffUpdateDTO staffUpdateDTO) throws ParseException {
+    public Staff update(Long id, StaffDTO staffDTO) throws ParseException {
         Optional<Staff> staff = staffRepository.findById(id);
 
         if(staff.isPresent()) {
 
-            if (staffUpdateDTO.getFullName() != null && !staff.get().getFullName().equals(staffUpdateDTO.getFullName())) {
-                staff.get().setFullName(staffUpdateDTO.getFullName());
+            if (staffDTO.getFullName() != null && !staff.get().getFullName().equals(staffDTO.getFullName())) {
+                staff.get().setFullName(staffDTO.getFullName());
             }
 
-            if (staffUpdateDTO.getAddress() != null && !staff.get().getAddress().equals(staffUpdateDTO.getAddress())) {
-                staff.get().setAddress(staffUpdateDTO.getAddress());
+            if (staffDTO.getAddress() != null && !staff.get().getAddress().equals(staffDTO.getAddress())) {
+                staff.get().setAddress(staffDTO.getAddress());
             }
 
-            if (staffUpdateDTO.getPhone() != null && !staff.get().getPhone().equals(staffUpdateDTO.getPhone())) {
-                staff.get().setPhone(staffUpdateDTO.getPhone());
+            if (staffDTO.getPhone() != null && !staff.get().getPhone().equals(staffDTO.getPhone())) {
+                staff.get().setPhone(staffDTO.getPhone());
             }
 
 //            Date date = new SimpleDateFormat("dd/MM/yyyy").parse(staffUpdateDTO.getDob());
-            if (staffUpdateDTO.getDob() != null && !staff.get().getDob().equals(staffUpdateDTO.getDob())) {
-                staff.get().setDob(staffUpdateDTO.getDob());
+            if (staffDTO.getDob() != null && !staff.get().getDob().equals(staffDTO.getDob())) {
+                staff.get().setDob(staffDTO.getDob());
             }
 
 

@@ -16,22 +16,23 @@ import java.util.Date;
 @AllArgsConstructor
 public class StaffDTO {
 
-    private String username;
-    private String password;
+    private UserDTO user;
+
     private String fullName;
     private String address;
     private String phone;
     private Date dob;
+    private boolean status;
 
     private Role role;
 
-    public User toUser() {
-        return new User()
-                .setId(0L)
-                .setUsername(username)
-                .setPassword(password)
-                .setRole(role);
-    }
+//    public User toUser() {
+//        return new User()
+//                .setId(0L)
+//                .setUsername(username)
+//                .setPassword(password)
+//                .setRole(role);
+//    }
 
     public Staff toStaff(User user) {
         return new Staff()

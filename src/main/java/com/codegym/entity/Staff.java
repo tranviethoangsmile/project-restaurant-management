@@ -1,5 +1,6 @@
 package com.codegym.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -26,6 +27,7 @@ public class Staff {
     private String fullName;
 
     @Column(nullable = false)
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss Z", timezone = "Asis/Ho_Chi_Minh")
     private Date dob;
 
     @Column(nullable = false)

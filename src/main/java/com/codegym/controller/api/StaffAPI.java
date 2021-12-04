@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/staff")
@@ -43,8 +44,8 @@ public class StaffAPI {
     }
 
     @PostMapping("/edit/{id}")
-    public ResponseEntity<Staff> updateStaff(@PathVariable("id")Long id,@RequestBody StaffUpdateDTO userDTO) throws ParseException {
-        Staff staff = staffService.update(id, userDTO);
+    public ResponseEntity<Staff> updateStaff(@PathVariable("id")Long id,@RequestBody StaffDTO staffDTO) throws ParseException {
+        Staff staff = staffService.update(id, staffDTO);
 
         if (staff == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -52,4 +53,18 @@ public class StaffAPI {
             return new ResponseEntity<>(staff, HttpStatus.OK);
         }
     }
+
+    @PostMapping("/change-status/{id}")
+    public ResponseEntity<Staff> changeStatus(@PathVariable("id")Long id){
+        Optional<Staff> staff = staffService.findById(id);
+        if(!staff.isPresent()){
+            return  new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }else {
+            staff.get().setStatus(!staff.get().getStatus());
+            return new ResponseEntity<>(staffService.save(staff.get()),HttpStatus.OK);
+        }
+
+    }
+
+
 }

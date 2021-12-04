@@ -14,7 +14,7 @@ public interface IStaffService extends IGeneralService<Staff> {
 
     Staff create(StaffDTO staffDTO) throws ParseException;
 
-    Staff update(Long id, StaffUpdateDTO userDTO) throws ParseException;
+    Staff update(Long id, StaffDTO staffDTO) throws ParseException;
 
     StaffUpdateDTO staffDTOById(Long id);
 

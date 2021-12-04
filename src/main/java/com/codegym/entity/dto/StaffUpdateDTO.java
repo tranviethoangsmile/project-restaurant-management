@@ -1,5 +1,6 @@
 package com.codegym.entity.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,6 +12,8 @@ public class StaffUpdateDTO {
     private String fullName;
     private String address;
     private String phone;
+
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss Z", timezone = "Asis/Ho_Chi_Minh")
     private Date dob;
 
     public StaffUpdateDTO() {
