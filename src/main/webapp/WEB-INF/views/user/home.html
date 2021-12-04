@@ -1,247 +1,212 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
     <!-- Home css -->
     <link rel="stylesheet" href="/resource/css/home/home.css">
+    <!-- wizard   -->
+    <link href="/resource/assets-desk/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="/resource/assets-desk/css/material-bootstrap-wizard.css" rel="stylesheet"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.js"></script>
     <!-- master stylesheet -->
     <link rel="stylesheet" href="/resource/assets/css/style.css">
     <!-- Responsive stylesheet -->
     <link rel="stylesheet" href="/resource/assets/css/responsive.css">
-
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
+          integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
 </head>
 <body>
-<!--preloader-->
-<!--<div id='af-preloader'>-->
-<!--    <div class='af-preloader-wrap'>-->
-<!--        <div class='af-sp af-sp-wave'></div>-->
-<!--    </div>-->
-<!--</div>-->
+<div id='af-preloader'>
+    <div class='af-preloader-wrap'>
+        <div class='af-sp af-sp-wave'></div>
+    </div>
+</div>
 
-<div class="boxed_wrapper">
-    <!--    Start mainmenu area-->
-    <section class="mainmenu-area stricky">
-        <div class="container">
-            <div class="row">
-                <div class="col-xl-12">
-                    <div class="inner-content clearfix">
-                        <nav class="main-menu style1 clearfix">
-                            <div class="navbar-header clearfix">
-                                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                                    <span class="icon-bar"></span>
-                                    <span class="icon-bar"></span>
-                                    <span class="icon-bar"></span>
-                                </button>
-                            </div>
-                            <div class="navbar-collapse collapse clearfix">
-                                <ul class="navigation clearfix">
-                                    <li class="dropdown current"><a href="/admin">Quản Lý</a>
-                                    </li>
-                                    <li><a href="#">Cá Nhân</a></li>
-                                    <li class="dropdown"><a href="">Báo Cáo</a>
-                                    </li>
-                                    <li><a href="#">Thông Báo</a></li>
-                                    </li>
-                                    <li><a href="#">Thoát</a></li>
-                                </ul>
-                            </div>
-                        </nav>
+<!--    Start mainmenu area-->
+<section class="mainmenu-area stricky">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="inner-content clearfix">
+                    <nav class="main-menu style1 clearfix">
+                        <div class="navbar-header clearfix">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse"
+                                    data-target=".navbar-collapse">
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                        </div>
+                        <div class="navbar-collapse collapse clearfix">
+                            <ul class="navigation clearfix">
+                                <li><a href="/admin">Quản Lý</a></li>
+                                <li><a href="/profile">Trang Cá Nhân</a></li>
+                                <li><a href="/logout" class="logout">Thoát</a></li>
+                            </ul>
+                        </div>
+                    </nav>
+                    <!--End mainmenu area-->
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="col-xl-12" style="background-color: #8a6d3b">
+    <div class="desk-list">
+        <h2 class="wizard-title" style="color: #00A0D1">Danh sách bàn trống</h2>
+        <div class="row">
+        </div>
+    </div>
+</div>
 
-                        <div class="mainmenu-right">
-                            <div class="search-box-style1">
-                                <form class="search-form" method="post" action="http://st.ourhtmldemo.com/new/Dento/index.html">
-                                    <input type="search" name="search" placeholder="Search..." required>
-                                    <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
-                                </form>
+<div class="col-xl-12">
+    <!--      Wizard container        -->
+    <div class="wizard-container">
+        <div class="card wizard-card" data-color="red" id="wizard">
+            <div class="wizard-header">
+                <h2 class="wizard-title" style="color: #00A0D1">Danh sách bàn đang phục vụ</h2>
+                <div class="wizard-navigation">
+                    <ul>
+                        <!--Hiển thị danh sách bàn đang phụ vụ-->
+                    </ul>
+                </div>
+                <div class="tab-content">
+                    <div class="row">
+                        <div class="col-xl-6">
+                            <div class="importProduct">
+                                <h2 id="order_id" hidden></h2>
+                                <div class="row" id="productList">
+
+                                    <!-- Hiển thị danh sách sản phẩm-->
+                                </div>
                             </div>
-                            <div class="toggler-button">
-                                <div class="nav-toggler hidden-bar-opener">
-                                    <div class="inner">
-                                        <span></span>
-                                        <span></span>
-                                        <span></span>
-                                    </div>
+                        </div>
+                        <div class="col-xl-6">
+                            <div class="importDeskInfo">
+                                <div class="row" id="orderOfDesk">
+                                <!--Hiển thị chi tiết order detail của bàn-->
+                                </div>
+                                <div id="btn_pay">
+                                <!--Hiển thị nút thanh toán-->
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="content">
+        </div>
+    </div> <!-- wizard container -->
+</div>
+
+<!--Modal bill-->
+<div class="modal fade" id="bill" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
                 <div class="row">
-                    <div class="col-6">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="header-title">Danh sách bàn</h4>
-                                <form>
-                                    <div id="desk">
-
-                                    </div>
-                                </form>
-                            </div> <!-- end card body-->
-                        </div> <!-- end card -->
-                    </div><!-- end col-->
-                    <div class="col-6">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="header-title">Menu</h4>
-                                <p class="text-muted font-13 mb-4">
-                                </p>
-                                <form>
-                                    <button type="button" class="btn btn-outline-primary" id="all">
-                                        Tất cả</button>
-                                    <div id="category">
-                                    </div>
-                                </form>
-
-                                <table id="basic-datatable2" class="table dt-responsive nowrap">
-                                    <thead>
-                                    <tr>
-                                        <th>Món ăn</th>
-                                        <th>Gía</th>
-                                        <th></th>
-                                    </tr>
-                                    </thead>
-                                    <tbody id="tbListProduct">
-
-                                    </tbody>
-                                </table>
-
-                            </div> <!-- end card body-->
-                        </div> <!-- end card -->
-                    </div><!-- end col-->
-                </div>
-                <div class="row">
-                    <div class="col-12">
-                        <div class="card">
-                            <div class="card-body">
-                                <table id="basic-datatable" class="table dt-responsive nowrap">
-                                    <thead>
-                                    <tr>
-                                        <th>STT</th>
-                                        <th>Món ăn</th>
-                                        <th>Gía</th>
-                                        <th>Quantity</th>
-                                        <th>Tổng tiền</th>
-                                        <th colspan="3"></th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Thịt bò xào lá lốt</td>
-                                        <td>120000</td>
-                                        <td>2</td>
-                                        <td>240000</td>
-                                        <td><button type="button" class="btn btn-outline-primary">+</button></td>
-                                        <td><button type="button" class="btn btn-outline-primary">-</button></td>
-                                        <td><button type="button" class="btn btn-outline-primary">X</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>Thịt bò xào lá lốt</td>
-                                        <td>120000</td>
-                                        <td>2</td>
-                                        <td>240000</td>
-                                        <td><button type="button" class="btn btn-outline-primary">+</button></td>
-                                        <td><button type="button" class="btn btn-outline-primary">-</button></td>
-                                        <td><button type="button" class="btn btn-outline-primary">X</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td>Thịt bò xào lá lốt</td>
-                                        <td>120000</td>
-                                        <td>2</td>
-                                        <td>240000</td>
-                                        <td><button type="button" class="btn btn-outline-primary">+</button></td>
-                                        <td><button type="button" class="btn btn-outline-primary">-</button></td>
-                                        <td><button type="button" class="btn btn-outline-primary">X</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>4</td>
-                                        <td>Thịt bò xào lá lốt</td>
-                                        <td>120000</td>
-                                        <td>2</td>
-                                        <td>240000</td>
-                                        <td><button type="button" class="btn btn-outline-primary">+</button></td>
-                                        <td><button type="button" class="btn btn-outline-primary">-</button></td>
-                                        <td><button type="button" class="btn btn-outline-primary">X</button></td>
-                                    </tr>
-                                    <tr>
-
-                                        <td colspan="3">Thành tiền tiền</td>
-                                        <td>5</td>
-                                        <td>1200000</td>
-                                        <td colspan="3"><button type="button" class="btn btn-outline-primary">Thanh toán</button></td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                            </div> <!-- end card body-->
-                        </div> <!-- end card -->
-                    </div><!-- end col-->
-
+                    <h1 style="text-align: center">NHÀ HÀNG 4 THÀNH VIÊN</h1>
+                    <h2 style="text-align: center" >ĐC: số 1 - Thành Phố Huế</h2>
+                    <h3 style="text-align: center">HOTLINE: 0909900990</h3>
+                    <p>-----------------------------------------------------------------------------------------------------</p>
+                    <form class="form-group">
+                        <input type="number" id="order_id_bill" hidden>
+                        <label for="customerName">Tên khách</label>
+                        <input class="form-control" id="customerName" type="text">
+                        <label for="staffName">Tên NV</label>
+                        <input class="form-control" id="staffName" type="text">
+                        <table class="table table-hover">
+                            <h2 id="desk_name_bill"></h2>
+                            <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Tên món</th>
+                                <th>Giá</th>
+                                <th>Số lượng</th>
+                                <th>Thành tiền</th>
+                            </tr>
+                            </thead>
+                            <tbody id="product_list_of_bill" style="max-height: 50%; max-width: 100%">
+                            <!--Hiển thị danh mục món ăn của bàn-->
+                            </tbody>
+                            <tfoot id="total_bill">
+                            </tfoot>
+                        </table>
+                    </form>
                 </div>
             </div>
         </div>
-    </section>
-    <!--End mainmenu area-->
+    </div>
 </div>
-<!-- Hidden Navigation Bar -->
-<section class="hidden-bar right-align">
-    <div class="hidden-bar-closer">
-        <button><span class="flaticon-remove"></span></button>
-    </div>
-    <div class="hidden-bar-wrapper">
-        <div class="contact-info-box">
-            <h2>Thông báo</h2>
-        </div>
-        <div class="newsletter-form-box">
 
-        </div>
-        <div class="copy-right-text">
-
+<!--modal-->
+<div class="modal fade" id="desk_modify_option" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Thông tin</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="desk_option">
+                </div>
+            </div>
         </div>
     </div>
-</section>
+</div>
+
+<!--modal edit-->
+<div class="modal fade" id="desk_modify_edit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="title">Thông tin</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="desk_edit">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 <script src="/resource/js/home/home.js"></script>
+<script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js"></script>
+<script defer src="https://use.fontawesome.com/releases/v5.15.4/js/v4-shims.js"></script>
+<!--  Core JS Files-->
+<script src="/resource/assets-desk/js/jquery-2.2.4.min.js" type="text/javascript"></script>
+<script src="/resource/assets-desk/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="/resource/assets-desk/js/jquery.bootstrap.js" type="text/javascript"></script>
+<!--  Plugin for the Wizard -->
+<script src="/resource/assets-desk/js/material-bootstrap-wizard.js"></script>
+<!--  More information about jquery.validate here: http://jqueryvalidation.org/	 -->
+<script type="text/javascript"
+        src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
 <!-- main jQuery -->
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script src="/resource/assets/js/jquery.js"></script>
-<script src="/resource/assets/html5lightbox/html5lightbox.js"></script>
-<!-- html5lightbox js -->
-<script src="/resource/assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
-<!--Color Switcher-->
-<script src="/resource/assets/js/color-settings.js"></script>
-<!-- thm custom script -->
-<script src="/resource/assets/js/custom.js"></script>
-<!--validator-->
-<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
 <!--bootbox-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.min.js"></script>
 <!--Notify-->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/notify/0.4.2/notify.min.js" integrity="sha512-efUTj3HdSPwWJ9gjfGR71X9cvsrthIA78/Fvd/IN+fttQVy7XWkOAXb295j8B3cmm/kFKVxjiNYzKw9IQJHIuQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<!-- jQuery CDN - Slim version (=without AJAX) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/notify/0.4.2/notify.min.js"
+        integrity="sha512-efUTj3HdSPwWJ9gjfGR71X9cvsrthIA78/Fvd/IN+fttQVy7XWkOAXb295j8B3cmm/kFKVxjiNYzKw9IQJHIuQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <!-- Popper.JS -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"
+        integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
+        crossorigin="anonymous"></script>
 <!-- Bootstrap JS -->
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
-<!-- jQuery Custom Scroller CDN -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
-<script src="/resource/nhi/js/jquery-3.6.0.min.js"></script>
-<script src="/resource/nhi/bootstrap-4.6.0-dist/js/bootstrap.bundle.min.js"></script>
-<script src="/resource/nhi/bootstrap-4.6.0-dist/js/bundle.js"></script>
-<script src="/resource/nhi/bootstrap-4.6.0-dist/js/bootstrap.js"></script>
-
-<script src="/resource/nhi/js/sweetalert2.min.js"></script>
-<script src="/resource/nhi/page/js/app.js"></script>
-
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"
+        integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
+        crossorigin="anonymous"></script>
 </body>
 </html>

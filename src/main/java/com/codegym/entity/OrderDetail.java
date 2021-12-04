@@ -16,14 +16,15 @@ import java.math.BigDecimal;
 @Entity
 @Table(name = "orderdetails")
 public class OrderDetail {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private Integer quantity;
-    private BigDecimal price;
-    @ManyToOne
-    @JoinColumn(name = "product_id", referencedColumnName = "id", nullable = false)
-    private Product product;
+    private BigDecimal unitPrice;
+    private String productName;
+    private BigDecimal productPrice;
 
     @ManyToOne
     @JoinColumn(name = "order_id", referencedColumnName = "id", nullable = false)

@@ -20,22 +20,12 @@ import java.util.Set;
 @Table(name = "orders")
 public class Order {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    private BigDecimal total;
-    private Date createAt;
-
     @ManyToOne
-    @JoinColumn(name = "table_id", referencedColumnName = "id", nullable = false)
-    private Desk table;
-
-    @ManyToOne
-    @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)
-    private User user;
-
+    @JoinColumn(name = "desk_id", referencedColumnName = "id", nullable = false)
+    private Desk desk;
     @JsonIgnore
     @OneToMany (targetEntity = OrderDetail.class,fetch = FetchType.EAGER)
     private Set<OrderDetail> orderDetails;
-
 }

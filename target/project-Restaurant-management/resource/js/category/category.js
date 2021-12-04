@@ -1,4 +1,4 @@
-class Category {
+    class Category {
     constructor(id, name) {
         this.id = id;
         this.name = name;
@@ -18,15 +18,15 @@ $("#btnUpdate").on("click", function () {
 function handleDelete() {
     $("table tbody tr").on("click", ".delete", function () {
         let id = $(this).data("id");
-
         Swal.fire({
-            title: 'Are you sure?',
-            text: "You won't be able to revert this!",
+            title: 'Bạn có chắc?',
+            text: "Bạn muốn xoá thông tin danh mục này!",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, delete it!'
+            confirmButtonText: 'Vâng, xoá ngay!',
+            cancelButtonText: 'Huỷ'
         }).then((result) => {
             if (result.isConfirmed) {
 
@@ -46,8 +46,8 @@ function handleDelete() {
                         $("#tr_" + id).remove();
 
                         Swal.fire(
-                            'Deleted!',
-                            'This category has been deleted.',
+                            'Đã xoá!',
+                            'Thông tin sản phẩm đã được xoá khỏi danh mục.',
                             'success'
                         )
                     } else {
@@ -67,10 +67,6 @@ function handleDelete() {
 function handleEdit() {
     $("table tbody tr").on("click", ".edit", function () {
         let id = $(this).data("id");
-        $("#updateModal").modal("show");
-        console.log("id = " + id);
-
-
         $.ajax({
             headers: {
                 'Accept':'application/json',
@@ -79,6 +75,7 @@ function handleEdit() {
             url: "/api/category/" + id,
             type: "GET"
         }).done(function (resp) {
+            $("#updateModal").modal("show");
             $("#idE").val(resp.id);
             $("#nameE").val(resp.name);
         }).fail(function () {
@@ -88,23 +85,30 @@ function handleEdit() {
 }
 
 function create() {
-    category.id = $("#id").val();
-    category.name=$("#name").val()
+    if($("#createCategory").valid()){
+        Swal.fire({
+            title: 'Bạn muốn lưu lại Danh Mục này không?',
+            showDenyButton: true,
+            confirmButtonText: 'Có',
+            cancelButtonText: 'Huỷ'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                category.id = $("#id").val();
+                category.name=$("#name").val()
+                $.ajax({
+                    headers: {
+                        'Accept':'application/json',
+                        'Content-Type':'application/json'
+                    },
+                    url: "/api/category/create",
+                    type: "POST",
+                    data: JSON.stringify(category)
 
-    $.ajax({
-        headers: {
-            'Accept':'application/json',
-            'Content-Type':'application/json'
-        },
-        url: "/api/category/create",
-        type: "POST",
-        data: JSON.stringify(category)
+                }).done(function (resp) {
+                    $("#name").val('');
+                    let str = '';
 
-    }).done(function (resp) {
-
-        let str = '';
-
-        str = `
+                    str = `
                     <tr id="tr_${resp.id}">
                             <th scope="row">${resp.id}</th>
                             <td>${resp.name}</td>
@@ -113,29 +117,36 @@ function create() {
                                     data-id="${resp.id}"
                                 >
                                     <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                                    Edit
+                                    Sửa
                                 </button>
                             </td>
                             <td>
                                 <button type="button" class="btn btn-outline-danger delete" data-id="${resp.id}">
                                     <i class="fa fa-trash-o" aria-hidden="true"></i>
-                                    Delete
+                                    Xoá
                                 </button>
                             </td>
 
                         </tr>
                 `;
 
-        $("#tbList").prepend(str);
+                    $("#tbList").prepend(str);
 
 
-        handleEdit();
+                    handleEdit();
 
-        handleDelete();
+                    handleDelete();
 
-    }).fail(function () {
-        alert("ERROR")
-    });
+                }).fail(function () {
+                    alert("ERROR")
+                });
+            } else if (result.isDenied) {
+                Swal.fire('Thông tin bàn chưa được lưu', '', 'info')
+            }
+        })
+
+    }
+
 }
 
 function update() {
@@ -152,7 +163,6 @@ function update() {
         type: "POST",
         data: JSON.stringify(category)
     }).done(function (resp) {
-
         let str = '';
 
         str = `
@@ -164,19 +174,19 @@ function update() {
                                 data-id="${resp.id}"
                             >
                                 <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                                Edit
+                                Sửa
                             </button>
                         </td>
                         <td>
                             <button type="button" class="btn btn-outline-danger delete" data-id="${resp.id}">
                                 <i class="fa fa-trash-o" aria-hidden="true"></i>
-                                Delete
+                                Xoá
                             </button>
                         </td>
                     </tr>
                 `;
         $("#tr_"+ category.id).replaceWith(str);
-        $("#updateModal").modal("hide");
+
 
         handleEdit();
 
@@ -205,13 +215,13 @@ function getAllCategory() {
                                 data-id="${item.id}"
                             >
                                 <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                                Edit
+                                Sửa
                             </button>
                         </td>
                         <td>
                             <button type="button" class="btn btn-outline-danger delete" data-id="${item.id}">
                                 <i class="fa fa-trash-o" aria-hidden="true"></i>
-                                Delete
+                                Xoá
                             </button>
                         </td>
                     </tr>
