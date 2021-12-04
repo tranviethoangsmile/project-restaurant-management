@@ -116,7 +116,6 @@ public class AppConfig implements WebMvcConfigurer, ApplicationContextAware {
         dataSource.setUsername("root");
         dataSource.setPassword("Nhi09092018");
 
-
         return dataSource;
     }
 
