@@ -26,3 +26,11 @@
     overflow: scroll;
 }
 
+.wizard-navigation {
+    position: relative;
+    display: flex;
+    overflow-y: scroll;
+    height: 110px;
+    width: 700px;
+}
+

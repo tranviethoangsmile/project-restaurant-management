@@ -1,13 +1,19 @@
 
 $(() => {
-    $("#frmCreate").validate({
+    $("#btnCreate").validate({
         onkeyup: function(element) {$(element).valid()},
         onclick: false,
         rules: {
-            fullName: {
+            name: {
                 required: true,
-                minlength: 5,
+                minlength: 3,
                 maxlength: 50
+            },
+            price: {
+              required: true,
+              minlength: 4,
+              maxlength: 10,
+              number: true
             },
             password: {
                 required: false,
@@ -20,10 +26,16 @@ $(() => {
             }
         },
         messages: {
-            fullName: {
+            name: {
                 required: "Bắt buộc nhập tên đầy đủ",
-                minlength: "Hãy nhập tối thiểu 5 ký tự",
+                minlength: "Hãy nhập tối thiểu 3 ký tự",
                 maxlength: "Hãy nhập tối đa 50 ký tự"
+            },
+            price: {
+                required: "Bắt buộc nhập giá đầy đủ",
+                minlength: "Hãy nhập tối thiểu 4 ký tự",
+                maxlength: "Hãy nhập tối đa 10 ký tự",
+                number: "Chỉ nhập số"
             },
             password: {
                 required: "Bắt buộc nhập mật khẩu",
@@ -35,29 +47,41 @@ $(() => {
             }
         },
         submitHandler: function() {
-            createCustomer();
+            createProduct();
         }
     });
 
-    $("#frmUpdate").validate({
+    $("#btnUpdate").validate({
         onkeyup: function(element) {$(element).valid()},
         onclick: false,
         rules: {
-            upFullName: {
+            nameUp: {
                 required: true,
                 minlength: 5,
                 maxlength: 50
-            }
+            },
+            priceUp: {
+                required: true,
+                minlength: 4,
+                maxlength: 10,
+                number: true
+            },
         },
         messages: {
-            upFullName: {
+            nameUp: {
                 required: "Bắt buộc nhập tên đầy đủ",
                 minlength: "Hãy nhập tối thiểu 5 ký tự",
                 maxlength: "Hãy nhập tối đa 50 ký tự"
-            }
+            },
+            priceUp: {
+                required: "Bắt buộc nhập giá đầy đủ",
+                minlength: "Hãy nhập tối thiểu 4 ký tự",
+                maxlength: "Hãy nhập tối đa 10 ký tự",
+                number: "Chỉ nhập số"
+            },
         },
         submitHandler: function() {
-            updateCustomer();
+            updateProduct();
         }
     });
 

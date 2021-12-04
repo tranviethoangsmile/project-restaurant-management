@@ -31,13 +31,14 @@ function handleDelete() {
         let id = $(this).data("id");
 
         Swal.fire({
-            title: 'Are you sure?',
-            text: "You won't be able to revert this!",
+            title: 'Bạn có chắc?',
+            text: "Bạn muốn xoá sản phẩm khỏi danh mục!",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, delete it!'
+            confirmButtonText: 'Vâng, xoá ngay!',
+            cancelButtonText: 'Huỷ'
         }).then((result) => {
             if (result.isConfirmed) {
 
@@ -57,8 +58,8 @@ function handleDelete() {
                         $("#tr_" + id).remove();
 
                         Swal.fire(
-                            'Deleted!',
-                            'This product has been deleted.',
+                            'Đã xoá!',
+                            'Sản phẩm đã được xoá khỏi danh mục.',
                             'success'
                         )
                     } else {
@@ -135,13 +136,13 @@ function createProduct() {
                                     data-id="${resp.id}"
                                 >
                                     <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                                    Edit
+                                    Sửa
                                 </button>
                             </td>
                             <td>
                                 <button type="button" class="btn btn-outline-danger delete" data-id="${resp.id}">
                                     <i class="fa fa-trash-o" aria-hidden="true"></i>
-                                    Delete
+                                    Xoá
                                 </button>
                             </td>
 
@@ -196,13 +197,13 @@ function updateProduct() {
                                 data-id="${resp.id}"
                             >
                                 <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                                Edit
+                                Sửa
                             </button>
                         </td>
                         <td>
                             <button type="button" class="btn btn-outline-danger delete" data-id="${resp.id}">
                                 <i class="fa fa-trash-o" aria-hidden="true"></i>
-                                Delete
+                                Xoá
                             </button>
                         </td>
                     </tr>
@@ -243,13 +244,13 @@ function getListProduct() {
                                     data-id="${item.id}"
                                 >
                                     <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                                    Edit
+                                    Sửa
                                 </button>
                             </td>
                             <td>
                                 <button type="button" class="btn btn-outline-danger delete" data-id="${item.id}">
                                     <i class="fa fa-trash-o" aria-hidden="true"></i>
-                                    Delete
+                                    Xoá
                                 </button>
                             </td>
 

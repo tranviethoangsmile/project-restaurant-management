@@ -1,13 +1,13 @@
 
 $(() => {
-    $("#frmCreate").validate({
+    $("#btnCreate").validate({
         onkeyup: function(element) {$(element).valid()},
         onclick: false,
         rules: {
-            fullName: {
+            name: {
                 required: true,
-                minlength: 5,
-                maxlength: 50
+                minlength: 3,
+                maxlength: 50,
             },
             password: {
                 required: false,
@@ -20,9 +20,9 @@ $(() => {
             }
         },
         messages: {
-            fullName: {
+            name: {
                 required: "Bắt buộc nhập tên đầy đủ",
-                minlength: "Hãy nhập tối thiểu 5 ký tự",
+                minlength: "Hãy nhập tối thiểu 3 ký tự",
                 maxlength: "Hãy nhập tối đa 50 ký tự"
             },
             password: {
@@ -35,15 +35,15 @@ $(() => {
             }
         },
         submitHandler: function() {
-            createCustomer();
+            create();
         }
     });
 
-    $("#frmUpdate").validate({
+    $("#btnUpdate").validate({
         onkeyup: function(element) {$(element).valid()},
         onclick: false,
         rules: {
-            upFullName: {
+            nameE: {
                 required: true,
                 minlength: 5,
                 maxlength: 50
@@ -52,12 +52,12 @@ $(() => {
         messages: {
             upFullName: {
                 required: "Bắt buộc nhập tên đầy đủ",
-                minlength: "Hãy nhập tối thiểu 5 ký tự",
+                minlength: "Hãy nhập tối thiểu 3 ký tự",
                 maxlength: "Hãy nhập tối đa 50 ký tự"
             }
         },
         submitHandler: function() {
-            updateCustomer();
+            update();
         }
     });
 
