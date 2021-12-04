@@ -1,16 +1,13 @@
 package com.codegym.controller.api;
 
-import com.codegym.entity.Role;
+import com.codegym.entity.JwtResponse;
 import com.codegym.entity.User;
 import com.codegym.entity.dto.UserDTO;
-import com.codegym.security.request.LoginRequest;
-import com.codegym.entity.JwtResponse;
 import com.codegym.service.jwt.JwtService;
 import com.codegym.service.role.IRoleService;
 import com.codegym.service.user.IUserService;
 import com.codegym.ultil.AppUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseCookie;
@@ -21,13 +18,10 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-
 import javax.validation.Valid;
-import java.util.Optional;
 
 
 @RestController

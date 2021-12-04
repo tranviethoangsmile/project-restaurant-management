@@ -1,15 +1,12 @@
 package com.codegym.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import javax.persistence.Table;
 import java.math.BigDecimal;
-import java.util.Set;
 
 @Getter
 @Setter

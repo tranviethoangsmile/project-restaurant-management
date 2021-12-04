@@ -7,9 +7,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import javax.persistence.Table;
-import java.math.BigDecimal;
-import java.util.Date;
 import java.util.Set;
 
 @Getter

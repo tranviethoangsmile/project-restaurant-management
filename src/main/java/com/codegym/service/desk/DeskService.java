@@ -3,7 +3,6 @@ package com.codegym.service.desk;
 import com.codegym.entity.Desk;
 import com.codegym.repository.DeskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 

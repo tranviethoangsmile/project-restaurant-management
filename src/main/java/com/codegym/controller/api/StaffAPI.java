@@ -1,9 +1,7 @@
 package com.codegym.controller.api;
 
 import com.codegym.entity.Staff;
-import com.codegym.entity.User;
 import com.codegym.entity.dto.StaffDTO;
-import com.codegym.entity.dto.UserDTO;
 import com.codegym.entity.dto.UserUpdateDTO;
 import com.codegym.service.staff.IStaffService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,7 +42,7 @@ public class StaffAPI {
     }
 
     @PostMapping("/edit/{id}")
-    public ResponseEntity<Staff> updateCategory(@PathVariable("id")Long id,@RequestBody UserUpdateDTO userDTO) throws ParseException {
+    public ResponseEntity<Staff> updateCategory(@PathVariable("id")Long id, @RequestBody UserUpdateDTO userDTO) throws ParseException {
         Staff staff = staffService.update(id, userDTO);
 
         if (staff == null) {

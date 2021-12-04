@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 @Service
-public class OrderService implements IOrderService{
+public class OrderService implements IOrderService {
     @Autowired
     private OrderRepository orderRepository;
 

@@ -1,21 +1,21 @@
 package com.codegym.config;
 
 //import com.codegym.security.AuthTokenFilter;
-import com.codegym.service.desk.DeskService;
-import com.codegym.service.desk.IDeskService;
-import com.codegym.service.product.IProductService;
-import com.codegym.service.product.ProductService;
-import com.codegym.service.role.IRoleService;
-import com.codegym.service.role.RoleService;
 
 import com.codegym.service.bill.BillService;
 import com.codegym.service.bill.IBillService;
 import com.codegym.service.category.CategoryService;
 import com.codegym.service.category.ICategoryService;
+import com.codegym.service.desk.DeskService;
+import com.codegym.service.desk.IDeskService;
 import com.codegym.service.order.IOrderService;
 import com.codegym.service.order.OrderService;
 import com.codegym.service.orderDetail.IOrderDetailService;
 import com.codegym.service.orderDetail.OrderDetailService;
+import com.codegym.service.product.IProductService;
+import com.codegym.service.product.ProductService;
+import com.codegym.service.role.IRoleService;
+import com.codegym.service.role.RoleService;
 import com.codegym.service.user.IUserService;
 import com.codegym.service.user.UserService;
 import org.springframework.beans.BeansException;
@@ -111,10 +111,14 @@ public class AppConfig implements WebMvcConfigurer, ApplicationContextAware {
     @Bean
     public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
-        dataSource.setUrl("jdbc:mysql://localhost:3306/nhahangnhi?characterEncoding=UTF-8");
+
+
+        dataSource.setDriverClassName("com.mysql.jdbc.Driver");
+        dataSource.setUrl("jdbc:mysql://localhost:3306/nhahangnhi");
         dataSource.setUsername("root");
         dataSource.setPassword("Nhi09092018");
+
+
         return dataSource;
     }
 

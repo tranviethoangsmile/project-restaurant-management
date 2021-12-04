@@ -1,8 +1,5 @@
 package com.codegym.entity.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 public class UserUpdateDTO {
     private Long id;
     private String fullName;

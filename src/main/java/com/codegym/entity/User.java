@@ -1,6 +1,5 @@
 package com.codegym.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -8,9 +7,6 @@ import lombok.Setter;
 import lombok.experimental.Accessors;
 
 import javax.persistence.*;
-import javax.persistence.Table;
-import java.util.Date;
-import java.util.Set;
 
 @Getter
 @Setter
