@@ -3,12 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" href="/resource/css/desk/desk.css">
     <!-- wizard   -->
     <link href="/resource/assets-desk/css/material-bootstrap-wizard.css" rel="stylesheet"/>
     <link href="/resource/assets-desk/css/bootstrap.min.css" rel="stylesheet"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.js"></script>
     <!-- master stylesheet -->
     <link rel="stylesheet" href="/resource/assets/css/style.css">
+
+    <link rel="stylesheet" href="/resource/css/table/table.css">
     <!-- Responsive stylesheet -->
     <link rel="stylesheet" href="/resource/assets/css/responsive.css">
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
@@ -51,16 +54,16 @@
                         </div>
                     </nav>
 
-                    <div class="mainmenu-right">
-                        <div class="toggler-button">
-                            <div class="nav-toggler hidden-bar-opener">
-                                <div class="inner">
-                                    <span></span>
-                                    <span></span>
-                                    <span></span>
-                                </div>
-                            </div>
-                        </div>
+<!--                    <div class="mainmenu-right">-->
+<!--                        <div class="toggler-button">-->
+<!--                            <div class="nav-toggler hidden-bar-opener">-->
+<!--                                <div class="inner">-->
+<!--                                    <span></span>-->
+<!--                                    <span></span>-->
+<!--                                    <span></span>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
                     </div>
                 </div>
             </div>
@@ -71,20 +74,24 @@
 <section class="main-slider" style="margin-top: 10px">
     <div class="container">
         <div class="row">
-            <div class="col-xl-6">
+            <div class="col-xl-4">
                 <form id="deskCreate">
                     <div class="form-group">
                         <label for="deskName">Tên Bàn</label>
+                        <div class="form_inputDesk" >
                         <input type="text" class="form-control" id="deskName" data-rule-required="true"
                                data-msg-required="Không được bỏ trống">
+                        </div>
                     </div>
                     <button type="button" class="btn btn-danger" onclick="createDesk()">Tạo Bàn</button>
                 </form>
             </div>
-            <div class="col-xl-6">
+            <div class="col-xl-8">
                 <div class="desk-list">
                     <h2 class="wizard-title" style="color: #00A0D1">Danh sách bàn trống</h2>
+                    <div class="list_desk">
                     <div class="row">
+                    </div>
                     </div>
                 </div>
             </div>
@@ -114,12 +121,26 @@
                                         <th>Thành tiền</th>
                                     </tr>
                                     </thead>
-                                    <tbody id="product_list_of_desk">
-                                    <!--Hiển thị danh mục món ăn của bàn-->
-                                    </tbody>
-                                    <tfoot id="total">
-                                    </tfoot>
                                 </table>
+                                <div id="allProductOfDesk">
+                                    <table class="table table-hover">
+                                        <tbody id="product_list_of_desk">
+
+                                        <!--DANH SÁCH SẢN PHẨM-->
+
+                                        </tbody>
+<!--                                        <tfoot id="total">-->
+<!--                                        </tfoot>-->
+                                    </table>
+                                </div>
+                                <div id="total">
+
+                                </div>
+<!--                                    <tbody id="product_list_of_desk">-->
+<!--                                    &lt;!&ndash;Hiển thị danh mục món ăn của bàn&ndash;&gt;-->
+<!--                                    </tbody>-->
+
+
                             </div>
                         </div>
                     </div>

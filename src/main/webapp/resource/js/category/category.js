@@ -19,13 +19,14 @@ function handleDelete() {
     $("table tbody tr").on("click", ".delete", function () {
         let id = $(this).data("id");
         Swal.fire({
-            title: 'Are you sure?',
-            text: "You won't be able to revert this!",
+            title: 'Bạn có chắc?',
+            text: "Bạn muốn xoá thông tin danh mục này!",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, delete it!'
+            confirmButtonText: 'Vâng, xoá ngay!',
+            cancelButtonText: 'Huỷ'
         }).then((result) => {
             if (result.isConfirmed) {
 
@@ -45,8 +46,8 @@ function handleDelete() {
                         $("#tr_" + id).remove();
 
                         Swal.fire(
-                            'Deleted!',
-                            'This category has been deleted.',
+                            'Đã xoá!',
+                            'Thông tin sản phẩm đã được xoá khỏi danh mục.',
                             'success'
                         )
                     } else {
@@ -88,7 +89,8 @@ function create() {
         Swal.fire({
             title: 'Bạn muốn lưu lại Danh Mục này không?',
             showDenyButton: true,
-            confirmButtonText: 'Yes',
+            confirmButtonText: 'Có',
+            cancelButtonText: 'Huỷ'
         }).then((result) => {
             if (result.isConfirmed) {
                 category.id = $("#id").val();
@@ -115,13 +117,13 @@ function create() {
                                     data-id="${resp.id}"
                                 >
                                     <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                                    Edit
+                                    Sửa
                                 </button>
                             </td>
                             <td>
                                 <button type="button" class="btn btn-outline-danger delete" data-id="${resp.id}">
                                     <i class="fa fa-trash-o" aria-hidden="true"></i>
-                                    Delete
+                                    Xoá
                                 </button>
                             </td>
 
@@ -172,13 +174,13 @@ function update() {
                                 data-id="${resp.id}"
                             >
                                 <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                                Edit
+                                Sửa
                             </button>
                         </td>
                         <td>
                             <button type="button" class="btn btn-outline-danger delete" data-id="${resp.id}">
                                 <i class="fa fa-trash-o" aria-hidden="true"></i>
-                                Delete
+                                Xoá
                             </button>
                         </td>
                     </tr>
@@ -213,13 +215,13 @@ function getAllCategory() {
                                 data-id="${item.id}"
                             >
                                 <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                                Edit
+                                Sửa
                             </button>
                         </td>
                         <td>
                             <button type="button" class="btn btn-outline-danger delete" data-id="${item.id}">
                                 <i class="fa fa-trash-o" aria-hidden="true"></i>
-                                Delete
+                                Xoá
                             </button>
                         </td>
                     </tr>

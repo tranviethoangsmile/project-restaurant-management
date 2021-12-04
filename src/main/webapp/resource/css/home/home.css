@@ -25,4 +25,26 @@
     width: 100%;
     overflow: scroll;
 }
+#productList {
+    height: 400px;
+    width: 100%;
+    overflow: scroll;
+}
 
+<<<<<<< HEAD
+.wizard-navigation {
+    position: relative;
+    display: flex;
+    overflow-y: scroll;
+    height: 110px;
+    width: 700px;
+}
+
+=======
+.desk-list {
+    min-height: 50px;
+    max-height: 75px;
+    width: 100%;
+    overflow: scroll;
+}
+>>>>>>> dev

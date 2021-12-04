@@ -517,18 +517,17 @@ li {
     50%  {margin-top: -74px;}
     100% {margin-top: 0;}
 }
-.mainmenu-area.stricky-fixed {
-    position: fixed; 
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 999;
-    background: #32b6a1;
-    animation-name: menu_sticky;
-    animation-duration: 0.60s;
-    animation-timing-function: ease-out;
-    transition: all .25s ease-in-out;
-}
+/*.mainmenu-area.stricky-fixed {*/
+/*    position: fixed; */
+/*    top: 0;*/
+/*    left: 0;*/
+/*    width: 100%;*/
+/*    z-index: 999;*/
+/*    animation-name: menu_sticky;*/
+/*    animation-duration: 0.60s;*/
+/*    animation-timing-function: ease-out;*/
+/*    transition: all .25s ease-in-out;*/
+/*}*/
 .header-style2-area.stricky-fixed {
     position: fixed; 
     top: 0;
@@ -8655,18 +8654,18 @@ li {
     50%  {margin-top: -74px;}
     100% {margin-top: 0;}
 }
-.mainmenu-area.stricky-fixed {
-    position: fixed; 
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 999;
-    background: #32b6a1;
-    animation-name: menu_sticky;
-    animation-duration: 0.60s;
-    animation-timing-function: ease-out;
-    transition: all .25s ease-in-out;
-}
+/*.mainmenu-area.stricky-fixed {*/
+/*    position: fixed; */
+/*    top: 0;*/
+/*    left: 0;*/
+/*    width: 100%;*/
+/*    z-index: 999;*/
+/*    background: #32b6a1;*/
+/*    animation-name: menu_sticky;*/
+/*    animation-duration: 0.60s;*/
+/*    animation-timing-function: ease-out;*/
+/*    transition: all .25s ease-in-out;*/
+/*}*/
 .header-style2-area.stricky-fixed {
     position: fixed; 
     top: 0;
