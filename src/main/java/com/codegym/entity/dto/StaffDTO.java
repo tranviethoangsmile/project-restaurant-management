@@ -1,5 +1,8 @@
 package com.codegym.entity.dto;
 
+import com.codegym.entity.Role;
+import com.codegym.entity.Staff;
+import com.codegym.entity.User;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,14 +16,31 @@ import java.util.Date;
 @AllArgsConstructor
 public class StaffDTO {
 
-    private String username;
-    private String password;
+    private UserDTO user;
+
     private String fullName;
     private String address;
     private String phone;
     private Date dob;
+    private boolean status;
 
-    private UserDTO userDTO;
+    private Role role;
 
-    private RoleDTO roleDTO;
+//    public User toUser() {
+//        return new User()
+//                .setId(0L)
+//                .setUsername(username)
+//                .setPassword(password)
+//                .setRole(role);
+//    }
+
+    public Staff toStaff(User user) {
+        return new Staff()
+                .setUser(user)
+                .setFullName(fullName)
+                .setAddress(address)
+                .setPhone(phone)
+                .setDob(dob);
+    }
+
 }
