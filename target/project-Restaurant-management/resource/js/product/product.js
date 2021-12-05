@@ -104,6 +104,66 @@ function handleEdit() {
 
 
 function createProduct() {
+<<<<<<< HEAD
+    category.id = $("#category").val();
+    category.name=$("#category :selected").text();
+
+    product.name = $("#name").val();
+    product.price = $("#price").val();
+    product.category = category
+    console.log(product);
+
+    $.ajax({
+        headers: {
+            'Accept':'application/json',
+            'Content-Type':'application/json'
+        },
+        url: "/api/product/create",
+        type: "POST",
+        data: JSON.stringify(product)
+
+    }).done(function (resp) {
+
+        let str = '';
+
+        str = `
+                    <tr id="tr_${resp.id}">
+                            <th scope="row">${resp.id}</th>
+                            <td>${resp.name}</td>
+                            <td>${resp.price}</td>
+                            <td>${resp.status ? "hết hàng": "còn hàng"}</td>
+                            <td>${resp.category.name}</td>
+                            <td>
+                                <button type="button" data-toggle="modal" data-target="#updateModal" class="btn btn-outline-primary edit"
+                                    data-id="${resp.id}"
+                                >
+                                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                    Sửa
+                                </button>
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-outline-danger delete" data-id="${resp.id}">
+                                    <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                    Xoá
+                                </button>
+                            </td>
+
+                        </tr>
+                `;
+
+        $("#tbListProduct").prepend(str);
+        $("#createProduct")
+
+
+        handleEdit();
+
+        handleDelete();
+
+    }).fail(function () {
+        alert("ERROR")
+    });
+=======
+>>>>>>> dev
 
     if($("#createProduct").valid()){
         Swal.fire({
