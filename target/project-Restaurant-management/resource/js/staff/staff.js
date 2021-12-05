@@ -76,10 +76,13 @@ $("#btn-add").on("click", function () {
                         <i class='fa ${result.status ? 'fa-lock' : 'fa-lock-open'}'>Change</i>
                         </a>
                     
-                         <a href='javascript:;' class='edit btn btn-warning btn-sm' title='edit student' data-id="${result.id}">
+                         <a href='javascript:;' class='edit btn btn-warning btn-sm' title='edit staff' data-id="${result.id}">
                         <i class='fa fa-edit'>Edit</i>
-                    </a>
+                        </a>
                 
+                        <a href='javascript:;' class='remove btn btn-danger btn-sm' title="delete staff" data-id="${result.id}">
+                        <i class='fa fa-remove'>Delete</i>
+                        </a>
                     </td>
                 </tr>
             `)
@@ -131,8 +134,11 @@ function changeSattus() {
                         <i class='fa ${result.status ? 'fa-lock' : 'fa-lock-open'}'>Change</i>
                         </a>
                     
-                         <a href='javascript:;' class='edit btn btn-warning btn-sm' title='edit student' data-id="${result.id}">
+                         <a href='javascript:;' class='edit btn btn-warning btn-sm' title='edit staff' data-id="${result.id}">
                         <i class='fa fa-edit'>Edit</i>
+                        
+                        <a href='javascript:;' class='remove btn btn-danger btn-sm' title="delete staff" data-id="${result.id}">
+                        <i class='fa fa-remove'>Delete</i>
                     </a>
                 
                     </td>
@@ -201,10 +207,12 @@ function update() {
                         <i class='fa ${result.status ? 'fa-lock' : 'fa-lock-open'}'>Change</i>
                         </a>
                     
-                         <a href='javascript:;' class='edit btn btn-warning btn-sm' title='edit student' data-id="${result.id}" data-bs-toggle="modal" data-bs-target="#addUserModal">
+                         <a href='javascript:;' class='edit btn btn-warning btn-sm' title='edit staff' data-id="${result.id}" data-bs-toggle="modal" data-bs-target="#addUserModal">
                         <i class='fa fa-edit'>Edit</i>
                         </a>
-                    
+                        
+                        <a href='javascript:;' class='remove btn btn-danger btn-sm' title="delete staff" data-id="${result.id}">
+                        <i class='fa fa-remove'>Delete</i>
                     </td>
                 </tr>
             `);
@@ -252,7 +260,7 @@ getAllUser = function () {
                                 <i class='fa ${item.status ? 'fa-lock' : 'fa-lock-open'} '>Change</i>
                                 </a>
                             
-                              <a href='javascript:;' class='edit btn btn-warning btn-sm' title='edit student' data-id="${item.id}">
+                              <a href='javascript:;' class='edit btn btn-warning btn-sm' title='edit staff' data-id="${item.id}">
                                 <i class='fa fa-edit'>Edit</i>
                             </td>
                         </tr>

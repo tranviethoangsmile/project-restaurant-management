@@ -21,31 +21,103 @@
 @keyframes spWaveBe{from{-webkit-transform:scale(1,1);opacity:1}to{-webkit-transform:scale(1.5,1.5);opacity:0}}
 
 #orderOfDesk {
-    height: 400px;
+    height: 260px;
     width: 100%;
     overflow: scroll;
+    border: 1px solid;
+    color: darkgray;
 }
 #productList {
-    height: 400px;
-    width: 100%;
+    height: 350px;
+    width: 730px;
     overflow: scroll;
 }
+
+.container {
+    max-width: 1140px;
+    height: 51px;
+}
+
+
 .wizard-navigation {
     position: relative;
     display: flex;
     overflow-y: scroll;
     height: 110px;
-    width: 700px;
+    width: 713px;
+    margin-left: 743px;
 }
 
 .desk-list {
+    display: inline;
     min-height: 50px;
     max-height: 75px;
-    width: 100%;
-    overflow: scroll;
+    width: 1500px;
+    height: 1200px;
 }
+.wizard-title {
+    color: #1f5b71;
+    margin: 20px;
+    text-align: left;
+    position: relative;
+    left: 950px;
+}
+
+.inner-content {
+    position: relative;
+    display: block;
+    background: #32b6a1;
+    height: 70px;
+}
+
+.navigation {
+    position: relative;
+    left: 800px;
+}
+
+.btn.btn-success {
+    background-color: #8affd1;
+    border-radius: 20px;
+}
+
+.category-list {
+    overflow: scroll;
+    background: black;
+}
+
+#wizard {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-clip: border-box;
+    border: 1px solid rgba(0, 0, 0, .125);
+    border-radius: 0.25rem;
+    background-color: bisque;
+}
+
+.importProduct {
+    color: brown;
+    font-size: xx-large;
+}
+
+#border-color {
+    flex: 0 0 50%;
+    max-width: 50%;
+    border: 1px solid;
+    color: #a2a2a1;
+}
+
+#btn_pay {
+    position: relative;
+    left: 510px;
+    color: blue;
+}
+
 #desk_add{
     height:50px;
     width: 100%;
     overflow: scroll;
 }
+

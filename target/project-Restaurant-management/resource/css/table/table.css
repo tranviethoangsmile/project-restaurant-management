@@ -306,9 +306,9 @@ a:focus {
 }
 
 .list_desk {
-    overflow: scroll;
-    height: 130px;
-    width: 730px;
+    overflow-y: scroll;
+    height: 90px;
+    width: 820px;
 }
 
 .form_inputDesk {
