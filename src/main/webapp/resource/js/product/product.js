@@ -31,13 +31,14 @@ function handleDelete() {
         let id = $(this).data("id");
 
         Swal.fire({
-            title: 'Are you sure?',
-            text: "You won't be able to revert this!",
+            title: 'Bạn có chắc?',
+            text: "Bạn muốn xoá sản phẩm khỏi danh mục!",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, delete it!'
+            confirmButtonText: 'Vâng, xoá ngay!',
+            cancelButtonText: 'Huỷ'
         }).then((result) => {
             if (result.isConfirmed) {
 
@@ -57,8 +58,8 @@ function handleDelete() {
                         $("#tr_" + id).remove();
 
                         Swal.fire(
-                            'Deleted!',
-                            'This product has been deleted.',
+                            'Đã xoá!',
+                            'Sản phẩm đã được xoá khỏi danh mục.',
                             'success'
                         )
                     } else {
@@ -101,63 +102,79 @@ function handleEdit() {
     })
 }
 
+
 function createProduct() {
-    category.id = $("#category").val();
-    category.name=$("#category :selected").text();
 
-    product.name = $("#name").val();
-    product.price = $("#price").val();
-    product.category = category
-    console.log(product);
+    if($("#createProduct").valid()){
+        Swal.fire({
+            title: 'Bạn muốn lưu lại món ăn này không?',
+            showDenyButton: true,
+            confirmButtonText: 'Yes',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                category.id = $("#category").val();
+                category.name=$("#category :selected").text();
 
-    $.ajax({
-        headers: {
-            'Accept':'application/json',
-            'Content-Type':'application/json'
-        },
-        url: "/api/product/create",
-        type: "POST",
-        data: JSON.stringify(product)
+                product.name = $("#name").val();
+                product.price = $("#price").val();
+                product.category = category
+                console.log(product);
 
-    }).done(function (resp) {
+                $.ajax({
+                    headers: {
+                        'Accept':'application/json',
+                        'Content-Type':'application/json'
+                    },
+                    url: "/api/product/create",
+                    type: "POST",
+                    data: JSON.stringify(product)
 
-        let str = '';
+                }).done(function (resp) {
 
-        str = `
+                    let str = '';
+
+                    str = `
                     <tr id="tr_${resp.id}">
                             <th scope="row">${resp.id}</th>
                             <td>${resp.name}</td>
                             <td>${resp.price}</td>
-                            <td>${resp.status}</td>
+                            <td>${resp.status ? "hết hàng": "còn hàng"}</td>
                             <td>${resp.category.name}</td>
                             <td>
                                 <button type="button" data-toggle="modal" data-target="#updateModal" class="btn btn-outline-primary edit"
                                     data-id="${resp.id}"
                                 >
                                     <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                                    Edit
+                                    Sửa
                                 </button>
                             </td>
                             <td>
                                 <button type="button" class="btn btn-outline-danger delete" data-id="${resp.id}">
                                     <i class="fa fa-trash-o" aria-hidden="true"></i>
-                                    Delete
+                                    Xoá
                                 </button>
                             </td>
 
                         </tr>
                 `;
 
-        $("#tbListProduct").prepend(str);
+                    $("#tbListProduct").prepend(str);
 
 
-        handleEdit();
+                    handleEdit();
 
-        handleDelete();
+                    handleDelete();
 
-    }).fail(function () {
-        alert("ERROR")
-    });
+                }).fail(function () {
+                    alert("ERROR")
+                });
+            } else if (result.isDenied) {
+                Swal.fire('Thông tin bàn chưa được lưu', '', 'info')
+            }
+        })
+
+    }
+
 }
 
 function updateProduct() {
@@ -189,20 +206,20 @@ function updateProduct() {
                         <th scope="row">${resp.id}</th>
                         <td>${resp.name}</td>
                         <td>${resp.price}</td>
-                        <td>${resp.status}</td>
+                        <td>${resp.status ? "hết hàng": "còn hàng"}</td>
                         <td>${resp.category.name}</td>
                         <td>
                             <button type="button" data-toggle="modal" data-target="#updateModal" class="btn btn-outline-primary edit"
                                 data-id="${resp.id}"
                             >
                                 <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                                Edit
+                                Sửa
                             </button>
                         </td>
                         <td>
                             <button type="button" class="btn btn-outline-danger delete" data-id="${resp.id}">
                                 <i class="fa fa-trash-o" aria-hidden="true"></i>
-                                Delete
+                                Xoá
                             </button>
                         </td>
                     </tr>
@@ -236,20 +253,20 @@ function getListProduct() {
                             <th scope="row">${item.id}</th>
                             <td>${item.name}</td>
                             <td>${item.price}</td>
-                            <td>${item.status}</td>
+                            <td>${resp.status ? "hết hàng": "còn hàng"}</td>
                             <td>${item.category.name}</td>
                             <td>
                                 <button type="button" data-toggle="modal" data-target="#updateModal" class="btn btn-outline-primary edit"
                                     data-id="${item.id}"
                                 >
                                     <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                                    Edit
+                                    Sửa
                                 </button>
                             </td>
                             <td>
                                 <button type="button" class="btn btn-outline-danger delete" data-id="${item.id}">
                                     <i class="fa fa-trash-o" aria-hidden="true"></i>
-                                    Delete
+                                    Xoá
                                 </button>
                             </td>
 
