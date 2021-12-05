@@ -44,7 +44,7 @@
                         <div class="navbar-collapse collapse clearfix">
                             <ul class="navigation clearfix">
                                 <li><a href="/admin">Quản Lý</a></li>
-                                <li><a href="/profile">Trang Cá Nhân</a></li>
+                                <!--                                <li><a href="/profile">Trang Cá Nhân</a></li>-->
                                 <li><a href="/logout" class="logout">Thoát</a></li>
                             </ul>
                         </div>
@@ -55,10 +55,11 @@
         </div>
     </div>
 </section>
-<div class="col-xl-12" style="background-color: #8a6d3b">
+<div class="col-xl-12" style="background-color: #727272">
     <div class="desk-list">
-        <h2 class="wizard-title" style="color: #00A0D1">Danh sách bàn trống</h2>
-        <div class="row">
+        <h2 class="wizard-title" style="color: #bdd30a; position: relative; left: 550px">DANH SÁCH BÀN CHƯA CÓ
+            KHÁCH</h2>
+        <div class="row" style="overflow: scroll;height: 70px;">
         </div>
     </div>
 </div>
@@ -68,15 +69,29 @@
     <div class="wizard-container">
         <div class="card wizard-card" data-color="red" id="wizard">
             <div class="wizard-header">
-                <h2 class="wizard-title" style="color: #00A0D1">Danh sách bàn đang phục vụ</h2>
-                <div class="wizard-navigation">
-                    <ul>
-                        <!--Hiển thị danh sách bàn đang phụ vụ-->
-                    </ul>
+                <div>
+                    <div class="col-lg-6">
+                        <h2 class="wizard-category">DANH MỤC</h2>
+                        <div id="categoryList" class="category-list">
+<!--                            <button type="button" class="btn btn-primary" onclick="init()">Bia</button>-->
+<!--                            <button type="button" class="btn btn-primary" onclick="init()">Rượu</button>-->
+<!--                            <button type="button" class="btn btn-primary" onclick="init()">Nước ngọt</button>-->
+<!--                            <button type="button" class="btn btn-primary" onclick="init()">Sinh tố</button>-->
+<!--                            <button type="button" class="btn btn-primary" onclick="init()">Cà phê</button>-->
+<!--                            <button type="button" class="btn btn-primary" onclick="init()">Thức uống khác</button>-->
+<!--                            <button type="button" class="btn btn-primary" onclick="init()">Món Châu Âu</button>-->
+<!--                            <button type="button" class="btn btn-primary" onclick="init()">Món Châu Á</button>-->
+                        </div>
+                    </div>
+                    <div class="wizard-navigation">
+                        <ul>
+                            <!--Hiển thị danh sách bàn đang phụ vụ-->
+                        </ul>
+                    </div>
                 </div>
                 <div class="tab-content">
                     <div class="row">
-                        <div class="col-xl-6">
+                        <div class="col-xl-6" id="border-color">
                             <div class="importProduct">
                                 <h2 id="order_id" hidden></h2>
                                 <div class="row" id="productList">
@@ -88,10 +103,10 @@
                         <div class="col-xl-6">
                             <div class="importDeskInfo">
                                 <div class="row" id="orderOfDesk">
-                                <!--Hiển thị chi tiết order detail của bàn-->
+                                    <!--Hiển thị chi tiết order detail của bàn-->
                                 </div>
                                 <div id="btn_pay">
-                                <!--Hiển thị nút thanh toán-->
+                                    <!--Hiển thị nút thanh toán-->
                                 </div>
                             </div>
                         </div>
@@ -103,15 +118,17 @@
 </div>
 
 <!--Modal bill-->
-<div class="modal fade" id="bill" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+<div class="modal fade" id="bill" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle"
+     aria-hidden="true">
     <div class="modal-dialog modal-dialog-scrollable" role="document">
         <div class="modal-content">
             <div class="modal-body">
                 <div class="row">
                     <h1 style="text-align: center">NHÀ HÀNG 4 THÀNH VIÊN</h1>
-                    <h2 style="text-align: center" >ĐC: số 1 - Thành Phố Huế</h2>
+                    <h2 style="text-align: center">ĐC: số 1 - Thành Phố Huế</h2>
                     <h3 style="text-align: center">HOTLINE: 0909900990</h3>
-                    <p>-----------------------------------------------------------------------------------------------------</p>
+                    <p>
+                        -----------------------------------------------------------------------------------------------------</p>
                     <form class="form-group">
                         <input type="number" id="order_id_bill" hidden>
                         <label for="customerName">Tên khách</label>
@@ -143,7 +160,8 @@
 </div>
 
 <!--modal-->
-<div class="modal fade" id="desk_modify_option" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="desk_modify_option" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -161,7 +179,8 @@
 </div>
 
 <!--modal edit-->
-<div class="modal fade" id="desk_modify_edit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="desk_modify_edit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
