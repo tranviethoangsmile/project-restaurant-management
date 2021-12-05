@@ -20,7 +20,9 @@
 @-webkit-keyframes spWaveBe{from{-webkit-transform:scale(1,1);opacity:1}to{-webkit-transform:scale(1.5,1.5);opacity:0}}
 
 @keyframes spWaveBe{from{-webkit-transform:scale(1,1);opacity:1}to{-webkit-transform:scale(1.5,1.5);opacity:0}}
-
+.main-slider {
+    background-color: bisque;
+}
 
 .category_list {
     display: inherit;
@@ -31,4 +33,7 @@
     height: 500px;
     width: 100%;
     overflow: scroll;
+}
+.bill_list{
+    max-height: 300px;
 }
