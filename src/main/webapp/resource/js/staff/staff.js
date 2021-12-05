@@ -260,8 +260,11 @@ getAllUser = function () {
                                 <i class='fa ${item.status ? 'fa-lock' : 'fa-lock-open'} '>Change</i>
                                 </a>
                             
-                              <a href='javascript:;' class='edit btn btn-warning btn-sm' title='edit staff' data-id="${item.id}">
+                                <a href='javascript:;' class='edit btn btn-warning btn-sm' title='edit staff' data-id="${item.id}">
                                 <i class='fa fa-edit'>Edit</i>
+                                
+                                <a href='javascript:;' class='remove btn btn-danger btn-sm' title="delete staff" data-id="${result.id}">
+                                <i class='fa fa-remove'>Delete</i>
                             </td>
                         </tr>
                     `;
