@@ -248,16 +248,19 @@ getProductAll = function () {
         type: "GET"
     }).done(function (productList) {
         $.each(productList, function (index, product) {
-            $(".importProduct .row").append(
-               ` 
+            if(!product.status){
+                $(".importProduct .row").append(
+                    ` 
                     <div class="col-xl-3"  style="max-height: 50%; max-width: 100%">
-                      <img style="max-width: 25%; max-height: 25%"  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGDhB8EB8QKSKyTZUv2xDV203sj1aTL8VZjw&usqp=CAU">
+                      <img style="max-width: 25%; max-height: 25%" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGDhB8EB8QKSKyTZUv2xDV203sj1aTL8VZjw&usqp=CAU">
                       <h2 id="product-name${product.id}">${product.name}</h2>
                       <h3 id="product-price${product.id}">${product.price}</h3>                   
                       <span><button type="button" class="btn btn-success" onclick="addProducetoOrderDetail(${product.id})"><i class="fas fa-plus"></i>Thêm</button></span>
                     </div>         
                 `
-            )
+                )
+            }
+
         })
     }).fail(function () {
         $.notify("Không tải được product","error")
@@ -390,6 +393,7 @@ paymentForm = function (id) {
         url: "/api/orderdetail/orderdetailofdeskid/" + id,
         type: "GET",
     }).done(function (orderdetail) {
+        console.log(orderdetail);
         $("#bill").modal("show");
         let total = 0;
         let desk_id = 0;
@@ -438,7 +442,7 @@ billNotPrint = function (id){
         createAt: new Date(),
         total: $("#total_bill_pay").val(),
         customerName: $("#customerName").val(),
-        order_id: $("#order_id").val(),
+        order_id: $("#order_id_bill").val(),
         desk_id: id
     }
     $.ajax({
