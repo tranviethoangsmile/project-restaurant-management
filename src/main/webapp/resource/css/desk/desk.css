@@ -22,7 +22,18 @@
 @keyframes spWaveBe{from{-webkit-transform:scale(1,1);opacity:1}to{-webkit-transform:scale(1.5,1.5);opacity:0}}
 
 #allProductOfDesk{
-    height: 350px;
+    height: 300px;
+    width: 100%;
+    overflow: scroll;
+}
+.desk-list{
+    height:100px;
+    width: 100%;
+    overflow: scroll;
+}
+
+#desk_add{
+    height:50px;
     width: 100%;
     overflow: scroll;
 }
