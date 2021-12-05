@@ -377,7 +377,6 @@ getOrderDetailOfDesk = function (desk_id){
         $.notify("Tải thông tin bàn không thành công", "error");
     })
 }
-
 paymentForm = function (id) {
     $("#product_list_of_bill").empty();
     $("#total_bill").empty();

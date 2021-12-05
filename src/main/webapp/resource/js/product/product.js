@@ -104,7 +104,6 @@ function handleEdit() {
 
 
 function createProduct() {
-<<<<<<< HEAD
     category.id = $("#category").val();
     category.name=$("#category :selected").text();
 
@@ -162,8 +161,6 @@ function createProduct() {
     }).fail(function () {
         alert("ERROR")
     });
-=======
->>>>>>> dev
 
     if($("#createProduct").valid()){
         Swal.fire({
