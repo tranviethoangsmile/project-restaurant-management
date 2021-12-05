@@ -1,5 +1,6 @@
 package com.codegym.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import lombok.experimental.Accessors;
 
@@ -22,6 +23,7 @@ public class Role {
     private String code;
     private String name;
 
+    @JsonIgnore
     @OneToMany(targetEntity = User.class, mappedBy = "role", fetch = FetchType.EAGER)
     private Set<User> users;
 }
