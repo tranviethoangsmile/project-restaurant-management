@@ -239,6 +239,11 @@ function getAllCategory() {
 
 init = function () {
     getAllCategory();
+
+    $("#updateModal").on("hidden.bs.modal", function () {
+        $(".modal-backdrop.show").removeClass("show");
+    });
+
 }
 
 <!--    template-->

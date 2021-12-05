@@ -19,9 +19,8 @@ getAllDeskForOption = function () {
         url: "/api/desk/getalldesk",
         type: "GET",
     }).done(function (data) {
-        console.log(data)
         $(".desk-list .row").empty();
-        $(".wizard-navigation ul").empty();
+        $(".wizard-navigation").empty();
         $.each(data, function (index, item) {
             if (!item.status) {
                 $(".desk-list .row").append(
@@ -29,8 +28,8 @@ getAllDeskForOption = function () {
                 <div class="col-xl-1">
                     <button onclick="deskModify(${item.id})"
                         type="button"
-                        style="border-radius: 35%;background-color: darkseagreen; width: 100px; margin-left: 10px"
-                        class="btn btn-outline-secondary">
+                        style="border-radius: 35%; width: 100px; margin-left: 10px"
+                        class="btn btn-success">
                             ${item.name}
                     </button>
                 </div>
@@ -38,11 +37,11 @@ getAllDeskForOption = function () {
                 )
             }
             if(item.status) {
-                $(".wizard-navigation ul").append(
+                $(".wizard-navigation").append(
                     `
-                    <li>
-                    <a data-toggle = "tab" onclick = "getOrderByDeskId(${item.id})" style=" margin: 10px" class="btn btn-success">${item.name}</a>
-                    </li>
+                        <div class="col-xl-2">
+                            <a data-toggle = "tab" onclick = "getOrderByDeskId(${item.id})" style=" margin: 10px" class="btn btn-success">${item.name}</a>
+                        </div>
                     `
                 )
             }
@@ -203,7 +202,7 @@ createOrder = function (desk) {
         type: "POST",
         data: JSON.stringify(order)
     }).done(function (orderResp) {
-        console.log(orderResp);
+        // console.log(orderResp);
     }).fail(function (){
         $.notify("Tạo order Không thành công")
     })
@@ -248,22 +247,20 @@ getProductAll = function () {
         type: "GET"
     }).done(function (productList) {
         $.each(productList, function (index, product) {
-            if(!product.status){
+            console.log(product.status);
                 $(".importProduct .row").append(
                     ` 
-                    <div class="col-xl-3"  style="max-height: 50%; max-width: 100%">
+                    <div class="col-xl-3"  style="max-height: 50%; max-width: 50%">
                       <img style="max-width: 25%; max-height: 25%" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGDhB8EB8QKSKyTZUv2xDV203sj1aTL8VZjw&usqp=CAU">
                       <h2 id="product-name${product.id}">${product.name}</h2>
                       <h3 id="product-price${product.id}">${product.price}</h3>                   
-                      <span><button type="button" class="btn btn-success" onclick="addProducetoOrderDetail(${product.id})"><i class="fas fa-plus"></i>Thêm</button></span>
+                      <span><button type="button" class="btn btn-success" onclick="addProducetoOrderDetail(${product.id})" ${product.status ? 'disabled': ''} ><i class="fas fa-plus"></i>${product.status ? '<b style="color: red">Hết hàng</b>': 'Thêm'}</button></span>
                     </div>         
                 `
                 )
-            }
-
         })
     }).fail(function () {
-        $.notify("Không tải được product","error")
+        $.notify("Không tải được sản phẩm","error")
     });
 }
 
@@ -278,7 +275,7 @@ addProducetoOrderDetail = function (id) {
         unitPrice: price,
         quantity : 1
     }
-    console.log(orderDetailDTO);
+    // console.log(orderDetailDTO);
     $.ajax({
         headers: {
             'Accept': 'application/json',
@@ -288,10 +285,10 @@ addProducetoOrderDetail = function (id) {
         type: "POST",
         data: JSON.stringify(orderDetailDTO)
     }).done (function (orderDetailResp){
-        console.log(orderDetailResp);
+        // console.log(orderDetailResp);
         getOrderDetailOfDesk(orderDetailResp.order.desk.id);
         $.notify("Gọi món thành công","success")
-        console.log(orderDetailResp);
+        // console.log(orderDetailResp);
     }).fail(function (){
         $.notify("Bạn chưa chọn Bàn","error")
     })
@@ -328,7 +325,6 @@ getOrderByDeskId = function (id) {
                 </div>   
             `
         )
-        // getProductAll();
     }).fail(function (){
         $.notify("order fail","error")
     })
@@ -344,7 +340,7 @@ getOrderDetailOfDesk = function (desk_id){
         url: "/api/orderdetail/order-detail-of-deskid/" + desk_id,
         type: "GET",
     }).done(function (orderdetails) {
-        console.log(orderdetails);
+        // console.log(orderdetails);
         $("#orderDetail_of_desk").empty();
         let btn_pay = $("#btn_pay");
         btn_pay.empty();
@@ -428,7 +424,7 @@ paymentForm = function (id) {
                  </tr>
             `
         )
-        console.log(order_id);
+        // console.log(order_id);
         $("#desk_name_bill").text(desk_name)
         $("#order_id_bill").val(order_id);
     }).fail(function () {
@@ -457,7 +453,7 @@ billNotPrint = function (id){
         $("#bill").modal("hide");
         $("#orderDetail_of_desk").empty();
         $("#total_payment_of_desk").empty();
-        console.log(billResp);
+        // console.log(billResp);
         changerStatusAfterPayment(billResp.desk_id);
         $("#product_list_of_desk").empty();
         $("#total").empty();
@@ -493,3 +489,59 @@ $(".logout").on("click", function () {
     }, 1000);
 });
 
+function getAllCategories() {
+    $.ajax({
+        url: "/api/category",
+        type: "GET"
+    }).done(function (resp) {
+
+        let str = ``
+        $.each(resp, (index, item) => {
+            str += `
+            <button type="button" class="btn btn-success" data-id="${item.id}">${item.name}</button>
+        `;
+        })
+
+        $("#categoryList").html(str);
+        handleCategoryItem();
+
+    }).fail(function () {
+        alert("ERROR")
+    });
+}
+
+function handleCategoryItem() {
+    $("#categoryList button").on("click", function () {
+        let categoryId = $(this).data("id");
+
+        $.ajax({
+            url: "/api/product/category/" + categoryId,
+            type: "GET"
+        }).done(function (resp) {
+            console.log(resp)
+
+            $("#productList").empty();
+
+            $.each(resp, function (index, product) {
+                $(".importProduct .row").append(
+                    `
+                    <div class="col-xl-3"  style="max-height: 50%; max-width: 100%">
+                      <img style="max-width: 25%; max-height: 25%"  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGDhB8EB8QKSKyTZUv2xDV203sj1aTL8VZjw&usqp=CAU">
+                      <h2 id="product-name${product.id}">${product.name}</h2>
+                      <h3 id="product-price${product.id}">${product.price}</h3>
+                      <span><button type="button" class="btn btn-success" onclick="addProducetoOrderDetail(${product.id})" ${product.status ? 'disabled': ''} ><i class="fas fa-plus"></i>${product.status ? '<b style="color: red">Hết hàng</b>': 'Thêm'}</button></span>
+                    </div>
+                `
+                )
+            })
+
+        }).fail(function () {
+            // alert("ERROR")
+        });
+    })
+}
+
+
+$(function () {
+    getAllCategories();
+});
