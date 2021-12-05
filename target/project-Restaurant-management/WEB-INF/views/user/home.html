@@ -69,14 +69,14 @@
         <div class="card wizard-card" data-color="red" id="wizard">
             <div class="wizard-header">
                 <h2 class="wizard-title" style="color: #00A0D1">Danh sách bàn đang phục vụ</h2>
-                <div class="wizard-navigation">
+                <div class="wizard-navigation" id="desk_add">
                     <ul>
                         <!--Hiển thị danh sách bàn đang phụ vụ-->
                     </ul>
                 </div>
                 <div class="tab-content">
                     <div class="row">
-                        <div class="col-xl-6">
+                        <div class="col-xl-6" style="margin-top: 10px">
                             <div class="importProduct">
                                 <h2 id="order_id" hidden></h2>
                                 <div class="row" id="productList">
@@ -103,15 +103,17 @@
 </div>
 
 <!--Modal bill-->
-<div class="modal fade" id="bill" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+<div class="modal fade" id="bill" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle"
+     aria-hidden="true">
     <div class="modal-dialog modal-dialog-scrollable" role="document">
         <div class="modal-content">
             <div class="modal-body">
                 <div class="row">
                     <h1 style="text-align: center">NHÀ HÀNG 4 THÀNH VIÊN</h1>
-                    <h2 style="text-align: center" >ĐC: số 1 - Thành Phố Huế</h2>
+                    <h2 style="text-align: center">ĐC: số 1 - Thành Phố Huế</h2>
                     <h3 style="text-align: center">HOTLINE: 0909900990</h3>
-                    <p>-----------------------------------------------------------------------------------------------------</p>
+                    <p>
+                        -----------------------------------------------------------------------------------------------------</p>
                     <form class="form-group">
                         <input type="number" id="order_id_bill" hidden>
                         <label for="customerName">Tên khách</label>
@@ -129,7 +131,7 @@
                                 <th>Thành tiền</th>
                             </tr>
                             </thead>
-                            <tbody id="product_list_of_bill" style="max-height: 50%; max-width: 100%">
+                            <tbody id="product_list_of_bill">
                             <!--Hiển thị danh mục món ăn của bàn-->
                             </tbody>
                             <tfoot id="total_bill">

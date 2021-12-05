@@ -290,54 +290,105 @@ deleteDesk = function (id) {
 
 
 //Nhận thông tin order của bàn
-getOrderDetailOfDesk = function (id) {
-    console.log(id);
-    $("#product_list_of_desk").empty();
-    $("#total").empty();
+// getOrderDetailOfDesk = function (id) {
+//     console.log(id);
+//     $("#product_list_of_desk").empty();
+//     $("#total").empty();
+//     $.ajax({
+//         headers: {
+//             'Accept': 'application/json',
+//             'Content-Type': 'application/json'
+//         },
+//         url: "/api/orderdetail/orderdetailofdeskid/" + id,
+//         type: "GET",
+//     }).done(function (orderdetail) {
+//         let total = 0;
+//         let desk_id = 0;
+//         let desk_name = '';
+//         $.each(orderdetail,function (index,item){
+//             total += item.unitPrice;
+//             desk_id = parseInt(item.order.desk.id);
+//             desk_name = item.order.desk.name;
+//             $("#product_list_of_desk").append(
+//                 `
+//                 <tr>
+//                     <td>${index + 1}</td>
+//                     <td>${item.productName}</td>
+//                     <td>${formatNumber(item.productPrice)}</td>
+//                     <td>${item.quantity}</td>
+//                     <td>${formatNumber(item.unitPrice)}</td>
+//                 </tr>
+//                `
+//             );
+//         })
+//         $("#total").append(
+//             `
+//                 <tr>
+//                     <th colspan="4"><b>Tổng: </b></th>
+//                     <th><h2>${formatNumber(total)} vnđ</h2></th>
+//                  </tr>
+//                  <tr>
+//                       <td><button onclick="paymentForm(${desk_id})" class="btn btn-success">Thanh toán</button></td>
+//                  </tr>
+//             `
+//         )
+//         $("#desk_name").text(desk_name)
+//
+//     }).fail(function () {
+//         $.notify("Tải thông tin bàn không thành công", "error");
+//     })
+// }
+
+//test home
+getOrderDetailOfDesk = function (desk_id){
     $.ajax({
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         },
-        url: "/api/orderdetail/orderdetailofdeskid/" + id,
+        // url: "/api/orderdetail/orderdetailofdeskid/" + id,
+        url: "/api/orderdetail/order-detail-of-deskid/" + desk_id,
         type: "GET",
-    }).done(function (orderdetail) {
+    }).done(function (orderdetails) {
+        console.log(orderdetails);
+        $("#product_list_of_desk").empty();
+        let btn_pay = $("#total")
+        btn_pay.empty();
         let total = 0;
-        let desk_id = 0;
-        let desk_name = '';
-        $.each(orderdetail,function (index,item){
-            total += item.unitPrice;
-            desk_id = parseInt(item.order.desk.id);
-            desk_name = item.order.desk.name;
+        let unitPrice = 0;
+        $.each(orderdetails, function (index, orderDetail){
+            unitPrice = (orderDetail.productPrice * orderDetail.quantity)
+            total += unitPrice;
             $("#product_list_of_desk").append(
                 `
                 <tr>
-                    <td>${index + 1}</td>
-                    <td>${item.productName}</td>
-                    <td>${formatNumber(item.productPrice)}</td>
-                    <td>${item.quantity}</td>
-                    <td>${formatNumber(item.unitPrice)}</td>
+                    <th>${index + 1}</th>
+                    <th>${orderDetail.productName}</th>
+                    <th>${orderDetail.productPrice}</th>
+                    <th>${orderDetail.quantity}</th>
+                    <th>${unitPrice}</th>
                 </tr>
-               `
-            );
+                `
+            )
         })
-        $("#total").append(
+        btn_pay.append(
             `
-                <tr>
-                    <th colspan="4"><b>Tổng: </b></th>
-                    <th><h2>${formatNumber(total)} vnđ</h2></th>
-                 </tr>
-                 <tr>
-                      <td><button onclick="paymentForm(${desk_id})" class="btn btn-success">Thanh toán</button></td>
-                 </tr>
-            `
+                    <tr>
+                        <th colspan="4"><b>Tổng: </b></th>
+                        <th><h2>${formatNumber(total)} vnđ </h2></th>
+                     </tr>
+                     <tr>
+                          <td style="text-align: right; margin-right: 30px" colspan="5"><button onclick="paymentForm(${desk_id})" class="btn btn-success">Thanh toán</button></td>
+                     </tr>
+                `
         )
-        $("#desk_name").text(desk_name)
 
     }).fail(function () {
         $.notify("Tải thông tin bàn không thành công", "error");
     })
 }
+
+//end test home
 
 paymentForm = function (id) {
     $("#product_list_of_bill").empty();
