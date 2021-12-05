@@ -53,24 +53,14 @@
                             </ul>
                         </div>
                     </nav>
-
-<!--                    <div class="mainmenu-right">-->
-<!--                        <div class="toggler-button">-->
-<!--                            <div class="nav-toggler hidden-bar-opener">-->
-<!--                                <div class="inner">-->
-<!--                                    <span></span>-->
-<!--                                    <span></span>-->
-<!--                                    <span></span>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-                    </div>
                 </div>
             </div>
         </div>
     </div>
+    </div>
 </section>
 <!--End mainmenu area-->
+<<<<<<< HEAD
 <section class="main-slider" style="margin-top: 10px">
     <div class="container">
         <div class="row">
@@ -79,10 +69,19 @@
                     <div class="form-group">
                         <label for="deskName">Tên Bàn</label>
                         <div class="form_inputDesk" >
+=======
+<div class="container">
+    <div class="row">
+        <div class="col-xl-4">
+            <form id="deskCreate" style="margin-top: 10px">
+                <div class="form-group">
+                    <label for="deskName">Tên Bàn</label>
+                    <div class="form_inputDesk">
+>>>>>>> dev
                         <input type="text" class="form-control" id="deskName" data-rule-required="true"
                                data-msg-required="Không được bỏ trống">
-                        </div>
                     </div>
+<<<<<<< HEAD
                     <button type="button" class="btn btn-danger" onclick="createDesk()">Tạo Bàn</button>
                 </form>
             </div>
@@ -90,66 +89,54 @@
                 <div class="desk-list">
                     <h2 class="wizard-title" style="color: #00A0D1">Danh sách bàn trống</h2>
                     <div class="list_desk">
+=======
+                </div>
+                <button type="button" class="btn btn-danger" onclick="createDesk()">Tạo Bàn</button>
+            </form>
+        </div>
+        <div class="col-xl-8">
+            <div class="desk-list">
+                <h2 class="wizard-title" style="color: #00A0D1">Danh sách bàn trống</h2>
+                <div class="list_desk">
+>>>>>>> dev
                     <div class="row">
-                    </div>
                     </div>
                 </div>
             </div>
-            <!--   Big container   -->
-            <div class="col-xl-12">
-                <!--      Wizard container        -->
-                <div class="wizard-container">
-                    <div class="card wizard-card" data-color="red" id="wizard">
-                        <div class="wizard-header">
-                            <h2 class="wizard-title" style="color: #00A0D1">
-                                Thông tin bàn đang phục vụ
-                            </h2>
-                            <div class="wizard-navigation">
-                                <ul>
-                                    <!--Hiển thị danh sách bàn đang phụ vụ-->
-                                </ul>
-                            </div>
-                            <div class="tab-content">
-                                <table class="table table-hover">
-                                    <h2 id="desk_name"></h2>
-                                    <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>Tên món</th>
-                                        <th>Giá</th>
-                                        <th>Số lượng</th>
-                                        <th>Thành tiền</th>
-                                    </tr>
-                                    </thead>
-                                </table>
-                                <div id="allProductOfDesk">
-                                    <table class="table table-hover">
-                                        <tbody id="product_list_of_desk">
-
-                                        <!--DANH SÁCH SẢN PHẨM-->
-
-                                        </tbody>
-<!--                                        <tfoot id="total">-->
-<!--                                        </tfoot>-->
-                                    </table>
-                                </div>
-                                <div id="total">
-
-                                </div>
-<!--                                    <tbody id="product_list_of_desk">-->
-<!--                                    &lt;!&ndash;Hiển thị danh mục món ăn của bàn&ndash;&gt;-->
-<!--                                    </tbody>-->
-
-
-                            </div>
+        </div>
+    </div>
+    <!--   Big container   -->
+    <div class="col-xl-12">
+        <!--      Wizard container        -->
+        <div class="wizard-container">
+            <div class="card wizard-card" data-color="red" id="wizard">
+                <div class="wizard-header">
+                    <h2 class="wizard-title" style="color: #00A0D1">
+                        Thông tin bàn đang phục vụ
+                    </h2>
+                    <div class="wizard-navigation" id="desk_add">
+                        <ul>
+                            <!--Hiển thị danh sách bàn đang phụ vụ-->
+                        </ul>
+                    </div>
+                    <div class="tab-content" style="margin-top: 10px">
+                        <h2>Thực đơn</h2>
+                        <div id="allProductOfDesk">
+                            <table class="table table-hover">
+                                <tbody id="product_list_of_desk">
+                                <!--DANH SÁCH SẢN PHẨM-->
+                                </tbody>
+                            </table>
+                        </div>
+                        <div id="total" style="margin-top: 10px">
+                            <!--Hiển thị nút thanh toán và tổng tiền-->
                         </div>
                     </div>
-                </div> <!-- wizard container -->
+                </div>
             </div>
-        </div> <!-- row -->
-    </div> <!--  big container -->
-</section>
-
+        </div> <!-- wizard container -->
+    </div>
+</div>
 
 <!-- Hidden Navigation Bar -->
 <section class="hidden-bar right-align">
@@ -170,7 +157,8 @@
 </section>
 
 <!--modal-->
-<div class="modal fade" id="desk_modify_option" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="desk_modify_option" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -187,7 +175,8 @@
     </div>
 </div>
 <!--modal edit-->
-<div class="modal fade" id="desk_modify_edit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="desk_modify_edit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -204,15 +193,17 @@
     </div>
 </div>
 <!--Modal bill-->
-<div class="modal fade" id="bill" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+<div class="modal fade" id="bill" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle"
+     aria-hidden="true">
     <div class="modal-dialog modal-dialog-scrollable" role="document">
         <div class="modal-content">
             <div class="modal-body">
                 <div class="row">
                     <h1 style="text-align: center">NHÀ HÀNG 4 THÀNH VIÊN</h1>
-                    <h2 style="text-align: center" >ĐC: số 1 - Thành Phố Huế</h2>
+                    <h2 style="text-align: center">ĐC: số 1 - Thành Phố Huế</h2>
                     <h3 style="text-align: center">HOTLINE: 0909900990</h3>
-                    <p>-----------------------------------------------------------------------------------------------------</p>
+                    <p>
+                        -----------------------------------------------------------------------------------------------------</p>
                     <form class="form-group">
                         <input type="number" id="order_id" hidden>
                         <label for="customerName">Tên khách</label>

@@ -38,6 +38,7 @@
     height: 51px;
 }
 
+
 .wizard-navigation {
     position: relative;
     display: flex;
@@ -46,7 +47,6 @@
     width: 713px;
     margin-left: 743px;
 }
-
 
 .desk-list {
     display: inline;
@@ -114,3 +114,10 @@
     left: 510px;
     color: blue;
 }
+
+#desk_add{
+    height:50px;
+    width: 100%;
+    overflow: scroll;
+}
+

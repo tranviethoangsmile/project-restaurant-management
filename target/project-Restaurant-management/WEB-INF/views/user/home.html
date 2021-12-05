@@ -63,7 +63,6 @@
         </div>
     </div>
 </div>
-
 <div class="col-xl-12">
     <!--      Wizard container        -->
     <div class="wizard-container">
@@ -73,14 +72,14 @@
                     <div class="col-lg-6">
                         <h2 class="wizard-category">DANH MỤC</h2>
                         <div id="categoryList" class="category-list">
-<!--                            <button type="button" class="btn btn-primary" onclick="init()">Bia</button>-->
-<!--                            <button type="button" class="btn btn-primary" onclick="init()">Rượu</button>-->
-<!--                            <button type="button" class="btn btn-primary" onclick="init()">Nước ngọt</button>-->
-<!--                            <button type="button" class="btn btn-primary" onclick="init()">Sinh tố</button>-->
-<!--                            <button type="button" class="btn btn-primary" onclick="init()">Cà phê</button>-->
-<!--                            <button type="button" class="btn btn-primary" onclick="init()">Thức uống khác</button>-->
-<!--                            <button type="button" class="btn btn-primary" onclick="init()">Món Châu Âu</button>-->
-<!--                            <button type="button" class="btn btn-primary" onclick="init()">Món Châu Á</button>-->
+                            <!--                            <button type="button" class="btn btn-primary" onclick="init()">Bia</button>-->
+                            <!--                            <button type="button" class="btn btn-primary" onclick="init()">Rượu</button>-->
+                            <!--                            <button type="button" class="btn btn-primary" onclick="init()">Nước ngọt</button>-->
+                            <!--                            <button type="button" class="btn btn-primary" onclick="init()">Sinh tố</button>-->
+                            <!--                            <button type="button" class="btn btn-primary" onclick="init()">Cà phê</button>-->
+                            <!--                            <button type="button" class="btn btn-primary" onclick="init()">Thức uống khác</button>-->
+                            <!--                            <button type="button" class="btn btn-primary" onclick="init()">Món Châu Âu</button>-->
+                            <!--                            <button type="button" class="btn btn-primary" onclick="init()">Món Châu Á</button>-->
                         </div>
                     </div>
                     <div class="wizard-navigation">
@@ -91,113 +90,124 @@
                 </div>
                 <div class="tab-content">
                     <div class="row">
-                        <div class="col-xl-6" id="border-color">
-                            <div class="importProduct">
-                                <h2 id="order_id" hidden></h2>
-                                <div class="row" id="productList">
+<!--                        <div class="col-xl-6" id="border-color">-->
+<!--                            <h2 class="wizard-title" style="color: #00A0D1">Danh sách bàn đang phục vụ</h2>-->
+<!--                            <div class="wizard-navigation" id="desk_add">-->
+<!--                                <ul>-->
+<!--                                    &lt;!&ndash;Hiển thị danh sách bàn đang phụ vụ&ndash;&gt;-->
+<!--                                </ul>-->
+<!--                            </div>-->
+<!--                            <div class="tab-content">-->
+<!--                                <div class="row">-->
+                                    <div class="col-xl-6" style="margin-top: 10px">
+                                        <div class="importProduct">
+                                            <h2 id="order_id" hidden></h2>
+                                            <div class="row" id="productList">
 
-                                    <!-- Hiển thị danh sách sản phẩm-->
-                                </div>
+                                                <!-- Hiển thị danh sách sản phẩm-->
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-6">
+                                        <div class="importDeskInfo">
+                                            <div class="row" id="orderOfDesk">
+                                                <!--Hiển thị chi tiết order detail của bàn-->
+                                            </div>
+                                            <div id="btn_pay">
+                                                <!--Hiển thị nút thanh toán-->
+                                            </div>
+                                        </div>
+                                    </div>
+<!--                                </div>-->
+<!--                            </div>-->
+                        </div>
+                    </div>
+                </div> <!-- wizard container -->
+            </div>
+
+            <!--Modal bill-->
+            <div class="modal fade" id="bill" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle"
+                 aria-hidden="true">
+                <div class="modal-dialog modal-dialog-scrollable" role="document">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <div class="row">
+                                <h1 style="text-align: center">NHÀ HÀNG 4 THÀNH VIÊN</h1>
+                                <h2 style="text-align: center">ĐC: số 1 - Thành Phố Huế</h2>
+                                <h3 style="text-align: center">HOTLINE: 0909900990</h3>
+                                <p>
+                                    -----------------------------------------------------------------------------------------------------</p>
+                                <form class="form-group">
+                                    <input type="number" id="order_id_bill" hidden>
+                                    <label for="customerName">Tên khách</label>
+                                    <input class="form-control" id="customerName" type="text">
+                                    <label for="staffName">Tên NV</label>
+                                    <input class="form-control" id="staffName" type="text">
+                                    <table class="table table-hover">
+                                        <h2 id="desk_name_bill"></h2>
+                                        <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Tên món</th>
+                                            <th>Giá</th>
+                                            <th>Số lượng</th>
+                                            <th>Thành tiền</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody id="product_list_of_bill">
+                                        <!--Hiển thị danh mục món ăn của bàn-->
+                                        </tbody>
+                                        <tfoot id="total_bill">
+                                        </tfoot>
+                                    </table>
+                                </form>
                             </div>
                         </div>
-                        <div class="col-xl-6">
-                            <div class="importDeskInfo">
-                                <div class="row" id="orderOfDesk">
-                                    <!--Hiển thị chi tiết order detail của bàn-->
-                                </div>
-                                <div id="btn_pay">
-                                    <!--Hiển thị nút thanh toán-->
-                                </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--modal-->
+            <div class="modal fade" id="desk_modify_option" tabindex="-1" role="dialog"
+                 aria-labelledby="exampleModalLabel"
+                 aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Thông tin</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="desk_option">
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div> <!-- wizard container -->
-</div>
-
-<!--Modal bill-->
-<div class="modal fade" id="bill" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle"
-     aria-hidden="true">
-    <div class="modal-dialog modal-dialog-scrollable" role="document">
-        <div class="modal-content">
-            <div class="modal-body">
-                <div class="row">
-                    <h1 style="text-align: center">NHÀ HÀNG 4 THÀNH VIÊN</h1>
-                    <h2 style="text-align: center">ĐC: số 1 - Thành Phố Huế</h2>
-                    <h3 style="text-align: center">HOTLINE: 0909900990</h3>
-                    <p>
-                        -----------------------------------------------------------------------------------------------------</p>
-                    <form class="form-group">
-                        <input type="number" id="order_id_bill" hidden>
-                        <label for="customerName">Tên khách</label>
-                        <input class="form-control" id="customerName" type="text">
-                        <label for="staffName">Tên NV</label>
-                        <input class="form-control" id="staffName" type="text">
-                        <table class="table table-hover">
-                            <h2 id="desk_name_bill"></h2>
-                            <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Tên món</th>
-                                <th>Giá</th>
-                                <th>Số lượng</th>
-                                <th>Thành tiền</th>
-                            </tr>
-                            </thead>
-                            <tbody id="product_list_of_bill" style="max-height: 50%; max-width: 100%">
-                            <!--Hiển thị danh mục món ăn của bàn-->
-                            </tbody>
-                            <tfoot id="total_bill">
-                            </tfoot>
-                        </table>
-                    </form>
+        <!--modal edit-->
+        <div class="modal fade" id="desk_modify_edit" tabindex="-1" role="dialog"
+             aria-labelledby="exampleModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="title">Thông tin</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="desk_edit">
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
-<!--modal-->
-<div class="modal fade" id="desk_modify_option" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-     aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Thông tin</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="desk_option">
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!--modal edit-->
-<div class="modal fade" id="desk_modify_edit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-     aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="title">Thông tin</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="desk_edit">
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-
 <script src="/resource/js/home/home.js"></script>
 <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js"></script>
 <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/v4-shims.js"></script>
