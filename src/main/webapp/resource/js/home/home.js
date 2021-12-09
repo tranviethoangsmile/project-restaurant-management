@@ -456,6 +456,7 @@ billNotPrint = function (id){
         changerStatusAfterPayment(billResp.desk_id);
         $("#product_list_of_desk").empty();
         $("#total").empty();
+        $("#order_id").text('');
         $("#desk_name").text('');
         $("#desk_name_bill").text('');
         $.notify("Đã thanh toán", "success");
