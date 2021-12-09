@@ -288,57 +288,6 @@ deleteDesk = function (id) {
 
 }
 
-
-//Nhận thông tin order của bàn
-// getOrderDetailOfDesk = function (id) {
-//     console.log(id);
-//     $("#product_list_of_desk").empty();
-//     $("#total").empty();
-//     $.ajax({
-//         headers: {
-//             'Accept': 'application/json',
-//             'Content-Type': 'application/json'
-//         },
-//         url: "/api/orderdetail/orderdetailofdeskid/" + id,
-//         type: "GET",
-//     }).done(function (orderdetail) {
-//         let total = 0;
-//         let desk_id = 0;
-//         let desk_name = '';
-//         $.each(orderdetail,function (index,item){
-//             total += item.unitPrice;
-//             desk_id = parseInt(item.order.desk.id);
-//             desk_name = item.order.desk.name;
-//             $("#product_list_of_desk").append(
-//                 `
-//                 <tr>
-//                     <td>${index + 1}</td>
-//                     <td>${item.productName}</td>
-//                     <td>${formatNumber(item.productPrice)}</td>
-//                     <td>${item.quantity}</td>
-//                     <td>${formatNumber(item.unitPrice)}</td>
-//                 </tr>
-//                `
-//             );
-//         })
-//         $("#total").append(
-//             `
-//                 <tr>
-//                     <th colspan="4"><b>Tổng: </b></th>
-//                     <th><h2>${formatNumber(total)} vnđ</h2></th>
-//                  </tr>
-//                  <tr>
-//                       <td><button onclick="paymentForm(${desk_id})" class="btn btn-success">Thanh toán</button></td>
-//                  </tr>
-//             `
-//         )
-//         $("#desk_name").text(desk_name)
-//
-//     }).fail(function () {
-//         $.notify("Tải thông tin bàn không thành công", "error");
-//     })
-// }
-
 //test home
 getOrderDetailOfDesk = function (desk_id){
     $.ajax({

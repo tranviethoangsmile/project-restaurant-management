@@ -80,9 +80,6 @@ $("#btn-add").on("click", function () {
                         <i class='fa fa-edit'>Edit</i>
                         </a>
                 
-                        <a href='javascript:;' class='remove btn btn-danger btn-sm' title="delete staff" data-id="${result.id}">
-                        <i class='fa fa-remove'>Delete</i>
-                        </a>
                     </td>
                 </tr>
             `)
@@ -135,10 +132,8 @@ function changeSattus() {
                         </a>
                     
                          <a href='javascript:;' class='edit btn btn-warning btn-sm' title='edit staff' data-id="${result.id}">
-                        <i class='fa fa-edit'>Edit</i>
+                        <i class='fa fa-edit'>Edit</i></a>
                         
-                        <a href='javascript:;' class='remove btn btn-danger btn-sm' title="delete staff" data-id="${result.id}">
-                        <i class='fa fa-remove'>Delete</i>
                     </a>
                 
                     </td>
@@ -211,8 +206,6 @@ function update() {
                         <i class='fa fa-edit'>Edit</i>
                         </a>
                         
-                        <a href='javascript:;' class='remove btn btn-danger btn-sm' title="delete staff" data-id="${result.id}">
-                        <i class='fa fa-remove'>Delete</i>
                     </td>
                 </tr>
             `);
@@ -261,10 +254,8 @@ getAllUser = function () {
                                 </a>
                             
                                 <a href='javascript:;' class='edit btn btn-warning btn-sm' title='edit staff' data-id="${item.id}">
-                                <i class='fa fa-edit'>Edit</i>
+                                <i class='fa fa-edit'>Edit</i></a>
                                 
-                                <a href='javascript:;' class='remove btn btn-danger btn-sm' title="delete staff" data-id="${result.id}">
-                                <i class='fa fa-remove'>Delete</i>
                             </td>
                         </tr>
                     `;
@@ -302,5 +293,5 @@ getUser = function(id) {
 $(document).ready(function () {
     $('#af-preloader').delay(500).fadeOut('slow')
     // init();
-    // getAllUser();
+    getAllUser();
 });

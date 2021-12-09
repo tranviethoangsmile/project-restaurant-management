@@ -33,7 +33,21 @@
 }
 
 #desk_add{
+    display: flex;
     height:50px;
     width: 100%;
     overflow: scroll;
+    background-color: #293d3e80;
+}
+
+.orderDetail_bill{
+    min-height: 350px;
+    max-height: 410px;
+    width: 100%;
+    overflow: scroll;
+    border: 1px solid;
+    color: darkgray;
+}
+.main-slider {
+    background-color: bisque;
 }
