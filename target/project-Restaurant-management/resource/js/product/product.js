@@ -44,8 +44,8 @@ function handleDelete() {
 
                 $.ajax({
                     headers: {
-                        'Accept':'application/json',
-                        'Content-Type':'application/json'
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
                     },
                     url: "/api/product/delete/" + id,
                     type: "GET"
@@ -85,8 +85,8 @@ function handleEdit() {
 
         $.ajax({
             headers: {
-                'Accept':'application/json',
-                'Content-Type':'application/json'
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
             },
             url: "/api/product/" + id,
             type: "GET"
@@ -104,8 +104,7 @@ function handleEdit() {
 
 
 function createProduct() {
-
-    if($("#createProduct").valid()){
+    if ($("#createProduct").valid()) {
         Swal.fire({
             title: 'Bạn muốn lưu lại món ăn này không?',
             showDenyButton: true,
@@ -113,7 +112,7 @@ function createProduct() {
         }).then((result) => {
             if (result.isConfirmed) {
                 category.id = $("#category").val();
-                category.name=$("#category :selected").text();
+                category.name = $("#category :selected").text();
 
                 product.name = $("#name").val();
                 product.price = $("#price").val();
@@ -122,8 +121,8 @@ function createProduct() {
 
                 $.ajax({
                     headers: {
-                        'Accept':'application/json',
-                        'Content-Type':'application/json'
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
                     },
                     url: "/api/product/create",
                     type: "POST",
@@ -138,7 +137,7 @@ function createProduct() {
                             <th scope="row">${resp.id}</th>
                             <td>${resp.name}</td>
                             <td>${resp.price}</td>
-                            <td>${resp.status ? "hết hàng": "còn hàng"}</td>
+                            <td>${resp.status ? "hết hàng" : "còn hàng"}</td>
                             <td>${resp.category.name}</td>
                             <td>
                                 <button type="button" data-toggle="modal" data-target="#updateModal" class="btn btn-outline-primary edit"
@@ -191,8 +190,8 @@ function updateProduct() {
 
     $.ajax({
         headers: {
-            'Accept':'application/json',
-            'Content-Type':'application/json'
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
         },
         url: "/api/product/update",
         type: "POST",
@@ -206,7 +205,7 @@ function updateProduct() {
                         <th scope="row">${resp.id}</th>
                         <td>${resp.name}</td>
                         <td>${resp.price}</td>
-                        <td>${resp.status ? "hết hàng": "còn hàng"}</td>
+                        <td>${resp.status ? "hết hàng" : "còn hàng"}</td>
                         <td>${resp.category.name}</td>
                         <td>
                             <button type="button" data-toggle="modal" data-target="#updateModal" class="btn btn-outline-primary edit"
@@ -224,7 +223,7 @@ function updateProduct() {
                         </td>
                     </tr>
                 `;
-        $("#tr_"+ product.id).replaceWith(str);
+        $("#tr_" + product.id).replaceWith(str);
         $("#updateModal").modal("hide");
 
         handleEdit();
@@ -235,6 +234,7 @@ function updateProduct() {
         alert("ERROR")
     });
 }
+
 function getListProduct() {
     $.ajax({
         url: "/api/product",
@@ -243,8 +243,7 @@ function getListProduct() {
 
         let str = '';
 
-        $.each(resp, function(index, item) {
-
+        $.each(resp, function (index, item) {
 
 
             console.log(item);
@@ -253,7 +252,7 @@ function getListProduct() {
                             <th scope="row">${item.id}</th>
                             <td>${item.name}</td>
                             <td>${item.price}</td>
-                            <td>${resp.status ? "hết hàng": "còn hàng"}</td>
+                            <td>${resp.status ? "hết hàng" : "còn hàng"}</td>
                             <td>${item.category.name}</td>
                             <td>
                                 <button type="button" data-toggle="modal" data-target="#updateModal" class="btn btn-outline-primary edit"
@@ -293,7 +292,7 @@ function getAllCategory() {
 
         let str = '';
 
-        $.each(resp, function(index, item) {
+        $.each(resp, function (index, item) {
             str = `
                         <option value="${item.id}">${item.name}</option>
                     `;
@@ -310,7 +309,7 @@ init = function () {
     getListProduct();
     getAllCategory();
 
-    $("#showModal").on("click",function () {
+    $("#showModal").on("click", function () {
         $("#updateModal").modal("show");
     })
 }
