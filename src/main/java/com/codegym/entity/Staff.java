@@ -1,5 +1,6 @@
 package com.codegym.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,14 +20,14 @@ import java.util.Date;
 @Accessors(chain = true)
 public class Staff {
     @Id
-    @GeneratedValue(generator = "uuid")
-    @GenericGenerator(name = "uuid", strategy = "uuid2")
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @Column(name = "full_name",nullable = false)
     private String fullName;
 
     @Column(nullable = false)
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss Z", timezone = "Asis/Ho_Chi_Minh")
     private Date dob;
 
     @Column(nullable = false)
@@ -35,12 +36,13 @@ public class Staff {
     @Column(nullable = false)
     private String phone;
 
-    private Boolean status = false;
+    @Column(columnDefinition = "boolean default false")
+    private Boolean status;
 
     @Column(columnDefinition = "boolean default false")
     private boolean deleted;
 
     @OneToOne
-    @JoinColumn(name = "user_id", nullable = false)
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
 }

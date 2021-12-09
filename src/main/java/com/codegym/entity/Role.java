@@ -1,12 +1,11 @@
 package com.codegym.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.*;
 import lombok.experimental.Accessors;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 
 @Getter
@@ -24,6 +23,7 @@ public class Role {
     private String code;
     private String name;
 
+    @JsonIgnore
     @OneToMany(targetEntity = User.class, mappedBy = "role", fetch = FetchType.EAGER)
     private Set<User> users;
 }

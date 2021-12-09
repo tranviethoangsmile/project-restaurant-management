@@ -1,4 +1,4 @@
-    class Category {
+class Category {
     constructor(id, name) {
         this.id = id;
         this.name = name;
@@ -67,6 +67,8 @@ function handleDelete() {
 function handleEdit() {
     $("table tbody tr").on("click", ".edit", function () {
         let id = $(this).data("id");
+        $("#updateModal").modal("show");
+
         $.ajax({
             headers: {
                 'Accept':'application/json',
@@ -89,7 +91,7 @@ function create() {
         Swal.fire({
             title: 'Bạn muốn lưu lại Danh Mục này không?',
             showDenyButton: true,
-            confirmButtonText: 'Có',
+            confirmButtonText: 'Yes',
             cancelButtonText: 'Huỷ'
         }).then((result) => {
             if (result.isConfirmed) {
@@ -126,7 +128,6 @@ function create() {
                                     Xoá
                                 </button>
                             </td>
-
                         </tr>
                 `;
 
@@ -186,7 +187,7 @@ function update() {
                     </tr>
                 `;
         $("#tr_"+ category.id).replaceWith(str);
-
+        $("#updateModal").modal("hide");
 
         handleEdit();
 
@@ -239,6 +240,11 @@ function getAllCategory() {
 
 init = function () {
     getAllCategory();
+
+    $("#updateModal").on("hidden.bs.modal", function () {
+        $(".modal-backdrop.show").removeClass("show");
+    });
+
 }
 
 <!--    template-->

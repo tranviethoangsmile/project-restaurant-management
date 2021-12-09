@@ -231,6 +231,74 @@ getAllProductOfCategory = function (id) {
     })
 }
 
+function downloadPDFWithPDFMake() {
+    var id = $("#id").text();
+    var time = $("#time").text();
+
+    var tableHeaderText = [...document.querySelectorAll('#styledTable thead tr th')].map(thElement => ({ text: thElement.textContent, style: 'tableHeader' }));
+
+    var tableRowCells = [...document.querySelectorAll('#styledTable tbody tr td')].map(tdElement => ({ text: tdElement.textContent, style: 'tableData' }));
+    var tableDataAsRows = tableRowCells.reduce((rows, cellData, index) => {
+        if (index % 5 === 0) {
+            rows.push([]);
+        }
+
+        rows[rows.length - 1].push(cellData);
+        return rows;
+    }, []);
+
+    var docDefinition = {
+        header:[ { text: 'PI MẬP', alignment: 'center' },
+            { text: '225 tang bat ho, thanh pho hue', italics: true, fontSize: 10,  alignment: "center"},
+        ],
 
 
+        // footer: function(currentPage, pageCount) { return ({ text: `Page ${currentPage} of ${pageCount}`, alignment: 'center' }); },
+        content: [
+            { text: id, italics: true, fontSize: 10,  alignment: "life"},
+            { text: time, italics: true, fontSize: 10,  alignment: "life"},
+
+
+            {
+                style: 'tableExample',
+                table: {
+                    headerRows: 1,
+                    body: [
+                        tableHeaderText,
+                        ...tableDataAsRows,
+                    ]
+                },
+                layout: {
+                    fillColor: function(rowIndex) {
+                        if (rowIndex === 0) {
+                            return '#f2f2f2';
+                        }
+                        return (rowIndex % 2 === 0) ? '#f2f2f2' : null;
+                    }
+                },
+            },
+        ],
+        styles: {
+            tableExample: {
+                margin: [0, 20, 0, 80],
+            },
+            tableHeader: {
+                margin: 12,
+                color: 'black',
+            },
+            tableData: {
+                margin: 12,
+            },
+        },
+    };
+    pdfMake.createPdf(docDefinition).download('MLB World Series Winners');
+    pdfMake.createPdf(docDefinition).open();
+
+}
+
+// document.querySelector('#pdfmake').addEventListener('click', downloadPDFWithPDFMake);
+
+$("#pdfmake").on("click", function () {
+    downloadPDFWithPDFMake();
+})
 

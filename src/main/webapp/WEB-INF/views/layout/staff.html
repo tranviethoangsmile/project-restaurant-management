@@ -15,6 +15,7 @@
 <!--    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+<!--    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">-->
 </head>
 <body>
 <!--preloader-->
@@ -87,82 +88,10 @@
                 <label class="form-label">Điện thoại</label>
                 <input type="tel" class="form-control" id="phone">
             </div>
-            <div class="col-md-2">
-                <label class="form-label">Ngày</label>
-                <select class="form-select" id="day" name="selectDay" aria-label="Default select example">
-<!--                    <option selected>Chọn ngày</option>-->
-                    <option value="01">01</option>
-                    <option value="02">02</option>
-                    <option value="03">03</option>
-                    <option value="04">04</option>
-                    <option value="05">05</option>
-                    <option value="06">06</option>
-                    <option value="07">07</option>
-                    <option value="08">08</option>
-                    <option value="09">09</option>
-                    <option value="10">10</option>
-                    <option value="11">11</option>
-                    <option value="12">12</option>
-                    <option value="13">13</option>
-                    <option value="14">14</option>
-                    <option value="15">15</option>
-                    <option value="16">16</option>
-                    <option value="17">17</option>
-                    <option value="18">18</option>
-                    <option value="19">19</option>
-                    <option value="20">20</option>
-                    <option value="21">21</option>
-                    <option value="22">22</option>
-                    <option value="23">23</option>
-                    <option value="24">24</option>
-                    <option value="25">25</option>
-                    <option value="26">26</option>
-                    <option value="27">27</option>
-                    <option value="28">28</option>
-                    <option value="29">29</option>
-                    <option value="30">30</option>
-                    <option value="31">31</option>
-                </select>
-            </div>
-            <div class="col-md-2">
-                <label class="form-label">Tháng</label>
-                <select class="form-select" id="month" name="selectMonth" aria-label="Default select example">
-<!--                    <option selected>Chọn tháng</option>-->
-                    <option value="01">01</option>
-                    <option value="02">02</option>
-                    <option value="03">03</option>
-                    <option value="04">04</option>
-                    <option value="05">05</option>
-                    <option value="06">06</option>
-                    <option value="07">07</option>
-                    <option value="08">08</option>
-                    <option value="09">09</option>
-                    <option value="10">10</option>
-                    <option value="11">11</option>
-                    <option value="12">12</option>
-                </select>
-            </div>
-            <div class="col-md-2">
-                <label class="form-label">Năm</label>
-                <select class="form-select" id="year" name="selectYear" aria-label="Default select example">
-<!--                    <option selected>Chọn năm</option>-->
-                    <option value="2006">2006</option>
-                    <option value="2005">2005</option>
-                    <option value="2004">2004</option>
-                    <option value="2003">2003</option>
-                    <option value="2002">2002</option>
-                    <option value="2001">2001</option>
-                    <option value="2000">2000</option>
-                    <option value="1999">1999</option>
-                    <option value="1998">1998</option>
-                    <option value="1997">1997</option>
-                    <option value="1996">1996</option>
-                    <option value="1995">1995</option>
-                    <option value="1994">1994</option>
-                    <option value="1993">1993</option>
-                    <option value="1992">1992</option>
-                    <option value="1991">1991</option>
-                </select>
+            <div class="col-md-6">
+                <label class="form-label">Ngày sinh</label>
+                <input type="date" name="dob" id="dob" class="form-control" data-rule-required="true"
+                       data-msg-required="Dob is required">
             </div>
         </form>
         <div class="col-12">
@@ -224,82 +153,10 @@
                             <label class="form-label">Điện thoại</label>
                             <input type="tel" class="form-control" id="phoneUp">
                         </div>
-                        <div class="col-md-2">
-                            <label class="form-label">Ngày</label>
-                            <select class="form-select" id="dayUp" name="selectDayEdit" aria-label="Default select example">
-                                <!--                    <option selected>Chọn ngày</option>-->
-                                <option value="01">01</option>
-                                <option value="02">02</option>
-                                <option value="03">03</option>
-                                <option value="04">04</option>
-                                <option value="05">05</option>
-                                <option value="06">06</option>
-                                <option value="07">07</option>
-                                <option value="08">08</option>
-                                <option value="09">09</option>
-                                <option value="10">10</option>
-                                <option value="11">11</option>
-                                <option value="12">12</option>
-                                <option value="13">13</option>
-                                <option value="14">14</option>
-                                <option value="15">15</option>
-                                <option value="16">16</option>
-                                <option value="17">17</option>
-                                <option value="18">18</option>
-                                <option value="19">19</option>
-                                <option value="20">20</option>
-                                <option value="21">21</option>
-                                <option value="22">22</option>
-                                <option value="23">23</option>
-                                <option value="24">24</option>
-                                <option value="25">25</option>
-                                <option value="26">26</option>
-                                <option value="27">27</option>
-                                <option value="28">28</option>
-                                <option value="29">29</option>
-                                <option value="30">30</option>
-                                <option value="31">31</option>
-                            </select>
-                        </div>
-                        <div class="col-md-2">
-                            <label class="form-label">Tháng</label>
-                            <select class="form-select" id="monthUp" name="selectMonthEdit" aria-label="Default select example">
-                                <!--                    <option selected>Chọn tháng</option>-->
-                                <option value="01">01</option>
-                                <option value="02">02</option>
-                                <option value="03">03</option>
-                                <option value="04">04</option>
-                                <option value="05">05</option>
-                                <option value="06">06</option>
-                                <option value="07">07</option>
-                                <option value="08">08</option>
-                                <option value="09">09</option>
-                                <option value="10">10</option>
-                                <option value="11">11</option>
-                                <option value="12">12</option>
-                            </select>
-                        </div>
-                        <div class="col-md-2">
-                            <label class="form-label">Năm</label>
-                            <select class="form-select" id="yearUp" name="selectYearEdit" aria-label="Default select example">
-                                <!--                    <option selected>Chọn năm</option>-->
-                                <option value="2006">2006</option>
-                                <option value="2005">2005</option>
-                                <option value="2004">2004</option>
-                                <option value="2003">2003</option>
-                                <option value="2002">2002</option>
-                                <option value="2001">2001</option>
-                                <option value="2000">2000</option>
-                                <option value="1999">1999</option>
-                                <option value="1998">1998</option>
-                                <option value="1997">1997</option>
-                                <option value="1996">1996</option>
-                                <option value="1995">1995</option>
-                                <option value="1994">1994</option>
-                                <option value="1993">1993</option>
-                                <option value="1992">1992</option>
-                                <option value="1991">1991</option>
-                            </select>
+                        <div class="col-md-6">
+                            <label class="form-label">Ngày sinh</label>
+                            <input type="date" name="dob" id="dobUp" class="form-control" data-rule-required="true"
+                                   data-msg-required="Dob is required">
                         </div>
                     </div>
                 </form>
@@ -331,13 +188,12 @@
 </section>
 
 <script src="/resource/js/staff/staff.js"></script>
-
-<script src="/resource/js/home/home.js"></script>
 <!-- main jQuery -->
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="/resource/assets/js/jquery.js"></script>
 <!--<script src="/resource/assets/html5lightbox/html5lightbox.js"></script>-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
 <!-- html5lightbox js -->
 <script src="/resource/assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
 <!--Color Switcher-->

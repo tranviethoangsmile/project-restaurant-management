@@ -29,49 +29,37 @@
     </div>
 </div>
 
-    <!--    Start mainmenu area-->
-    <section class="mainmenu-area stricky">
-        <div class="container">
-            <div class="row">
-                <div class="col-xl-12">
-                    <div class="inner-content clearfix">
-                        <nav class="main-menu style1 clearfix">
-                            <div class="navbar-header clearfix">
-                                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                                    <span class="icon-bar"></span>
-                                    <span class="icon-bar"></span>
-                                    <span class="icon-bar"></span>
-                                </button>
-                            </div>
-                            <div class="navbar-collapse collapse clearfix">
-                                <ul class="navigation clearfix">
-                                    <li><a href="/home">Trang Chủ</a></li>
-                                    <li><a href="/staff">Nhân Viên</a></li>
-                                    <li><a href="/category">Danh Mục</a></li>
-                                    <li><a href="/product">Món ăn</a></li>
-                                    <li><a href="/desk">Bàn Phục vụ</a></li>
-                                    <li><a href="/logout">Thoát</a></li>
-                                </ul>
-                            </div>
-                        </nav>
-
-<!--                        <div class="mainmenu-right">-->
-<!--                            <div class="toggler-button">-->
-<!--                                <div class="nav-toggler hidden-bar-opener">-->
-<!--                                    <div class="inner">-->
-<!--                                        <span></span>-->
-<!--                                        <span></span>-->
-<!--                                        <span></span>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-                    </div>
+<!--    Start mainmenu area-->
+<section class="mainmenu-area stricky">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="inner-content clearfix">
+                    <nav class="main-menu style1 clearfix">
+                        <div class="navbar-header clearfix">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                        </div>
+                        <div class="navbar-collapse collapse clearfix">
+                            <ul class="navigation clearfix">
+                                <li><a href="/home">Trang Chủ</a></li>
+                                <li><a href="/staff">Nhân Viên</a></li>
+                                <li><a href="/category">Danh Mục</a></li>
+                                <li><a href="/product">Món ăn</a></li>
+                                <li><a href="/desk">Bàn Phục vụ</a></li>
+                                <li><a href="/logout">Thoát</a></li>
+                            </ul>
+                        </div>
+                    </nav>
                 </div>
             </div>
         </div>
-    </section>
-    <!--End mainmenu area-->
+    </div>
+</section>
+<!--End mainmenu area-->
 <section class="main-slider">
     <div class="container">
         <div class="row">
@@ -81,17 +69,17 @@
             <div style="margin-top: 30px" class="col-xl-6">
                 <table id="list-bill-show" class="table table-hover">
                     <thead>
-                        <tr>
-                            <th>#</th>
+                    <tr>
+                        <th>#</th>
                         <!--<th>Nhân viên</th>-->
-                            <th>Thời gian</th>
-                            <th>Khách hàng</th>
-                            <th>Tổng Tiền</th>
-                            <th>Chi tiết</th>
-                        </tr>
+                        <th>Thời gian</th>
+                        <th>Khách hàng</th>
+                        <th>Tổng Tiền</th>
+                        <th>Chi tiết</th>
+                    </tr>
                     </thead>
                     <tbody id="list-bill">
-                <!--hiển thị danh sách bill-->
+                    <!--hiển thị danh sách bill-->
                     </tbody>
                 </table>
             </div>
@@ -117,19 +105,56 @@
                             </tr>
                             </thead>
                         </table>
-                            <div id="allProduct">
-                                <table class="table table-hover">
-                                    <tbody id="listProduct">
-
-                                            <!--DANH SÁCH SẢN PHẨM-->
-
-                                    </tbody>
-                                </table>
-                            </div>
+                        <div id="allProduct">
+                            <table class="table table-hover">
+                                <tbody id="listProduct">
+                                <!--DANH SÁCH SẢN PHẨM-->
+                                </tbody>
+                            </table>
+                        </div>
                     </div> <!-- end card body-->
                 </div> <!-- end card -->
             </div><!-- end col-->
         </div> <!-- row -->
+        <div class="row">
+            <div class="col-xl-12">
+                <table id="styledTable1">
+                    <caption>PI MẬP</caption>
+
+                    <h2 > Hóa đơn thanh toán</h2>
+                    <h4 id="id1"> bàn 1</h4>
+                    <h4 id="time1">  12/6/2021, 9:10:02 AM</h4>
+
+                    <thead>
+                    <tr class="colhead">
+                        <th>SEASON</th>
+                        <th>WINNER</th>
+                        <th>LOSER</th>
+                        <th>SERIES</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="oddrow">
+                        <td>2018</td>
+                        <td>Boston Red Sox</td>
+                        <td>Los Angeles Dodgers</td>
+                        <td>4-1</td>
+                    </tr>
+                    <tr class="evenrow">
+                        <td>2017</td>
+                        <td>Houston Astros</td>
+                        <td>Los Angeles Dodgers</td>
+                        <td>4-3</td>
+                    </tr>
+
+                    </tbody>
+                    <button class="btn" id="pdfmake1">Export PDF with pdfmake</button>
+                    <tfoot>
+
+                    </tfoot>
+                </table>
+            </div>
+        </div>
     </div> <!--  big container -->
 </section>
 
@@ -141,46 +166,41 @@
                 <h5 class="modal-title" id="exampleModalLongTitle">Chi tiết hoá đơn</h5>
             </div>
             <div class="modal-body">
-                <table class="table table-hover">
+                <table id="styledTable" class="table table-hover">
+                    <caption>PI MẬP</caption>
+
+                    <h2 > Hóa đơn thanh toán</h2>
+                    <h4 id="id"> bàn 1</h4>
+                    <h4 id="time">  12/6/2021, 9:10:02 AM</h4>
+
                     <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Tên Món</th>
-                            <th>Giá</th>
-                            <th>Số lượng</th>
-                            <th>Đơn giá</th>
-                        </tr>
+                    <tr>
+                        <th>#</th>
+                        <th>Tên Món</th>
+                        <th>Giá</th>
+                        <th>Số lượng</th>
+                        <th>Đơn giá</th>
+                    </tr>
                     </thead>
+
                     <tbody id="bill-list-detail">
-                        <!--Hiển thị chi tiết bill-->
+                    <!--Hiển thị chi tiết bill-->
                     </tbody>
                 </table>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" disabled>In Hoá Đơn</button>
+                <button type="button" class="btn btn-primary" id="pdfmake" >In Hoá Đơn</button>
             </div>
         </div>
     </div>
 </div>
-
-
-<!-- Hidden Navigation Bar -->
-<section class="hidden-bar right-align">
-    <div class="hidden-bar-closer">
-        <button><span class="flaticon-remove"></span></button>
-    </div>
-    <div class="hidden-bar-wrapper">
-        <div class="contact-info-box">
-            <h2>Báo cáo</h2>
-        </div>
-        <div class="newsletter-form-box">
-
-        </div>
-        <div class="copy-right-text">
-        </div>
-    </div>
-</section>
 <script src="/resource/js/adminPage/admin.js"></script>
+<!--<script src="/resource/js/pdfmake.0.1.68.min.js"></script>-->
+<!--<script src="/resource/js/pdfmake.vfs_fonts.0.1.68.min.js"></script>-->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.4/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.4/vfs_fonts.js"></script>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.js"></script>
 <!--datatable-->
 <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>

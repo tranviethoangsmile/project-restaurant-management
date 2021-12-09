@@ -104,12 +104,12 @@ function handleEdit() {
 
 
 function createProduct() {
-
     if($("#createProduct").valid()){
         Swal.fire({
             title: 'Bạn muốn lưu lại món ăn này không?',
             showDenyButton: true,
             confirmButtonText: 'Yes',
+            cancelButtonText: 'Huỷ'
         }).then((result) => {
             if (result.isConfirmed) {
                 category.id = $("#category").val();
@@ -130,7 +130,8 @@ function createProduct() {
                     data: JSON.stringify(product)
 
                 }).done(function (resp) {
-
+                    $("#name").val('');
+                    $("#price").val('');
                     let str = '';
 
                     str = `

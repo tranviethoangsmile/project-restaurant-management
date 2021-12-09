@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="JavaScriptLibraryMappings">
+<<<<<<< HEAD
     <file url="file://$PROJECT_DIR$" libraries="{jquery.validate}" />
+=======
+    <file url="file://$PROJECT_DIR$" libraries="{Chart.js, all, font-awesome, jquery-2.1.0, moment.js, v4-shims}" />
+>>>>>>> 0e52983bfa0f66b1d333352eb92475f0d0fa40b0
   </component>
 </project>
