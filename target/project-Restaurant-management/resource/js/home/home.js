@@ -20,7 +20,7 @@ getAllDeskForOption = function () {
         type: "GET",
     }).done(function (data) {
         $(".desk-list .row").empty();
-        $(".wizard-navigation ul").empty();
+        $(".wizard-navigation").empty();
         $.each(data, function (index, item) {
             if (!item.status) {
                 $(".desk-list .row").append(
@@ -37,11 +37,11 @@ getAllDeskForOption = function () {
                 )
             }
             if(item.status) {
-                $(".wizard-navigation ul").append(
+                $(".wizard-navigation").append(
                     `
-                    <li>
-                    <a data-toggle = "tab" onclick = "getOrderByDeskId(${item.id})" style=" margin: 10px" class="btn btn-success">${item.name}</a>
-                    </li>
+                        <div class="col-xl-2">
+                            <a data-toggle = "tab" onclick = "getOrderByDeskId(${item.id})" style=" margin: 10px" class="btn btn-success">${item.name}</a>
+                        </div>
                     `
                 )
             }
@@ -247,22 +247,20 @@ getProductAll = function () {
         type: "GET"
     }).done(function (productList) {
         $.each(productList, function (index, product) {
-            if(!product.status){
+            console.log(product.status);
                 $(".importProduct .row").append(
                     ` 
-                    <div class="col-xl-3"  style="max-height: 50%; max-width: 100%">
+                    <div class="col-xl-3"  style="max-height: 50%; max-width: 50%">
                       <img style="max-width: 25%; max-height: 25%" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGDhB8EB8QKSKyTZUv2xDV203sj1aTL8VZjw&usqp=CAU">
                       <h2 id="product-name${product.id}">${product.name}</h2>
                       <h3 id="product-price${product.id}">${product.price}</h3>                   
-                      <span><button type="button" class="btn btn-success" onclick="addProducetoOrderDetail(${product.id})"><i class="fas fa-plus"></i>Thêm</button></span>
+                      <span><button type="button" class="btn btn-success" onclick="addProducetoOrderDetail(${product.id})" ${product.status ? 'disabled': ''} ><i class="fas fa-plus"></i>${product.status ? '<b style="color: red">Hết hàng</b>': 'Thêm'}</button></span>
                     </div>         
                 `
                 )
-            }
-
         })
     }).fail(function () {
-        $.notify("Không tải được product","error")
+        $.notify("Không tải được sản phẩm","error")
     });
 }
 
@@ -327,7 +325,6 @@ getOrderByDeskId = function (id) {
                 </div>   
             `
         )
-        // getProductAll();
     }).fail(function (){
         $.notify("order fail","error")
     })
@@ -380,7 +377,6 @@ getOrderDetailOfDesk = function (desk_id){
         $.notify("Tải thông tin bàn không thành công", "error");
     })
 }
-
 paymentForm = function (id) {
     $("#product_list_of_bill").empty();
     $("#total_bill").empty();
@@ -501,7 +497,7 @@ function getAllCategories() {
         let str = ``
         $.each(resp, (index, item) => {
             str += `
-            <button type="button" class="btn btn-primary" data-id="${item.id}">${item.name}</button>
+            <button type="button" class="btn btn-success" data-id="${item.id}">${item.name}</button>
         `;
         })
 
@@ -532,7 +528,7 @@ function handleCategoryItem() {
                       <img style="max-width: 25%; max-height: 25%"  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGDhB8EB8QKSKyTZUv2xDV203sj1aTL8VZjw&usqp=CAU">
                       <h2 id="product-name${product.id}">${product.name}</h2>
                       <h3 id="product-price${product.id}">${product.price}</h3>
-                      <span><button type="button" class="btn btn-success" onclick="addProducetoOrderDetail(${product.id})"><i class="fas fa-plus"></i>Thêm</button></span>
+                      <span><button type="button" class="btn btn-success" onclick="addProducetoOrderDetail(${product.id})" ${product.status ? 'disabled': ''} ><i class="fas fa-plus"></i>${product.status ? '<b style="color: red">Hết hàng</b>': 'Thêm'}</button></span>
                     </div>
                 `
                 )

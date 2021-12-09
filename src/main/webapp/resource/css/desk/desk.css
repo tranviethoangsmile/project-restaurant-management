@@ -22,18 +22,51 @@
 @keyframes spWaveBe{from{-webkit-transform:scale(1,1);opacity:1}to{-webkit-transform:scale(1.5,1.5);opacity:0}}
 
 #allProductOfDesk{
-    height: 300px;
+    height: 230px;
     width: 100%;
     overflow: scroll;
 }
 .desk-list{
-    height:100px;
+    height: 150px;
+    font-size: inherit;
+    border: 1px dashed;
+    background-color: darkgray;
     width: 100%;
     overflow: scroll;
 }
 
 #desk_add{
+    display: flex;
     height:80px;
     width: 100%;
     overflow: scroll;
+    background-color: #293d3e80;
+}
+
+.orderDetail_bill{
+    min-height: 350px;
+    max-height: 410px;
+    width: 100%;
+    overflow: scroll;
+    border: 1px solid;
+    color: darkgray;
+}
+.main-slider {
+    background-color: bisque;
+}
+
+.wizard-title {
+    color: #00A0D1;
+    position: relative;
+    left: 300px;
+}
+
+.wizard-card .wizard-title {
+    margin: 0;
+    position: relative;
+    left: 30px;
+}
+
+.card {
+    width: 1095px;
 }
