@@ -22,7 +22,7 @@ public class StaffDTO {
     private String address;
     private String phone;
     private Date dob;
-    private boolean status;
+    private boolean status = false;
 
     private Role role;
 
@@ -40,7 +40,8 @@ public class StaffDTO {
                 .setFullName(fullName)
                 .setAddress(address)
                 .setPhone(phone)
-                .setDob(dob);
+                .setDob(dob)
+                .setStatus(status);
     }
 
 }

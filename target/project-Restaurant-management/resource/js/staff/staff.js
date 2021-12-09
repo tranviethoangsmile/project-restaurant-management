@@ -73,12 +73,12 @@ $("#btn-add").on("click", function () {
                     <td>
                         <a href='javascript:;' class='btn change-status ${result.status ? 'btn-success' : 'btn-secondary'} btn-sm'
                             title='${result.status ? 'inactive' : 'active'} employee' data-id="${result.id}">
-                        <i class='fa ${result.status ? 'fa-lock' : 'fa-lock-open'} status' >Change</i>
+                        <i class='fa ${result.status ? 'fa-lock' : 'fa-lock-open'}'>Change</i>
                         </a>
                     
-                         <a href='javascript:;' class='edit btn btn-warning btn-sm' title='edit student' data-id="${result.id}">
+                         <a href='javascript:;' class='edit btn btn-warning btn-sm' title='edit staff' data-id="${result.id}">
                         <i class='fa fa-edit'>Edit</i>
-                    </a>
+                        </a>
                 
                     </td>
                 </tr>
@@ -128,11 +128,12 @@ function changeSattus() {
                     <td>
                         <a href='javascript:;' class='btn change-status ${result.status ? 'btn-success' : 'btn-secondary'} btn-sm'
                             title='${result.status ? 'inactive' : 'active'} employee' data-id="${result.id}">
-                        <i class='fa ${result.status ? 'fa-lock' : 'fa-lock-open'} ' >Change</i>
+                        <i class='fa ${result.status ? 'fa-lock' : 'fa-lock-open'}'>Change</i>
                         </a>
                     
-                         <a href='javascript:;' class='edit btn btn-warning btn-sm' title='edit student' data-id="${result.id}">
-                        <i class='fa fa-edit'>Edit</i>
+                         <a href='javascript:;' class='edit btn btn-warning btn-sm' title='edit staff' data-id="${result.id}">
+                        <i class='fa fa-edit'>Edit</i></a>
+                        
                     </a>
                 
                     </td>
@@ -201,10 +202,10 @@ function update() {
                         <i class='fa ${result.status ? 'fa-lock' : 'fa-lock-open'}'>Change</i>
                         </a>
                     
-                         <a href='javascript:;' class='edit btn btn-warning btn-sm' title='edit student' data-id="${result.id}" data-bs-toggle="modal" data-bs-target="#addUserModal">
+                         <a href='javascript:;' class='edit btn btn-warning btn-sm' title='edit staff' data-id="${result.id}" data-bs-toggle="modal" data-bs-target="#addUserModal">
                         <i class='fa fa-edit'>Edit</i>
                         </a>
-                    
+                        
                     </td>
                 </tr>
             `);
@@ -247,13 +248,14 @@ getAllUser = function () {
                                 
                             </td>
                             <td>
-                                <a href='javascript:;' class='btn change-status ${item.status ? 'btn-warning' : 'btn-secondary'} btn-sm'
+                                <a href='javascript:;' class='btn change-status ${item.status ? 'btn-success' : 'btn-secondary'} btn-sm'
                                     title='${item.status ? 'inactive' : 'active'} employee' data-id="${item.id}">
                                 <i class='fa ${item.status ? 'fa-lock' : 'fa-lock-open'} '>Change</i>
                                 </a>
                             
-                              <a href='javascript:;' class='edit btn btn-warning btn-sm' title='edit student' data-id="${item.id}">
-                                <i class='fa fa-edit'>Edit</i>
+                                <a href='javascript:;' class='edit btn btn-warning btn-sm' title='edit staff' data-id="${item.id}">
+                                <i class='fa fa-edit'>Edit</i></a>
+                                
                             </td>
                         </tr>
                     `;

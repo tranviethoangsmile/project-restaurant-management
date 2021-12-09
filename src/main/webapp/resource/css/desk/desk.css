@@ -22,7 +22,32 @@
 @keyframes spWaveBe{from{-webkit-transform:scale(1,1);opacity:1}to{-webkit-transform:scale(1.5,1.5);opacity:0}}
 
 #allProductOfDesk{
-    height: 350px;
+    height: 300px;
     width: 100%;
     overflow: scroll;
+}
+.desk-list{
+    height:100px;
+    width: 100%;
+    overflow: scroll;
+}
+
+#desk_add{
+    display: flex;
+    height:50px;
+    width: 100%;
+    overflow: scroll;
+    background-color: #293d3e80;
+}
+
+.orderDetail_bill{
+    min-height: 350px;
+    max-height: 410px;
+    width: 100%;
+    overflow: scroll;
+    border: 1px solid;
+    color: darkgray;
+}
+.main-slider {
+    background-color: bisque;
 }
