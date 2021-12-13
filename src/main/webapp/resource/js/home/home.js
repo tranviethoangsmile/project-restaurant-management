@@ -67,9 +67,8 @@ deskModify = function (id) {
             `
                     <div class="row" style="margin-left: 10px">
                             <h2>${deskResp.name}</h2>
-                            <button onclick="changerStatus(${deskResp.id})" style="width: 75px; text-align: center" title="Thay đổi trạng thái"  class="btn btn-primary"><i class="fa fa-exchange-alt"></i></button>
-                            <button onclick="editDeskInfo(${deskResp.id})" style="width: 75px" class="btn btn-success" title="Sửa thông tin bàn"><i class="fa fa-edit"></i></button>
-                            <button onclick="deleteDesk(${deskResp.id})" style="width: 75px" title="Xoá bàn" class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                            <button onclick="changerStatus(${deskResp.id})" style="width: 75px; text-align: center" title="Thay đổi trạng thái"  class="btn btn-primary">Mở Bàn</button>
+                           
                     </div>
                 `
         )
@@ -418,7 +417,7 @@ paymentForm = function (id) {
                     <th><input type="text" id="total_bill_pay" value="${total}" readonly hidden> ${formatNumber(total)} vnđ</th>
                  </tr>
                  <tr>
-                      <td style="text-align: right; margin-right: 30px" colspan="4"><button type="button" onclick="billPrint()" class="btn btn-success" disabled>In Hoá Đơn</button></td>
+                      <td style="text-align: right; margin-right: 30px" colspan="4"><button type="button" onclick="billPrint()" class="btn btn-success">In Hoá Đơn</button></td>
                       <td style="text-align: right; margin-right: 30px" colspan="4"><button type="button" onclick="billNotPrint(${desk_id})" class="btn btn-success">Không in hoá đơn</button></td>
                  </tr>
             `
@@ -429,6 +428,12 @@ paymentForm = function (id) {
     }).fail(function () {
         $.notify("Tải thông tin bàn không thành công", "error");
     })
+}
+
+//thanh toán in hoá đơn
+billPrint = function (){
+
+
 }
 
 // Thanh toán không in hoá đơn
@@ -459,6 +464,7 @@ billNotPrint = function (id){
         $("#order_id").text('');
         $("#desk_name").text('');
         $("#desk_name_bill").text('');
+        $("#btn_pay").empty();
         $.notify("Đã thanh toán", "success");
     }).fail(function (){
         $.notify("Thanh toán lỗi", "error");
