@@ -231,6 +231,7 @@ getAllProductOfCategory = function (id) {
     })
 }
 
+
 function downloadPDFWithPDFMake() {
     var id = $("#id").text();
     var time = $("#time").text();
@@ -239,6 +240,7 @@ function downloadPDFWithPDFMake() {
 
     var tableRowCells = [...document.querySelectorAll('#styledTable tbody tr td')].map(tdElement => ({ text: tdElement.textContent, style: 'tableData' }));
     var tableDataAsRows = tableRowCells.reduce((rows, cellData, index) => {
+        // index is th
         if (index % 5 === 0) {
             rows.push([]);
         }
@@ -260,7 +262,7 @@ function downloadPDFWithPDFMake() {
 
 
             {
-                style: 'tableExample',
+                layout: 'lightHorizontalLines',
                 table: {
                     headerRows: 1,
                     body: [
@@ -268,30 +270,11 @@ function downloadPDFWithPDFMake() {
                         ...tableDataAsRows,
                     ]
                 },
-                layout: {
-                    fillColor: function(rowIndex) {
-                        if (rowIndex === 0) {
-                            return '#f2f2f2';
-                        }
-                        return (rowIndex % 2 === 0) ? '#f2f2f2' : null;
-                    }
-                },
             },
         ],
-        styles: {
-            tableExample: {
-                margin: [0, 20, 0, 80],
-            },
-            tableHeader: {
-                margin: 12,
-                color: 'black',
-            },
-            tableData: {
-                margin: 12,
-            },
-        },
+
     };
-    pdfMake.createPdf(docDefinition).download('MLB World Series Winners');
+    // pdfMake.createPdf(docDefinition).download('MLB World Series Winners');
     pdfMake.createPdf(docDefinition).open();
 
 }
@@ -301,4 +284,3 @@ function downloadPDFWithPDFMake() {
 $("#pdfmake").on("click", function () {
     downloadPDFWithPDFMake();
 })
-
