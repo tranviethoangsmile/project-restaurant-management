@@ -130,7 +130,7 @@ function create() {
                         </tr>
                 `;
 
-                    $("#tbList").prepend(str);
+                    $("#tbList").append(str);
 
 
                     handleEdit();
@@ -226,7 +226,7 @@ function getAllCategory() {
                         </td>
                     </tr>
                 `;
-            $("#tbList").prepend(str);
+            $("#tbList").append(str);
         })
 
         handleEdit();
