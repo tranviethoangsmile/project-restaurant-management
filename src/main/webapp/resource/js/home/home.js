@@ -274,7 +274,6 @@ addProducetoOrderDetail = function (id) {
         unitPrice: price,
         quantity : 1
     }
-    // console.log(orderDetailDTO);
     $.ajax({
         headers: {
             'Accept': 'application/json',
@@ -284,10 +283,8 @@ addProducetoOrderDetail = function (id) {
         type: "POST",
         data: JSON.stringify(orderDetailDTO)
     }).done (function (orderDetailResp){
-        // console.log(orderDetailResp);
         getOrderDetailOfDesk(orderDetailResp.order.desk.id);
         $.notify("Gọi món thành công","success")
-        // console.log(orderDetailResp);
     }).fail(function (){
         $.notify("Bạn chưa chọn Bàn","error")
     })

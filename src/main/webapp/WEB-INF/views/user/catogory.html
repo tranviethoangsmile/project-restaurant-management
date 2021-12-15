@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <th:block th:include="/layout/head"/>
+</head>
+<body>
+<!--preloader-->
+<div id='af-preloader'>
+    <div class='af-preloader-wrap'>
+        <div class='af-sp af-sp-wave'></div>
+    </div>
+</div>
+
+<div class="boxed_wrapper">
+    <!--    Start mainmenu area-->
+    <section class="mainmenu-area stricky">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="inner-content clearfix">
+                        <nav class="main-menu style1 clearfix">
+                            <div class="navbar-header clearfix">
+                                <button type="button" class="navbar-toggle" data-toggle="collapse"
+                                        data-target=".navbar-collapse">
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                </button>
+                            </div>
+                            <div class="navbar-collapse collapse clearfix">
+                                <ul class="navigation clearfix">
+                                    <li>
+                                        <a href="/admin">Quản Lý</a>
+                                    </li>
+                                    <li>
+                                        <a href="/desk">Bàn Phục Vụ</a>
+                                    </li>
+                                    <li>
+                                        <a href="/staff">Nhân Viên</a>
+                                    </li>
+                                    <li>
+                                        <a href="/product">Món Ăn</a>
+                                    </li>
+                                    <li>
+                                        <a href="/logout">Thoát</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+
+            </div>
+            <div class="content">
+                <header>
+                    <form id="createCategory">
+                        <div class="form-group row">
+                            <div class="col-4">
+                                <label for="Name">Tên</label>
+                                <input type="text" class="form-control" id="name" data-rule-required="true"
+                                       data-msg-required="Không được bỏ trống">
+                            </div>
+                        </div>
+                        <button type="button" id="btnCreate" class="btn btn-primary">Tạo danh mục</button>
+                    </form>
+                </header>
+                <div class="card-body">
+                    <h4 class="categoryName">Danh mục</h4>
+                    <table id="basic-datatable" class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>Mã</th>
+                            <th>Tên</th>
+                            <th colspan="3"></th>
+                        </tr>
+                        </thead>
+                        <tbody id="tbList">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--End mainmenu area-->
+</div>
+
+
+<div class="modal" id="updateModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Thông tin danh mục</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group row">
+                        <div class="col-4">
+                            <label for="idE">Mã</label>
+                            <input type="text" class="form-control" id="idE" readonly>
+                        </div>
+                        <div class="col-8">
+                            <label for="nameE">Tên danh mục</label>
+                            <input type="text" class="form-control" id="nameE">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                <button type="button" id="btnUpdate" class="btn btn-primary">Lưu</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/resource/js/category/category.js"></script>
+<th:block th:include="/layout/script"/>
+</body>
+</html>
