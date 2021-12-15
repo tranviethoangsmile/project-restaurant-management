@@ -21,7 +21,7 @@
 
 @keyframes spWaveBe{from{-webkit-transform:scale(1,1);opacity:1}to{-webkit-transform:scale(1.5,1.5);opacity:0}}
 
-#listProduct{
+.list-product{
     height: 450px;
     width: 100%;
     overflow: scroll;

@@ -1,13 +1,10 @@
 package com.codegym.controller;
 
-import com.codegym.entity.Product;
 import com.codegym.service.product.IProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -40,24 +37,24 @@ public class HomeController {
     @GetMapping ("/desk")
     @PreAuthorize("hasRole('ADMIN')")
     private ModelAndView goTable () {
-        ModelAndView modelAndView = new ModelAndView("/layout/desk");
+        ModelAndView modelAndView = new ModelAndView("/user/desk");
         return modelAndView;
     }
 
     @GetMapping ("/category")
     private ModelAndView goCatogory () {
-        ModelAndView modelAndView = new ModelAndView("/layout/catogory");
+        ModelAndView modelAndView = new ModelAndView("/user/catogory");
         return modelAndView;
     }
 
     @GetMapping ("/product")
     private ModelAndView goProduct () {
-        ModelAndView modelAndView = new ModelAndView("/layout/product");
+        ModelAndView modelAndView = new ModelAndView("/user/product");
         return modelAndView;
     }
     @GetMapping ("/staff")
     private ModelAndView goStaff () {
-        ModelAndView modelAndView = new ModelAndView("/layout/staff");
+        ModelAndView modelAndView = new ModelAndView("/user/staff");
         return modelAndView;
     }
 

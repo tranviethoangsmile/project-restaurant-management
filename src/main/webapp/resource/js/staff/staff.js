@@ -67,16 +67,14 @@ $("#btn-add").on("click", function () {
                     <td>${result.address}</td>
                     <td>
                         <span class="badge ${result.status ? 'bg-success' : 'bg-warning'}">${result.status ? 'Đi làm' : 'Nghỉ làm'}</span>
-                    
-                        
                     </td>
                     <td>
-                        <a href='javascript:;' class='btn change-status ${result.status ? 'btn-success' : 'btn-secondary'} btn-sm'
+                        <a href='javascript:;' class='btn change-status ${result.status ? 'btn-success' : 'btn-secondary'}'
                             title='${result.status ? 'inactive' : 'active'} employee' data-id="${result.id}">
                         <i class='fa ${result.status ? 'fa-lock' : 'fa-lock-open'}'>Change</i>
                         </a>
                     
-                         <a href='javascript:;' class='edit btn btn-warning btn-sm' title='edit staff' data-id="${result.id}">
+                         <a href='javascript:;' class='edit btn btn-warning' title='edit staff' data-id="${result.id}">
                         <i class='fa fa-edit'>Edit</i>
                         </a>
                 
