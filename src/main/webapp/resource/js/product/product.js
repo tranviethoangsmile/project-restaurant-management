@@ -176,11 +176,69 @@ getAllCategory = function () {
                 <option value="${category.id}">${category.name}</option>
                 `
             );
+
+            $("#categories").append(
+                `
+                <option value="${category.id}">${category.name}</option>
+                `
+            )
         })
     }).fail(function () {
         $.notify("không tải được danh mục", "error")
     });
 }
+
+//Nhận danh sách món ăn theo danh mục
+
+$("#categories").on("change",function () {
+   let value = $("#categories :selected").val();
+   if(value === 'all') {
+       getAllProduct();
+   }else {
+        getProductByCategoryId(value);
+   }
+})
+
+getProductByCategoryId = function (id) {
+    $.ajax({
+        url: "/api/product/category/" + id,
+        type: "GET"
+    }).done(function (resp) {
+        $("#listProduct").empty();
+        $.each(resp, function (index, item) {
+            $("#listProduct").append(
+                `
+
+                   <tr>
+                         <td>${item.id}</td>
+                         <td>${item.name}</td>
+                         <td>${formatNumber(item.price)}</td>
+                         <td><button type="button" onclick="changerStatusOfProduct(${item.id})" class="btn btn-${item.status ? "danger" : "success"}">${item.status ? "hết hàng" : "còn hàng"}</button></td>
+                         <td>${item.category.name}</td>
+                         <td>
+                                 <button onclick="handleEdit(${item.id})" type="button" data-toggle="modal" data-target="#updateModal" class="btn btn-primary"
+                                     data-id="${item.id}"
+                                 >
+                                     <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                     Sửa
+                                 </button>
+                             </td>
+                             <td>
+                                 <button type="button" class="btn btn-outline-danger delete" onclick="deleteProduct(${item.id})">
+                                     <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                    Xoá
+                                 </button>
+                             </td>
+                     </tr>
+                `
+            )
+        })
+    }).fail(function () {
+        $.notify("tải danh sách lỗi","error")
+    });
+}
+
+
 
 //Nhận danh sách sản phẩm
 getAllProduct = function () {
