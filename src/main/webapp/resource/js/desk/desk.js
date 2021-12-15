@@ -61,7 +61,7 @@ getAllDeskForOption = function () {
                     <button onclick="deskModify(${item.id})"
                         type="button"
                         style="border-radius: 35%; width: 100px"
-                        class="btn btn-outline-secondary">
+                        class="btn btn-secondary">
                             ${item.name}
                     </button>
                 </div>
@@ -101,9 +101,9 @@ deskModify = function (id) {
             `
                     <div class="row" style="margin-left: 10px">
                             <h2>${deskResp.name}</h2>
-                            <button onclick="changerStatus(${deskResp.id})" style="width: 75px; text-align: center" title="Thay đổi trạng thái"  class="btn btn-primary"><i class="fa fa-exchange-alt"></i></button>
-                            <button onclick="editDeskInfo(${deskResp.id})" style="width: 75px" class="btn btn-success" title="Sửa thông tin bàn"><i class="fa fa-edit"></i></button>
-                            <button onclick="deleteDesk(${deskResp.id})" style="width: 75px" title="Xoá bàn" class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                            <button onclick="changerStatus(${deskResp.id})" style="width: 75px; text-align: center" title="Thay đổi trạng thái"  class="btn btn-primary"><i class="fa fa-exchange-alt"></i>Mở</button>
+                            <button onclick="editDeskInfo(${deskResp.id})" style="width: 75px" class="btn btn-success" title="Sửa thông tin bàn"><i class="fa fa-edit"></i>Sửa</button>
+                            <button onclick="deleteDesk(${deskResp.id})" style="width: 75px" title="Xoá bàn" class="btn btn-danger"><i class="fa fa-trash"></i>Xoá</button>
                     </div>
                 `
         )
