@@ -7,6 +7,7 @@ $(document).ready(function () {
 init = function () {
     getAllDeskForOption();
     getProductAll();
+    getAllCategory();
 }
 
 //Nhận tất cả bàn
@@ -201,7 +202,6 @@ createOrder = function (desk) {
         type: "POST",
         data: JSON.stringify(order)
     }).done(function (orderResp) {
-        // console.log(orderResp);
     }).fail(function (){
         $.notify("Tạo order Không thành công")
     })
@@ -246,7 +246,6 @@ getProductAll = function () {
         type: "GET"
     }).done(function (productList) {
         $.each(productList, function (index, product) {
-            console.log(product.status);
                 $(".importProduct .row").append(
                     ` 
                     <div class="col-xl-3"  style="max-height: 50%; max-width: 50%">
@@ -336,7 +335,7 @@ getOrderDetailOfDesk = function (desk_id){
         url: "/api/orderdetail/order-detail-of-deskid/" + desk_id,
         type: "GET",
     }).done(function (orderdetails) {
-        // console.log(orderdetails);
+
         $("#orderDetail_of_desk").empty();
         let btn_pay = $("#btn_pay");
         btn_pay.empty();
@@ -384,7 +383,6 @@ paymentForm = function (id) {
         url: "/api/orderdetail/orderdetailofdeskid/" + id,
         type: "GET",
     }).done(function (orderdetail) {
-        console.log(orderdetail);
         $("#bill").modal("show");
         let total = 0;
         let desk_id = 0;
@@ -419,7 +417,6 @@ paymentForm = function (id) {
                  </tr>
             `
         )
-        // console.log(order_id);
         $("#desk_name_bill").text(desk_name)
         $("#order_id_bill").val(order_id);
     }).fail(function () {
@@ -492,59 +489,59 @@ $(".logout").on("click", function () {
     }, 1000);
 });
 
-function getAllCategories() {
+
+//Nhận danh sách danh mục
+getAllCategory = function () {
     $.ajax({
-        url: "/api/category",
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        url: "/api/category/category",
         type: "GET"
-    }).done(function (resp) {
-
-        let str = ``
-        $.each(resp, (index, item) => {
-            str += `
-            <button type="button" class="btn btn-success" data-id="${item.id}">${item.name}</button>
-        `;
+    }).done(function (categories) {
+        $.each(categories, function (index, category) {
+            $("#categories").append(
+                `
+                <option value="${category.id}">${category.name}</option>
+                `
+            )
         })
-
-        $("#categoryList").html(str);
-        handleCategoryItem();
-
     }).fail(function () {
-        alert("ERROR")
+        $.notify("không tải được danh mục", "error")
     });
 }
 
-function handleCategoryItem() {
-    $("#categoryList button").on("click", function () {
-        let categoryId = $(this).data("id");
+//Nhận danh sách món ăn theo danh mục
 
-        $.ajax({
-            url: "/api/product/category/" + categoryId,
-            type: "GET"
-        }).done(function (resp) {
-            console.log(resp)
+$("#categories").on("change",function () {
+    let value = $("#categories :selected").val();
+    if(value === 'all') {
+        getProductAll();
+    }else {
+        getProductByCategoryId(value);
+    }
+})
 
-            $("#productList").empty();
-
-            $.each(resp, function (index, product) {
-                $(".importProduct .row").append(
-                    `
-                    <div class="col-xl-3"  style="max-height: 50%; max-width: 100%">
-                      <img style="max-width: 25%; max-height: 25%"  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGDhB8EB8QKSKyTZUv2xDV203sj1aTL8VZjw&usqp=CAU">
-                      <h2 id="product-name${product.id}">${product.name}</h2>
-                      <h3 id="product-price${product.id}">${product.price}</h3>
-                      <span><button type="button" class="btn btn-success" onclick="addProducetoOrderDetail(${product.id})" ${product.status ? 'disabled': ''} ><i class="fas fa-plus"></i>${product.status ? '<b style="color: red">Hết hàng</b>': 'Thêm'}</button></span>
-                    </div>
+getProductByCategoryId = function (id) {
+    $.ajax({
+        url: "/api/product/category/" + id,
+        type: "GET"
+    }).done(function (resp) {
+        $(".importProduct .row").empty();
+        $.each(resp, function (index, item) {
+            $(".importProduct .row").append(
+                ` 
+                    <div class="col-xl-3"  style="max-height: 50%; max-width: 50%">
+                      <img style="max-width: 25%; max-height: 25%" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGDhB8EB8QKSKyTZUv2xDV203sj1aTL8VZjw&usqp=CAU">
+                      <h2 id="product-name${item.id}">${item.name}</h2>
+                      <h3 id="product-price${item.id}">${item.price}</h3>                   
+                      <span><button type="button" class="btn btn-success" onclick="addProducetoOrderDetail(${item.id})" ${item.status ? 'disabled': ''} ><i class="fas fa-plus"></i>${item.status ? '<b style="color: red">Hết hàng</b>': 'Thêm'}</button></span>
+                    </div>         
                 `
-                )
-            })
-
-        }).fail(function () {
-            // alert("ERROR")
-        });
-    })
+            )
+        })
+    }).fail(function () {
+        $.notify("tải danh sách lỗi","error")
+    });
 }
-
-
-$(function () {
-    getAllCategories();
-});
