@@ -5,43 +5,17 @@
     <title>Title</title>
     <!-- Home css -->
     <link rel="stylesheet" href="/resource/css/home/home.css">
+    <link rel="stylesheet" href ="/resource/css/bill-style/bill-style.css">
     <th:block th:include="/layout/head"/>
 </head>
 <body>
+
 <div id='af-preloader'>
     <div class='af-preloader-wrap'>
         <div class='af-sp af-sp-wave'></div>
     </div>
 </div>
 
-<!--    Start mainmenu area-->
-<section class="mainmenu-area stricky">
-    <div class="container">
-        <div class="row">
-            <div class="col-xl-12">
-                <div class="inner-content clearfix">
-                    <nav class="main-menu style1 clearfix">
-                        <div class="navbar-header clearfix">
-                            <button type="button" class="navbar-toggle" data-toggle="collapse"
-                                    data-target=".navbar-collapse">
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                            </button>
-                        </div>
-                        <div class="navbar-collapse collapse clearfix">
-                            <ul class="navigation clearfix">
-                                <li><a href="/admin">Quản Lý</a></li>
-                                <li><a href="/logout" class="logout">Thoát</a></li>
-                            </ul>
-                        </div>
-                    </nav>
-                    <!--End mainmenu area-->
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
 <div class="col-xl-12" style="background-color: #727272">
     <div class="desk-list">
         <h2 class="wizard-title" style="color: #bdd30a; position: relative;left: 25%">DANH SÁCH BÀN CHƯA CÓ KHÁCH</h2>
@@ -57,8 +31,8 @@
                 <div class="col-xl-6">
                     <div class="row">
                         <h2 class="wizard-category">DANH SÁCH MÓN ĂN</h2>
-                        <span class = "category-list">
-                            <label for="categories" style = "color: #ffe6bc"><h3>Danh Mục</h3></label>
+                        <span class="category-list">
+                            <label for="categories" style="color: #ffe6bc"><h3>Danh Mục</h3></label>
                         <select id="categories">
                             <option value="all">Tất cả</option>
                         </select>
@@ -73,7 +47,7 @@
                 </div>
             </div>
         </div>
-        <div class="tab-content">
+        <div class="tab-content" style="height:550px;">
             <div class="row">
                 <div class="col-xl-6" id="border-color">
                     <div class="importProduct">
@@ -84,17 +58,74 @@
                     </div>
                 </div>
                 <div class="col-xl-6">
-                    <div class="importDeskInfo">
-                        <div class="row" id="orderOfDesk">
-                            <!--Hiển thị chi tiết order detail của bàn-->
+                    <!--test-->
+                    <div class="menu-order">
+                        <div class="table-name">
+                            <div>
+                                <p><b>Bàn 1</b></p>
+                                <p>Anh Vũ</p>
+                            </div>
                         </div>
-                        <div id="btn_pay">
-                            <!--Hiển thị nút thanh toán-->
+                        <div id="table-bill-1" class="table-bill">
+                            <div class="bill-items">
+                                <div class="col-md-5"><p>Cà phê đen</p>
+                                    <p>Giá: 12.000 vnđ</p></div>
+                                <div class="col-md-3" style="text-align: center;">
+                                    <button class="btn-minus"><i class="fa fa-minus"></i></button>
+                                    <span>1</span>
+                                    <button class="btn-plus"><i class="fa fa-plus"></i></button>
+                                </div>
+                                <div class="col-md-4" style="text-align: right;"><p>12.000 vnđ</p></div>
+                            </div>
+                            <div class="bill-items">
+                                <div class="col-md-5"><p>Cà phê sữa</p>
+                                    <p>Giá: 15.000 vnđ</p></div>
+                                <div class="col-md-3" style="text-align: center;">
+                                    <button class="btn-minus"><i class="fa fa-minus"></i></button>
+                                    <span>1</span>
+                                    <button class="btn-plus"><i class="fa fa-plus"></i></button>
+                                </div>
+                                <div class="col-md-4" style="text-align: right;"><p>15.000 vnđ</p></div>
+                            </div>
+                        </div>
+                        <div id="sub-total-money-1" class="sub-total-money">
+                            <div class="col-md-8">
+                                <p><b>Tiền sản phẩm</b></p>
+                                <p>Phí dịch vụ</p>
+                            </div>
+                            <div class="col-md-4" style="text-align: right;">
+                                <p><b>27.000 vnđ</b></p>
+                                <p>10.000 vnđ</p></div>
+                        </div>
+                        <div id="total-money-1" class="total-money">
+                            <div class="col-md-8">
+                                <p><b>Tổng tiền</b></p>
+                            </div>
+                            <div class="col-md-4" style="text-align: right;">
+                                <p><b>37.000 vnđ</b></p>
+                            </div>
+                        </div>
+                        <div class="checkout">
+                            <button type="button" class="btn btn-success">Thanh toán</button>
                         </div>
                     </div>
+                    <!--end-->
+                    <!--                    <div class="importDeskInfo">-->
+                    <!--                        <div class="row" id="orderOfDesk">-->
+                    <!--                            &lt;!&ndash;Hiển thị chi tiết order detail của bàn&ndash;&gt;-->
+                    <!--                        </div>-->
+                    <!--                        <div id="btn_pay">-->
+                    <!--                            &lt;!&ndash;Hiển thị nút thanh toán&ndash;&gt;-->
+                    <!--                        </div>-->
+                    <!--                    </div>-->
                 </div>
             </div>
-
+        </div>
+        <div class="navbar-option">
+            <div class="col-xl-12">
+                <a class="btn btn-outline-primary" href="/admin">Quản lý</a>
+                <a class="btn btn-outline-primary" href="/logout">Thoát</a>
+            </div>
         </div>
     </div>
 </div> <!-- wizard container -->

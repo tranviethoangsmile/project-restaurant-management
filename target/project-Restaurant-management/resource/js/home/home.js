@@ -291,6 +291,40 @@ addProducetoOrderDetail = function (id) {
 }
 
 //Nhận order bằng desk_id
+// getOrderByDeskId = function (id) {
+//     $("#order_id").text('')
+//     $(".importDeskInfo .row").empty();
+//     $.ajax({
+//         headers: {
+//             'Accept': 'application/json',
+//             'Content-Type': 'application/json'
+//         },
+//         url: "/api/order/getorderbydeskid/" + id,
+//         type: "GET"
+//     }).done(function (order){
+//         getOrderDetailOfDesk(order.desk.id);
+//         $("#order_id").text(order.id);
+//         $(".importDeskInfo .row").append(
+//             `
+//                 <div class="card">
+//                     <h2 id="desk_name">${order.desk.name}</h2>
+//                     <table class="table table-hover">
+//                         <tbody id="orderDetail_of_desk">
+//                              <!-- hiển thị danh sách món ăn của bàn-->
+//                         </tbody>
+//                          <tfoot id="total_payment_of_desk">
+//                             <!--Hiển thị tổng tiền-->
+//                          </tfoot>
+//                     </table>
+//
+//                 </div>
+//             `
+//         )
+//     }).fail(function (){
+//         $.notify("order fail","error")
+//     })
+// }
+//test bảng mới ở phần hiển thị
 getOrderByDeskId = function (id) {
     $("#order_id").text('')
     $(".importDeskInfo .row").empty();

@@ -208,7 +208,6 @@ getProductByCategoryId = function (id) {
         $.each(resp, function (index, item) {
             $("#listProduct").append(
                 `
-
                    <tr>
                          <td>${item.id}</td>
                          <td>${item.name}</td>
@@ -304,6 +303,7 @@ changerStatusOfProduct = function (id) {
             }).done(function (product) {
                 if (product != null) {
                     getAllProduct();
+                    $("#categories :selected").val('all');
                     $.notify("Thay đổi thành công", "success");
                 }
             }).fail(function () {

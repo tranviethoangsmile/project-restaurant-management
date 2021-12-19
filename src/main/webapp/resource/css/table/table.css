@@ -298,6 +298,10 @@ a:focus {
 
 @keyframes spWaveBe{from{-webkit-transform:scale(1,1);opacity:1}to{-webkit-transform:scale(1.5,1.5);opacity:0}}
 
+body {
+    overflow-x: hidden;
+    background-color:bisque;
+}
 
 .wizard-navigation {
     position: relative;

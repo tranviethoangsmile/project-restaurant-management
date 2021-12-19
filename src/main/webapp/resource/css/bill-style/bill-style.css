@@ -1,0 +1,80 @@
+.menu-order {
+    background-color: #fff;
+    margin-top: 25px;
+    border-radius: 10px;
+    padding-bottom: 20px;
+}
+
+.table-name {
+    padding: 10px 15px;
+    border-bottom: solid 2px #f1f1f1;
+}
+
+.table-bill {
+    display: flow-root;
+    padding-bottom: 20px;
+    border-bottom: solid 2px #f1f1f1;
+    min-height: 150px;
+    max-height: 200px;
+    overflow: auto;
+    overflow-x: hidden;
+}
+
+.table-bill:hover {
+    cursor: pointer;
+}
+
+.bill-items {
+    display: flex;
+    margin-top: 10px;
+    padding-top: 5px;
+    padding-right: 15px;
+    padding-left: 15px;
+    font-size: 13px;
+}
+
+.bill-items .btn-minus {
+    color: #f7961b;
+    /* color: #fff; */
+    background-color: transparent;
+    border: 0 solid transparent;
+    margin-right: 3px;
+    padding: 0 3px;
+    /* display: none; */
+}
+
+.bill-items .btn-plus {
+    color: #f7961b;
+    /* color: #fff; */
+    background-color: transparent;
+    border: 0 solid transparent;
+    margin-left: 3px;
+    padding: 0 3px;
+    /* display: none; */
+}
+
+.sub-total-money {
+    display: flex;
+    padding-top: 10px;
+    border-bottom: solid 2px #f1f1f1;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.total-money {
+    display: flow-root;
+    padding-top: 10px;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.checkout {
+    padding: 20px 0;
+    text-align: center;
+}
+
+.checkout .btn-success {
+    width: 85%;
+    border-radius: 20px;
+}
+
