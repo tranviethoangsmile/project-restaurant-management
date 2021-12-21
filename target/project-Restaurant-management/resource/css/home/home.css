@@ -19,7 +19,25 @@
 @-webkit-keyframes spWaveBe{from{-webkit-transform:scale(1,1);opacity:1}to{-webkit-transform:scale(1.5,1.5);opacity:0}}
 
 @keyframes spWaveBe{from{-webkit-transform:scale(1,1);opacity:1}to{-webkit-transform:scale(1.5,1.5);opacity:0}}
+body {
+    overflow-x: hidden;
+    background-color:red;
+}
+.wizard-card .tab-content {
+    height: 500px;
+}
+.navbar-option{
+    position: fixed;
+    margin-top: 41%;
+    background-color: bisque;
+}
 
+.btn-option {
+    position: fixed;
+    z-index: 1000;
+    margin-top: 10%;
+    margin-right: 10px;
+}
 #orderOfDesk {
     min-height: 350px;
     max-height: 410px;
@@ -58,7 +76,7 @@
 }
 .wizard-title {
     color: #1f5b71;
-    margin: 20px;
+    margin: 5px;
     text-align: left;
     position: relative;
     left: 950px;
@@ -77,7 +95,6 @@
 
 .btn.btn-success {
     background-color: #8affd1;
-    border-radius: 20px;
 
 }
 .btn.btn-success:hover{
@@ -127,11 +144,16 @@
 }
 
 .orderDetail_bill{
-    min-height: 350px;
-    max-height: 410px;
+    height: 500px;
     width: 100%;
     overflow: scroll;
     border: 1px solid;
     color: darkgray;
+}
+.navbar-option a {
+    width: 100px;
+    height: 30px;
+    background-color: mintcream;
+    font-weight: 900;
 }
 

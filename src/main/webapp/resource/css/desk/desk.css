@@ -21,6 +21,10 @@
 
 @keyframes spWaveBe{from{-webkit-transform:scale(1,1);opacity:1}to{-webkit-transform:scale(1.5,1.5);opacity:0}}
 
+body {
+    overflow-x: hidden;
+    background-color:bisque;
+}
 #allProductOfDesk{
     height: 300px;
     width: 100%;
@@ -50,4 +54,11 @@
 }
 .main-slider {
     background-color: bisque;
+}
+.btn.btn-success {
+    background-color: #8affd1;
+    color: #FFFFFF;
+}
+.btn.btn-success:hover{
+    background-color: #6a1a21;
 }

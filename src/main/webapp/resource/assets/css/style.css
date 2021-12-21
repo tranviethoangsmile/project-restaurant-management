@@ -9512,19 +9512,19 @@ select:focus {
 .main-menu.style1 .navigation li:last-child{
     border-right: none;
 }
-.main-menu.style1 .navigation li a {
-    position: relative;
-    display: block;
-    color: #ffffff;
-    font-size: 14px;
-    line-height: 14px;
-    font-weight: 700;
-    text-transform: uppercase;
-    opacity: 1;
-    padding: 28px 28px 28px;
-    transition: all 300ms ease;
-    font-family: 'Poppins', sans-serif;
-}
+/*.main-menu.style1 .navigation li a {*/
+/*    position: relative;*/
+/*    display: block;*/
+/*    color: #ffffff;*/
+/*    font-size: 14px;*/
+/*    line-height: 14px;*/
+/*    font-weight: 700;*/
+/*    text-transform: uppercase;*/
+/*    opacity: 1;*/
+/*    padding: 28px 28px 28px;*/
+/*    transition: all 300ms ease;*/
+/*    font-family: 'Poppins', sans-serif;*/
+/*}*/
 .main-menu.style1 .navigation > li:hover > a, 
 .main-menu.style1 .navigation > li.current > a {
     color: #303030; 

@@ -343,8 +343,7 @@ h2.title {
 .wizard-card .picture-src {
   width: 100%; }
 .wizard-card .tab-content {
-  max-height: 500px;
-  min-height: 500px;
+ height: 450px;
 }
 .wizard-card .wizard-footer {
   }
@@ -354,7 +353,7 @@ h2.title {
   display: none; }
 .wizard-card .wizard-header {
   text-align: center;
-  padding: 25px 0 35px; }
+  padding: 5px 0 5px; }
 .wizard-card .wizard-header h5 {
   margin: 5px 0 0; }
 .wizard-card .nav-pills > li {

@@ -86,6 +86,12 @@ public class RestaurantAPI {
         return new ResponseEntity<Boolean>(true, HttpStatus.CREATED);
     }
 
+    @PostMapping("/product/getStatusProduct/{id}")
+    public Boolean getStatusProduct(@PathVariable Long id) {
+        Optional<Product> product = iProductService.findById(id);
+        return product.get().getStatus();
+    }
+
     @PutMapping ("/product/changerstatus/{id}")
     public Product changerStatus (@PathVariable Long id) {
         ProductDTO productDTO = iProductService.findByIdPDTO(id).get();
