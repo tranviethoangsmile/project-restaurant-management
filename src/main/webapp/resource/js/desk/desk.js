@@ -324,7 +324,7 @@ getOrderDetailOfDesk = function (desk_id){
             `
                     <tr>
                         <th colspan="4"><b>Tổng: </b></th>
-                        <th><h2>${formatNumber(total)} vnđ </h2></th>
+                        <th><h2>${formatNumber(total + (total * 10 / 100))} vnđ </h2></th>
                      </tr>
                      <tr>
                           <td style="text-align: right; margin-right: 30px" colspan="5"><button onclick="paymentForm(${desk_id})" class="btn btn-success">Thanh toán</button></td>
@@ -375,8 +375,8 @@ paymentForm = function (id) {
         $("#total_bill").append(
             `
                 <tr>
-                    <th colspan="4"><b>Tổng</b></th>
-                    <th><input type="text" id="total_bill_pay" value="${total}" readonly hidden> ${formatNumber(total)} vnđ</th>
+                    <th colspan="4"><b>Tổng: + 10 % Thuế GTGT</b></th>
+                    <th><input type="text" id="total_bill_pay" value="${total}" readonly hidden> ${formatNumber(total + (total * 10 / 100 ))} vnđ</th>
                  </tr>
                  <tr>
                       <td style="text-align: right; margin-right: 30px" colspan="4"><button type="button" onclick="billPrint()" class="btn btn-success" disabled>In Hoá Đơn</button></td>

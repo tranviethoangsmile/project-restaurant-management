@@ -277,39 +277,51 @@ checkStatusProduct = function (id) {
         url: "/api/product/getStatusProduct/" + id,
         type: "POST"
     }).done(function (resp) {
-        status = resp;
-        return status;
-    }).fail (() => {
-        $.notify("...","waiting")
+       status  = resp;
+    }).fail(() => {
+        $.notify("...", "waiting")
     })
 }
 
 
+
+
 //thêm sản phẩm vào
 addProducetoOrderDetail = function (id) {
-        let price = $("#product-price" + id).text();
-        let order_id = parseInt($("#order_id").text());
-        let orderDetailDTO = {
-            orderId: order_id,
-            productName: $("#product-name" + id).text(),
-            productPrice: price,
-            unitPrice: price,
-            quantity: 1
-        }
-        $.ajax({
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            url: "/api/orderdetail/create",
-            type: "POST",
-            data: JSON.stringify(orderDetailDTO)
-        }).done(function (orderDetailResp) {
-            getOrderDetailOfDesk(orderDetailResp.order.desk.id);
-            $.notify("Gọi món thành công", "success")
-        }).fail(function () {
-            $.notify("Bạn chưa chọn Bàn", "error")
-        })
+    checkStatusProduct(id);
+    console.log(status);
+    switch(status) {
+        case "false":
+        default:
+            let price = $("#product-price" + id).text();
+            let order_id = parseInt($("#order_id").text());
+            let orderDetailDTO = {
+                orderId: order_id,
+                productName: $("#product-name" + id).text(),
+                productPrice: price,
+                unitPrice: price,
+                quantity: 1
+            }
+            $.ajax({
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                url: "/api/orderdetail/create",
+                type: "POST",
+                data: JSON.stringify(orderDetailDTO)
+            }).done(function (orderDetailResp) {
+                getOrderDetailOfDesk(orderDetailResp.order.desk.id);
+                $.notify("Gọi món thành công", "success")
+            }).fail(function () {
+                $.notify("Bạn chưa chọn Bàn", "error")
+            })
+            break;
+        case "true":
+            $.notify("sản phẩm hết hàng","warning");
+            break;
+    }
+
 }
 
 
@@ -333,7 +345,7 @@ getOrderByDeskId = function (id) {
     })
 }
 
-
+//Nhận chi tiết order của bàn
 getOrderDetailOfDesk = function (desk_id) {
     $.ajax({
         headers: {
@@ -391,6 +403,8 @@ getOrderDetailOfDesk = function (desk_id) {
         $.notify("Tải thông tin bàn không thành công", "error");
     })
 }
+
+//Thanh toán
 paymentForm = function (id) {
     $(".btn_pay").empty();
     $.ajax({
@@ -473,12 +487,19 @@ billNotPrint = function (id) {
             <button onclick="notication()" type="button" class="btn btn-success">Thanh toán</button>
             `
         );
-        $.notify("Đã thanh toán", "success");
+        Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Thanh toán thành công',
+            showConfirmButton: false,
+            timer: 1500
+        })
     }).fail(function () {
         $.notify("Thanh toán lỗi", "error");
     })
 }
 
+//Thông báo lúc không chọn bàn
 notication = function () {
     $.notify("Không khả dụng", "warning");
 }
@@ -541,6 +562,7 @@ $("#categories").on("change", function () {
     }
 })
 
+//Nhận sản phẩm theo id Category
 getProductByCategoryId = function (id) {
     $.ajax({
         url: "/api/product/category/" + id,
@@ -568,7 +590,6 @@ getProductByCategoryId = function (id) {
 
 
 //lấy link ảnh
-
 getLinkImage = function (value) {
     switch (value) {
         case "Coffee":
