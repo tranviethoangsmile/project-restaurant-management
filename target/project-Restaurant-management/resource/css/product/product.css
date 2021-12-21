@@ -23,10 +23,9 @@
 
 body {
     overflow-x: hidden;
-    background-color:bisque;
 }
 .list-product{
-    height: 450px;
+    height: 550px;
     width: 100%;
     overflow: scroll;
 }

@@ -10,6 +10,7 @@ init = function () {
     getAllCategory();
 }
 
+
 //Nhận tất cả bàn
 getAllDeskForOption = function () {
     $.ajax({
@@ -29,7 +30,7 @@ getAllDeskForOption = function () {
                 <div class="col-xl-1">
                     <button onclick="deskModify(${item.id})"
                         type="button"
-                        style="border-radius: 35%; width: 100px; margin-left: 10px"
+                        style=" width: 100px; margin-left: 10px"
                         class="btn btn-success">
                             ${item.name}
                     </button>
@@ -37,11 +38,11 @@ getAllDeskForOption = function () {
                 `
                 )
             }
-            if(item.status) {
+            if (item.status) {
                 $(".wizard-navigation").append(
                     `
-                        <div class="col-xl-2">
-                            <a data-toggle = "tab" onclick = "getOrderByDeskId(${item.id})" style=" margin: 10px" class="btn btn-success">${item.name}</a>
+                        <div class="col-xl-1">
+                            <a data-toggle = "tab" onclick = "getOrderByDeskId(${item.id})" style=" margin: 5px; color: #FFFFFF" class="btn btn-success">${item.name}</a>
                         </div>
                     `
                 )
@@ -106,7 +107,7 @@ saveEditDesk = function () {
                 type: "POST",
                 data: JSON.stringify(desk)
             }).done(function (deskResp) {
-                if(deskResp != null) {
+                if (deskResp != null) {
                     getAllDeskForOption();
                     $("#desk_modify_edit").modal("hide");
                     $.notify("Sửa thành công", "success");
@@ -191,7 +192,7 @@ changerStatus = function (id) {
 //Tạo order
 createOrder = function (desk) {
     let order = {
-        desk : desk,
+        desk: desk,
     }
     $.ajax({
         headers: {
@@ -202,7 +203,7 @@ createOrder = function (desk) {
         type: "POST",
         data: JSON.stringify(order)
     }).done(function (orderResp) {
-    }).fail(function (){
+    }).fail(function () {
         $.notify("Tạo order Không thành công")
     })
 }
@@ -245,86 +246,86 @@ getProductAll = function () {
         url: "/api/product",
         type: "GET"
     }).done(function (productList) {
+
         $.each(productList, function (index, product) {
-                $(".importProduct .row").append(
-                    ` 
+            let categoryName = product.category.name;
+            let image = getLinkImage(categoryName)
+            $(".importProduct .row").append(
+                ` 
                     <div class="col-xl-3"  style="max-height: 50%; max-width: 50%">
-                      <img style="max-width: 25%; max-height: 25%" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGDhB8EB8QKSKyTZUv2xDV203sj1aTL8VZjw&usqp=CAU">
+                      <img style="max-width: 50%; max-height: 50%" src= ${image}>
                       <h2 id="product-name${product.id}">${product.name}</h2>
                       <h3 id="product-price${product.id}">${product.price}</h3>                   
-                      <span><button type="button" class="btn btn-success" onclick="addProducetoOrderDetail(${product.id})" ${product.status ? 'disabled': ''} ><i class="fas fa-plus"></i>${product.status ? '<b style="color: red">Hết hàng</b>': 'Thêm'}</button></span>
+                      <span><button type="button" class="btn btn-success" onclick="addProducetoOrderDetail(${product.id})" ${product.status ? 'disabled' : ''} >${product.status ? '<b style="color: red">Hết hàng</b>' : 'Thêm'}</button></span>
                     </div>         
                 `
-                )
+            )
         })
     }).fail(function () {
-        $.notify("Không tải được sản phẩm","error")
+        $.notify("Không tải được sản phẩm", "error")
     });
 }
 
-//thêm sản phẩm vào
-addProducetoOrderDetail = function (id) {
-    let price = $("#product-price" + id).text();
-    let order_id = parseInt($("#order_id").text());
-    let orderDetailDTO = {
-        orderId:order_id,
-        productName : $("#product-name" + id).text(),
-        productPrice: price,
-        unitPrice: price,
-        quantity : 1
-    }
+//chưa hoàn thành
+var status = "";
+checkStatusProduct = function (id) {
     $.ajax({
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         },
-        url: "/api/orderdetail/create",
-        type: "POST",
-        data: JSON.stringify(orderDetailDTO)
-    }).done (function (orderDetailResp){
-        getOrderDetailOfDesk(orderDetailResp.order.desk.id);
-        $.notify("Gọi món thành công","success")
-    }).fail(function (){
-        $.notify("Bạn chưa chọn Bàn","error")
+        url: "/api/product/getStatusProduct/" + id,
+        type: "POST"
+    }).done(function (resp) {
+       status  = resp;
+    }).fail(() => {
+        $.notify("...", "waiting")
     })
+}
+
+
+
+
+//thêm sản phẩm vào
+addProducetoOrderDetail = function (id) {
+    checkStatusProduct(id);
+    console.log(status);
+    switch(status) {
+        case "false":
+        default:
+            let price = $("#product-price" + id).text();
+            let order_id = parseInt($("#order_id").text());
+            let orderDetailDTO = {
+                orderId: order_id,
+                productName: $("#product-name" + id).text(),
+                productPrice: price,
+                unitPrice: price,
+                quantity: 1
+            }
+            $.ajax({
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                url: "/api/orderdetail/create",
+                type: "POST",
+                data: JSON.stringify(orderDetailDTO)
+            }).done(function (orderDetailResp) {
+                getOrderDetailOfDesk(orderDetailResp.order.desk.id);
+                $.notify("Gọi món thành công", "success")
+            }).fail(function () {
+                $.notify("Bạn chưa chọn Bàn", "error")
+            })
+            break;
+        case "true":
+            $.notify("sản phẩm hết hàng","warning");
+            break;
+    }
 
 }
 
+
 //Nhận order bằng desk_id
-// getOrderByDeskId = function (id) {
-//     $("#order_id").text('')
-//     $(".importDeskInfo .row").empty();
-//     $.ajax({
-//         headers: {
-//             'Accept': 'application/json',
-//             'Content-Type': 'application/json'
-//         },
-//         url: "/api/order/getorderbydeskid/" + id,
-//         type: "GET"
-//     }).done(function (order){
-//         getOrderDetailOfDesk(order.desk.id);
-//         $("#order_id").text(order.id);
-//         $(".importDeskInfo .row").append(
-//             `
-//                 <div class="card">
-//                     <h2 id="desk_name">${order.desk.name}</h2>
-//                     <table class="table table-hover">
-//                         <tbody id="orderDetail_of_desk">
-//                              <!-- hiển thị danh sách món ăn của bàn-->
-//                         </tbody>
-//                          <tfoot id="total_payment_of_desk">
-//                             <!--Hiển thị tổng tiền-->
-//                          </tfoot>
-//                     </table>
-//
-//                 </div>
-//             `
-//         )
-//     }).fail(function (){
-//         $.notify("order fail","error")
-//     })
-// }
-//test bảng mới ở phần hiển thị
 getOrderByDeskId = function (id) {
     $("#order_id").text('')
     $(".importDeskInfo .row").empty();
@@ -335,31 +336,17 @@ getOrderByDeskId = function (id) {
         },
         url: "/api/order/getorderbydeskid/" + id,
         type: "GET"
-    }).done(function (order){
+    }).done(function (order) {
         getOrderDetailOfDesk(order.desk.id);
         $("#order_id").text(order.id);
-        $(".importDeskInfo .row").append(
-            `
-                <div class="card">
-                    <h2 id="desk_name">${order.desk.name}</h2>        
-                    <table class="table table-hover">
-                        <tbody id="orderDetail_of_desk">
-                             <!-- hiển thị danh sách món ăn của bàn--> 
-                        </tbody>
-                         <tfoot id="total_payment_of_desk">
-                            <!--Hiển thị tổng tiền-->
-                         </tfoot>
-                    </table>
-                       
-                </div>   
-            `
-        )
-    }).fail(function (){
-        $.notify("order fail","error")
+        $("#desk_name").text(`${order.desk.name}`)
+    }).fail(function () {
+        $.notify("order fail", "error")
     })
 }
 
-getOrderDetailOfDesk = function (desk_id){
+//Nhận chi tiết order của bàn
+getOrderDetailOfDesk = function (desk_id) {
     $.ajax({
         headers: {
             'Accept': 'application/json',
@@ -369,36 +356,46 @@ getOrderDetailOfDesk = function (desk_id){
         url: "/api/orderdetail/order-detail-of-deskid/" + desk_id,
         type: "GET",
     }).done(function (orderdetails) {
-
         $("#orderDetail_of_desk").empty();
-        let btn_pay = $("#btn_pay");
+        $(".table-bill").empty();
+        let btn_pay = $(".checkout")
         btn_pay.empty();
         let total = 0;
         let unitPrice = 0;
-        $.each(orderdetails, function (index, orderDetail){
+        $.each(orderdetails, function (index, orderDetail) {
             unitPrice = (orderDetail.productPrice * orderDetail.quantity)
             total += unitPrice;
-            $("#orderDetail_of_desk").append(
-                `
-                <tr>
-                    <th>${index + 1}</th>
-                    <th>${orderDetail.productName}</th>
-                    <th>${orderDetail.productPrice}</th>
-                    <th>${orderDetail.quantity}</th>
-                    <th>${unitPrice}</th>
-                </tr>
-                `
-            )
+            $(".table-bill").append(`
+             <div class="bill-items">
+                 <div class="col-md-5">
+                        <p>${orderDetail.productName}</p>
+                        <p>${formatNumber(orderDetail.productPrice)}</p>
+                 </div>
+                 <div class="col-md-3" style="text-align: center;">
+                        <span><b>${orderDetail.quantity}</b></span>
+                </div>
+                <div class="col-md-4" style="text-align: right;">
+                    <p>${formatNumber(unitPrice)}</p>
+                </div>
+             </div>
+            `)
         })
-        btn_pay.append(
+        btn_pay.append
+        (
+            `         
+              <button type="button" onclick="paymentForm(${desk_id})" class="btn btn-success">Thanh toán</button>   
             `
-                    <tr>
-                        <th colspan="4"><b>Tổng: </b></th>
-                        <th><h2>${formatNumber(total)} vnđ </h2></th>
-                     </tr>
-                     <tr>
-                          <td style="text-align: right; margin-right: 30px" colspan="5"><button onclick="paymentForm(${desk_id})" class="btn btn-success">Thanh toán</button></td>
-                     </tr>
+        )
+        $("#total").text
+        (
+            `
+                ${formatNumber(total)} vnđ
+                `
+        )
+        $("#totalAndFee").text
+        (
+            `
+                ${formatNumber(total + (total * 10 / 100))} vnđ
                 `
         )
 
@@ -406,9 +403,10 @@ getOrderDetailOfDesk = function (desk_id){
         $.notify("Tải thông tin bàn không thành công", "error");
     })
 }
+
+//Thanh toán
 paymentForm = function (id) {
-    $("#product_list_of_bill").empty();
-    $("#total_bill").empty();
+    $(".btn_pay").empty();
     $.ajax({
         headers: {
             'Accept': 'application/json',
@@ -422,33 +420,19 @@ paymentForm = function (id) {
         let desk_id = 0;
         let desk_name = '';
         let order_id = 0;
-        $.each(orderdetail,function (index,item){
+        $.each(orderdetail, function (index, item) {
             total += item.unitPrice;
             desk_id = parseInt(item.order.desk.id);
             desk_name = item.order.desk.name;
             order_id = item.order.id;
-            $("#product_list_of_bill").append(
-                `
-                <tr>
-                    <td>${index + 1}</td>
-                    <td>${item.productName}</td>
-                    <td>${formatNumber(item.productPrice)}</td>
-                    <td>${item.quantity}</td>
-                    <td>${formatNumber(item.unitPrice)}</td>
-                </tr>
-               `
-            );
         })
-        $("#total_bill").append(
+        let totalAndTax = total + (total * 10 / 100);
+        $("#total_bill_pay").val(totalAndTax);
+        $("#total_amount").text(`${formatNumber(total + (total * 10 / 100))} vnđ`)
+        $(".btn_pay").append(
             `
-                <tr>
-                    <th colspan="4"><b>Tổng</b></th>
-                    <th><input type="text" id="total_bill_pay" value="${total}" readonly hidden> ${formatNumber(total)} vnđ</th>
-                 </tr>
-                 <tr>
-                      <td style="text-align: right; margin-right: 30px" colspan="4"><button type="button" onclick="billPrint()" class="btn btn-success">In Hoá Đơn</button></td>
-                      <td style="text-align: right; margin-right: 30px" colspan="4"><button type="button" onclick="billNotPrint(${desk_id})" class="btn btn-success">Không in hoá đơn</button></td>
-                 </tr>
+                        <button type="button" onclick="billPrint()" class="btn btn-success" disabled>In Hoá Đơn</button>
+                        <button type="button" onclick="billNotPrint(${desk_id})" class="btn btn-success">Không in hoá đơn</button>         
             `
         )
         $("#desk_name_bill").text(desk_name)
@@ -459,13 +443,19 @@ paymentForm = function (id) {
 }
 
 //thanh toán in hoá đơn
-billPrint = function (){
-
-
-}
+// billPrint = function () {
+//
+//
+// }
+$("#customerMoney").on("change", function () {
+    let cusMoney = parseInt($("#customerMoney :selected").val());
+    let moneyPay = parseInt($("#total_bill_pay").val());
+    $("#moneyForCustomer").val(`${formatNumber(cusMoney - moneyPay)} vnđ`)
+})
 
 // Thanh toán không in hoá đơn
-billNotPrint = function (id){
+billNotPrint = function (id) {
+    $(".checkout").empty();
     let bill = {
         createAt: new Date(),
         total: $("#total_bill_pay").val(),
@@ -481,26 +471,41 @@ billNotPrint = function (id){
         url: "/api/bill/create",
         type: "POST",
         data: JSON.stringify(bill)
-    }).done(function (billResp){
+    }).done(function (billResp) {
         $("#bill").modal("hide");
-        $("#orderDetail_of_desk").empty();
-        $("#total_payment_of_desk").empty();
         // console.log(billResp);
         changerStatusAfterPayment(billResp.desk_id);
-        $("#product_list_of_desk").empty();
-        $("#total").empty();
+        $("#total").text('0 vnđ');
+        $("#totalAndFee").text('0 vnđ');
         $("#order_id").text('');
         $("#desk_name").text('');
         $("#desk_name_bill").text('');
-        $("#btn_pay").empty();
-        $.notify("Đã thanh toán", "success");
-    }).fail(function (){
+        $(".table-bill").empty();
+        $("#customerName").val('');
+        $(".checkout").append(
+            `
+            <button onclick="notication()" type="button" class="btn btn-success">Thanh toán</button>
+            `
+        );
+        Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Thanh toán thành công',
+            showConfirmButton: false,
+            timer: 1500
+        })
+    }).fail(function () {
         $.notify("Thanh toán lỗi", "error");
     })
 }
 
+//Thông báo lúc không chọn bàn
+notication = function () {
+    $.notify("Không khả dụng", "warning");
+}
+
 //thay đổi trạng thái sau khi thanh toán.
-changerStatusAfterPayment = function (id){
+changerStatusAfterPayment = function (id) {
     $.ajax({
         url: '/api/desk/update/' + id,
         type: 'PUT'
@@ -512,7 +517,7 @@ changerStatusAfterPayment = function (id){
 }
 
 //format Number
-function formatNumber (num) {
+function formatNumber(num) {
     return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")
 }
 
@@ -548,15 +553,16 @@ getAllCategory = function () {
 
 //Nhận danh sách món ăn theo danh mục
 
-$("#categories").on("change",function () {
+$("#categories").on("change", function () {
     let value = $("#categories :selected").val();
-    if(value === 'all') {
+    if (value === 'all') {
         getProductAll();
-    }else {
+    } else {
         getProductByCategoryId(value);
     }
 })
 
+//Nhận sản phẩm theo id Category
 getProductByCategoryId = function (id) {
     $.ajax({
         url: "/api/product/category/" + id,
@@ -564,18 +570,47 @@ getProductByCategoryId = function (id) {
     }).done(function (resp) {
         $(".importProduct .row").empty();
         $.each(resp, function (index, item) {
+            let categoryName = item.category.name;
+            let image = getLinkImage(categoryName)
             $(".importProduct .row").append(
                 ` 
                     <div class="col-xl-3"  style="max-height: 50%; max-width: 50%">
-                      <img style="max-width: 25%; max-height: 25%" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGDhB8EB8QKSKyTZUv2xDV203sj1aTL8VZjw&usqp=CAU">
+                      <img style="max-width: 50%; max-height: 50%" src= ${image}>
                       <h2 id="product-name${item.id}">${item.name}</h2>
                       <h3 id="product-price${item.id}">${item.price}</h3>                   
-                      <span><button type="button" class="btn btn-success" onclick="addProducetoOrderDetail(${item.id})" ${item.status ? 'disabled': ''} ><i class="fas fa-plus"></i>${item.status ? '<b style="color: red">Hết hàng</b>': 'Thêm'}</button></span>
+                      <span><button type="button" class="btn btn-success" onclick="addProducetoOrderDetail(${item.id})" ${item.status ? 'disabled' : ''} >${item.status ? '<b style="color: red">Hết hàng</b>' : 'Thêm'}</button></span>
                     </div>         
                 `
             )
         })
     }).fail(function () {
-        $.notify("tải danh sách lỗi","error")
+        $.notify("tải danh sách lỗi", "error")
     });
+}
+
+
+//lấy link ảnh
+getLinkImage = function (value) {
+    switch (value) {
+        case "Coffee":
+            return "https://znews-photo.zadn.vn/w660/Uploaded/ngotno/2020_03_13/trung1_1_.jpg";
+        case "Giải khát":
+            return "https://image.thanhnien.vn/1200x630/Uploaded/2021/wpxlcqjwq/2021_07_23/nuoc-ngot_tfeo.jpg";
+        case "FastFoods":
+            return "https://hoangminhdecor.com/wp-content/uploads/2020/11/fastfood.jpg";
+        case "Hải Sản":
+            return "https://pasgo.vn/Upload/anh-chi-tiet/nha-hang-mr-tom-american-hai-san-cajun-my-tran-dai-nghia-2-normal-2069579746006.jpg";
+        case "Món Nhật":
+            return "https://intertour.vn/uploads/media/news/acf0cb81-69ff-431a-830a-7ea8380391b2.jpg";
+        case "Món Hàn":
+            return "http://imgs.vietnamnet.vn/Images/vnn/2015/06/29/10/20150629103528-1.jpg";
+        case "Món Âu-Mỹ":
+            return "https://cafebiz.cafebizcdn.vn/162123310254002176/2021/12/12/photo-2-16392707819481450115646.jpg";
+        case "Món Trung Quốc":
+            return "https://dulichvietnam.com.vn/du-lich-trung-quoc/wp-content/uploads/2020/03/mon-an-trung-quoc-noi-tieng-mien-chua-trung-khanh-1.jpg";
+        case "Món Đặc Biệt":
+            return "https://image-us.24h.com.vn/upload/4-2020/images/2020-10-20/1603169108-398-thumbnail-width640height480.jpg";
+        default:
+            return "https://media.cooky.vn/images/blog-2016/nghe-thuat-trinh-bay-va-chup-anh-mon-an%208.jpg";
+    }
 }

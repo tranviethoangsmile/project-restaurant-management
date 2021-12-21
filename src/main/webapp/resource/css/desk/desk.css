@@ -55,3 +55,10 @@ body {
 .main-slider {
     background-color: bisque;
 }
+.btn.btn-success {
+    background-color: #8affd1;
+    color: #FFFFFF;
+}
+.btn.btn-success:hover{
+    background-color: #6a1a21;
+}

@@ -25,8 +25,5 @@ public class Bill {
     private String customerName;
     private Long order_id;
     private Long desk_id;
-//    @ManyToOne
-//    @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)
-//    private User user;
 
 }

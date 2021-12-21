@@ -95,7 +95,6 @@ body {
 
 .btn.btn-success {
     background-color: #8affd1;
-    border-radius: 50%;
 
 }
 .btn.btn-success:hover{
@@ -145,11 +144,16 @@ body {
 }
 
 .orderDetail_bill{
-    min-height: 350px;
-    max-height: 410px;
+    height: 500px;
     width: 100%;
     overflow: scroll;
     border: 1px solid;
     color: darkgray;
+}
+.navbar-option a {
+    width: 100px;
+    height: 30px;
+    background-color: mintcream;
+    font-weight: 900;
 }
 

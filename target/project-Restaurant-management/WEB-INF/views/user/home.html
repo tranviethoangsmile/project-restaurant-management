@@ -2,10 +2,10 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Màn hình thu ngân</title>
     <!-- Home css -->
     <link rel="stylesheet" href="/resource/css/home/home.css">
-    <link rel="stylesheet" href ="/resource/css/bill-style/bill-style.css">
+    <link rel="stylesheet" href="/resource/css/bill-style/bill-style.css">
     <th:block th:include="/layout/head"/>
 </head>
 <body>
@@ -62,69 +62,41 @@
                     <div class="menu-order">
                         <div class="table-name">
                             <div>
-                                <p><b>Bàn 1</b></p>
-                                <p>Anh Vũ</p>
+                                <p>
+                                <h2 id="desk_name"></h2></p>
                             </div>
                         </div>
                         <div id="table-bill-1" class="table-bill">
-                            <div class="bill-items">
-                                <div class="col-md-5"><p>Cà phê đen</p>
-                                    <p>Giá: 12.000 vnđ</p></div>
-                                <div class="col-md-3" style="text-align: center;">
-                                    <button class="btn-minus"><i class="fa fa-minus"></i></button>
-                                    <span>1</span>
-                                    <button class="btn-plus"><i class="fa fa-plus"></i></button>
-                                </div>
-                                <div class="col-md-4" style="text-align: right;"><p>12.000 vnđ</p></div>
-                            </div>
-                            <div class="bill-items">
-                                <div class="col-md-5"><p>Cà phê sữa</p>
-                                    <p>Giá: 15.000 vnđ</p></div>
-                                <div class="col-md-3" style="text-align: center;">
-                                    <button class="btn-minus"><i class="fa fa-minus"></i></button>
-                                    <span>1</span>
-                                    <button class="btn-plus"><i class="fa fa-plus"></i></button>
-                                </div>
-                                <div class="col-md-4" style="text-align: right;"><p>15.000 vnđ</p></div>
-                            </div>
+                            <!--hiển thị chi tiết hoá đơn-->
                         </div>
                         <div id="sub-total-money-1" class="sub-total-money">
                             <div class="col-md-8">
                                 <p><b>Tiền sản phẩm</b></p>
-                                <p>Phí dịch vụ</p>
+                                <p>Thuế GTGT</p>
                             </div>
                             <div class="col-md-4" style="text-align: right;">
-                                <p><b>27.000 vnđ</b></p>
-                                <p>10.000 vnđ</p></div>
+                                <p><b id="total">0 vnđ</b></p>
+                                <p>10%</p></div>
                         </div>
                         <div id="total-money-1" class="total-money">
                             <div class="col-md-8">
                                 <p><b>Tổng tiền</b></p>
                             </div>
                             <div class="col-md-4" style="text-align: right;">
-                                <p><b>37.000 vnđ</b></p>
+                                <p><b id="totalAndFee">0 vnđ</b></p>
                             </div>
                         </div>
                         <div class="checkout">
-                            <button type="button" class="btn btn-success">Thanh toán</button>
+                            <button onclick="notication()" type="button" class="btn btn-success">Thanh toán</button>
                         </div>
                     </div>
-                    <!--end-->
-                    <!--                    <div class="importDeskInfo">-->
-                    <!--                        <div class="row" id="orderOfDesk">-->
-                    <!--                            &lt;!&ndash;Hiển thị chi tiết order detail của bàn&ndash;&gt;-->
-                    <!--                        </div>-->
-                    <!--                        <div id="btn_pay">-->
-                    <!--                            &lt;!&ndash;Hiển thị nút thanh toán&ndash;&gt;-->
-                    <!--                        </div>-->
-                    <!--                    </div>-->
                 </div>
             </div>
         </div>
         <div class="navbar-option">
             <div class="col-xl-12">
-                <a class="btn btn-outline-primary" href="/admin">Quản lý</a>
-                <a class="btn btn-outline-primary" href="/logout">Thoát</a>
+                <a class="btn btn-outline-success" href="/admin">Quản lý</a>
+                <a class="btn btn-outline-success" href="/logout">Thoát</a>
             </div>
         </div>
     </div>
@@ -143,27 +115,40 @@
                     <h3 style="text-align: center">HOTLINE: 0909900990</h3>
                     <div class="orderDetail_bill">
                         <form class="form-group">
-                            <input type="number" id="order_id_bill" hidden>
-                            <label for="customerName">Tên khách</label>
-                            <input class="form-control" id="customerName" type="text">
-                            <table class="table table-hover">
-                                <h2 id="desk_name_bill"></h2>
-                                <h3 style="color: #00A0D1; text-align: center"><b>HOÁ ĐƠN THANH TOÁN</b></h3>
-                                <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>Tên món</th>
-                                    <th>Giá</th>
-                                    <th>Số lượng</th>
-                                    <th>Thành tiền</th>
-                                </tr>
-                                </thead>
-                                <tbody id="product_list_of_bill">
-                                <!--Hiển thị danh mục món ăn của bàn-->
-                                </tbody>
-                                <tfoot id="total_bill">
-                                </tfoot>
-                            </table>
+                            <input class="form-control" type="number" id="order_id_bill" hidden>
+                            <h2 id="desk_name_bill"></h2>
+                            <h3 style="color: #00A0D1; text-align: center"><b>CHI TIẾT THANH TOÁN</b></h3>
+                            <div id="total_bill">
+                                <div class="container">
+                                    <label for="customerName">Tên khách</label>
+                                    <input class="form-control" id="customerName" type="text">
+                                    <span>
+                            <b>TIỀN PHẢI TRẢ: </b>
+                            <input class="form-control" type="text" id="total_bill_pay" readonly hidden>
+                            <h2 id="total_amount">
+                                <!-- tiền phải trả-->
+                            </h2>
+                        </span><br>
+                                    <p>Tiền khách trả: </p>
+                                    <select class="form-control" id="customerMoney">
+                                        <option value="5000000">5.000.000 vnđ</option>
+                                        <option value="4000000">4.000.000 vnđ</option>
+                                        <option value="3000000">3.000.000 vnđ</option>
+                                        <option value="2000000">2.000.000 vnđ</option>
+                                        <option value="1000000">1.000.000 vnđ</option>
+                                        <option value="500000">500.000 vnđ</option>
+                                        <option value="200000">200.000 vnđ</option>
+                                        <option value="100000">100.000 vnđ</option>
+                                        <option value="50000">50.000 vnđ</option>
+                                        <option value="20000">20.000 vnđ</option>
+                                    </select>
+                                    <label>Tiền trả lại: </label>
+                                    <input class="form-control" type="text" id="moneyForCustomer" readonly>
+                                    <div class="btn_pay">
+                                        <!--btn pay-->
+                                    </div>
+                                </div>
+                            </div>
                         </form>
                     </div>
                 </div>
