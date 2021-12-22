@@ -1,0 +1,34 @@
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<th:block th:fragment="menuOrder">
+    <div class="menu-order">
+        <div class="table-name">
+            <div>
+                <p>
+                <h2 id="desk_name"></h2></p>
+            </div>
+        </div>
+        <div id="table-bill-1" class="table-bill">
+            <!--hiển thị chi tiết hoá đơn-->
+        </div>
+        <div id="sub-total-money-1" class="sub-total-money">
+            <div class="col-md-8">
+                <p><b>Tiền sản phẩm</b></p>
+                <p>Thuế GTGT</p>
+            </div>
+            <div class="col-md-4" style="text-align: right;">
+                <p><b id="total">0 vnđ</b></p>
+                <p>10%</p></div>
+        </div>
+        <div id="total-money-1" class="total-money">
+            <div class="col-md-8">
+                <p><b>Tổng tiền</b></p>
+            </div>
+            <div class="col-md-4" style="text-align: right;">
+                <p><b id="totalAndFee">0 vnđ</b></p>
+            </div>
+        </div>
+        <div class="checkout">
+            <button onclick="notication()" type="button" class="btn btn-success">Thanh toán</button>
+        </div>
+    </div>
+</th:block>
