@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Trang sản phẩm</title>
+    <link rel="stylesheet" href="/resource/css/product/product.css">
+    <th:block th:include="/layout/head"/>
+</head>
+<body>
+<!--preloader-->
+<th:block th:include="/layout/preloader"/>
+
+<!--navbar-->
+<th:block th:include="/user/admin/navbar"/>
+
+<div class="content" style="background-color: bisque">
+    <header>
+        <th:block th:include="/user/product/create-item"/>
+    </header>
+    <div class="card-body">
+        <div class="row">
+           <th:block th:include="/user/product/categoryOption"/>
+        </div>
+        <div class="list-product">
+           <th:block th:include="/user/product/product-list"/>
+        </div>
+    </div>
+</div>
+
+
+
+<!--update-->
+<th:block th:include="/user/product/update-product"/>
+
+<script src="/resource/js/product/product.js"></script>
+<th:block th:include="/layout/script"/>
+</body>
+</html>

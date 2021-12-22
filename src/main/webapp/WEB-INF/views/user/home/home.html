@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Màn hình thu ngân</title>
+    <!-- Home css -->
+    <link rel="stylesheet" href="/resource/css/home/home.css">
+    <link rel="stylesheet" href="/resource/css/bill-style/bill-style.css">
+    <th:block th:include="/layout/head"/>
+</head>
+<body>
+
+<!--preloader-->
+<th:block th:include="/layout/preloader"/>
+
+<!--bàn trống-->
+<th:block th:include="/user/home/deskFree"/>
+<!--      Wizard container        -->
+
+<div class="wizard-container">
+    <div class="card wizard-card" data-color="red" id="wizard">
+        <div class="wizard-header">
+            <div class="row">
+                <div class="col-xl-6">
+                    <div class="row">
+                        <h2 class="wizard-category">DANH SÁCH MÓN ĂN</h2>
+                        <th:block th:include="/user/home/categoryOption"/>
+                    </div>
+                </div>
+                <div class="col-xl-6">
+                    <th:block th:include="/user/home/deskNotFree"/>
+                </div>
+            </div>
+        </div>
+        <div class="tab-content" style="height:550px;">
+            <div class="row">
+                <div class="col-xl-6" id="border-color">
+                    <!--product list-->
+                    <th:block th:include="/user/home/productList"/>
+                </div>
+                <div class="col-xl-6">
+                    <!--menu order-->
+                    <th:block th:include="/user/home/menuOrder"/>
+                </div>
+            </div>
+        </div>
+        <div class="navbar-option">
+            <div class="col-xl-12">
+                <a class="btn btn-outline-success" href="/admin">Quản lý</a>
+                <a class="btn btn-outline-success" href="/logout">Thoát</a>
+            </div>
+        </div>
+    </div>
+</div> <!-- wizard container -->
+
+
+<!--Modal bill-->
+<th:block th:include="/user/home/bill"/>
+
+<!--modal option desk-->
+<th:block th:include="/user/home/deskOption"/>
+
+<!--modal edit-->
+<th:block th:include="/user/home/deskModify"/>
+<!------------------------------------>
+<script src="/resource/js/home/home.js"></script>
+<th:block th:include="/layout/script"/>
+</body>
+</html>

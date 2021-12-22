@@ -1,0 +1,30 @@
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<th:block th:fragment="create-item">
+    <form class="form-group">
+        <div class="col-md-6">
+            <label class="form-label">Username</label>
+            <input type="text" class="form-control" id="username">
+        </div>
+        <div class="col-md-6">
+            <label class="form-label">Password</label>
+            <input type="password" class="form-control" id="password">
+        </div>
+        <div class="col-12">
+            <label class="form-label">Họ Tên</label>
+            <input type="text" class="form-control" id="name" placeholder="Nguyễn Văn A">
+        </div>
+        <div class="col-12">
+            <label class="form-label">Địa chỉ</label>
+            <input type="text" class="form-control" id="address" placeholder="Apartment, studio, or floor">
+        </div>
+        <div class="col-md-6">
+            <label class="form-label">Điện thoại</label>
+            <input type="tel" class="form-control" id="phone">
+        </div>
+        <div class="col-md-6">
+            <label class="form-label">Ngày sinh</label>
+            <input type="date" name="dob" id="dob" class="form-control" data-rule-required="true"
+                   data-msg-required="Dob is required">
+        </div>
+    </form>
+</th:block>

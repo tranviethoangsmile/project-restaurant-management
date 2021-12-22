@@ -1,0 +1,32 @@
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<th:block th:fragment="billDetail">
+    <div class="modal fade" id="billDetail" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Chi tiết hoá đơn</h5>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-hover">
+                        <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Tên Món</th>
+                            <th>Giá</th>
+                            <th>Số lượng</th>
+                            <th>Đơn giá</th>
+                        </tr>
+                        </thead>
+                        <tbody id="bill-list-detail">
+                        <!--Hiển thị chi tiết bill-->
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" disabled>In Hoá Đơn</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</th:block>

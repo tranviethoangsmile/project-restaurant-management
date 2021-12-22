@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Trang Admin</title>
+    <!-- Home css -->
+    <link rel="stylesheet" href="/resource/css/admin/admin.css">
+    <th:block th:include="/layout/head"/>
+</head>
+<body>
+<!--preloader-->
+<th:block th:include = "/layout/preloader"/>
+
+<!--nav-->
+<th:block th:include="/user/admin/navbar"/>
+
+<!--End mainmenu area-->
+<section class="main-slider">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12">
+                    <!--chart-->
+                <th:block th:include="/user/admin/chart"/>
+            </div>
+            <div style="margin-top: 30px" class="col-xl-12">
+                    <!--Bill list-->
+                <th:block th:include="/user/admin/billList"/>
+            </div> <!-- end card body-->
+        </div> <!-- end card -->
+    </div><!-- end col-->
+</section>
+
+
+<!--Hiển thị chi tiết bill-->
+<th:block th:include="/user/admin/billDetail"/>
+<!--script-->
+<script src="/resource/js/adminPage/admin.js"></script>
+<th:block th:include="/layout/script"/>
+</body>
+</html>
