@@ -15,7 +15,7 @@
     <div class="container">
         <div class="row">
             <div class="col-xl-3">
-               <th:block th:include="/user/desk/create-item"/>
+                <th:block th:include="/user/desk/create-item"/>
             </div>
             <div class="col-xl-9">
                 <th:block th:include="/user/desk/desk-free"/>
@@ -27,7 +27,7 @@
             <div class="wizard-container">
                 <div class="card wizard-card" data-color="red" id="wizard">
                     <div class="wizard-header">
-                       <th:block th:include="/user/desk/desk-not-free"/>
+                        <th:block th:include="/user/desk/desk-not-free"/>
                         <div class="tab-content" style="margin-top: 10px">
                             <h2>Thực đơn</h2>
                             <div id="allProductOfDesk">
@@ -61,16 +61,16 @@
     </div>
 </section>
 
-    <!--modal desk modify-option-->
-    <th:block th:include="/user/desk/desk-modify-option"/>
-    <!--modal edit-->
-    <th:block th:include="/user/desk/desk-edit"/>
+<!--modal desk modify-option-->
+<th:block th:include="/user/desk/desk-modify-option"/>
+<!--modal edit-->
+<th:block th:include="/user/desk/desk-edit"/>
 <!--Modal bill-->
 <th:block th:include="/user/desk/bill"/>
 
 <!--   Core JS Files-->
 
-    <script src="/resource/js/desk/desk.js"></script>
+<script src="/resource/js/desk/desk.js"></script>
 <th:block th:include="/layout/script"/>
 
 </body>

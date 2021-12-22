@@ -43,7 +43,7 @@ public class HomeController {
 
     @GetMapping ("/category")
     private ModelAndView goCatogory () {
-        ModelAndView modelAndView = new ModelAndView("/user/catogory");
+        ModelAndView modelAndView = new ModelAndView("/user/category/catogory");
         return modelAndView;
     }
 
@@ -54,7 +54,7 @@ public class HomeController {
     }
     @GetMapping ("/staff")
     private ModelAndView goStaff () {
-        ModelAndView modelAndView = new ModelAndView("/user/staff");
+        ModelAndView modelAndView = new ModelAndView("/user/staff/staff");
         return modelAndView;
     }
 

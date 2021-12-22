@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Category</title>
+    <th:block th:include="/layout/head"/>
+</head>
+<body>
+<!--preloader-->
+<th:block th:include="/layout/preloader"/>
+
+<div class="boxed_wrapper">
+    <!--    Start mainmenu area-->
+    <section class="mainmenu-area stricky">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <th:block th:include="/user/category/navbar"/>
+                </div>
+            </div>
+            <div class="content">
+                <header>
+                    <th:block th:include="/user/category/create-item"/>
+                </header>
+                <div class="card-body">
+                    <th:block th:include="/user/category/category-list"/>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--End mainmenu area-->
+</div>
+
+
+<!--update-->
+<th:block th:include="/user/category/category-update"/>
+<script src="/resource/js/category/category.js"></script>
+<th:block th:include="/layout/script"/>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Nhân viên</title>
+    <th:block th:include="/layout/head"/>
+</head>
+<body>
+<!--preloader-->
+<th:block th:include="/layout/preloader"/>
+<!--    Start mainmenu area-->
+<th:block th:include="/user/admin/navbar"/>
+<!--End mainmenu area-->
+<div class="container">
+   <th:block th:include="/user/staff/create-item"/>
+    <div class="col-12">
+        <button type="submit" id="btn-add" class="btn btn-primary">Thêm nhân viên</button>
+    </div>
+    <th:block th:include="/user/staff/staff-list"/>
+</div>
+
+
+<!-- Modal -->
+<th:block th:include="/user/staff/staff-update"/>
+
+<script src="/resource/js/staff/staff.js"></script>
+<th:block th:include="/layout/script"/>
+</body>
+</html>

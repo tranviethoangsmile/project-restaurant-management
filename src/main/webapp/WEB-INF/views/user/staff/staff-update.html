@@ -1,0 +1,54 @@
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<th:block th:fragment="staff-update">
+    <div id="EditUserModal" class="modal fade">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Sửa thông tin nhân viên</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="modal-alert-danger">
+
+                    </div>
+                    <form id="frmCreateEmployee">
+                        <input type="text" id="id" style="display: none">
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label>Họ tên</label>
+                                    <input type="text" id="nameUp" name="nameUp" class="form-control"
+                                           placeholder="Họ tên">
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label>Địa chỉ</label>
+                                    <input type="text" id="addressUp" name="addressUp" class="form-control"
+                                           placeholder="Địa chỉ">
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label class="form-label">Điện thoại</label>
+                                <input type="tel" class="form-control" id="phoneUp" placeholder="Điện thoại">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Ngày sinh</label>
+                                <input type="date" name="dob" id="dobUp" class="form-control" data-rule-required="true"
+                                       data-msg-required="Dob is required">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <input type="button" class="btn btn-default" data-dismiss="modal" value="Hủy">
+                    <input type="button" id="btnEdit" name="submit" class="btn btn-success" value="Lưu">
+                </div>
+            </div>
+        </div>
+    </div>
+</th:block>
