@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Desk</title>
+    <link rel="stylesheet" href="/resource/css/desk/desk.css">
+    <th:block th:include="/layout/head"/>
+</head>
+<body>
+<!--preloader-->
+<th:block th:include="/layout/preloader"/>
+
+
+<section class="main-slider" style="margin-top: 10px">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-3">
+               <th:block th:include="/user/desk/create-item"/>
+            </div>
+            <div class="col-xl-9">
+                <th:block th:include="/user/desk/desk-free"/>
+            </div>
+        </div>
+        <!--   Big container   -->
+        <div class="col-xl-12">
+            <!--      Wizard container        -->
+            <div class="wizard-container">
+                <div class="card wizard-card" data-color="red" id="wizard">
+                    <div class="wizard-header">
+                       <th:block th:include="/user/desk/desk-not-free"/>
+                        <div class="tab-content" style="margin-top: 10px">
+                            <h2>Thực đơn</h2>
+                            <div id="allProductOfDesk">
+                                <table class="table table-hover">
+                                    <tbody id="product_list_of_desk">
+                                    <!--DANH SÁCH SẢN PHẨM-->
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div id="total" style="margin-top: 10px">
+                                <!--Hiển thị nút thanh toán và tổng tiền-->
+                            </div>
+                            <div>
+                                <p><b>Thuế VAT : 10%</b></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> <!-- wizard container -->
+        </div>
+        <div class="navbar-option">
+            <div class="col-xl-12">
+                <a class="btn btn-outline-success" href="/home">Trang chủ</a>
+                <a class="btn btn-outline-success" href="/admin">Quản lý</a>
+                <a class="btn btn-outline-success" href="/category">Danh mục</a>
+                <a class="btn btn-outline-success" href="/product">Sản phẩm</a>
+                <a class="btn btn-outline-success" href="/desk">Bàn</a>
+                <a class="btn btn-outline-success" href="/logout">Thoát</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!--modal desk modify-option-->
+    <th:block th:include="/user/desk/desk-modify-option"/>
+    <!--modal edit-->
+    <th:block th:include="/user/desk/desk-edit"/>
+<!--Modal bill-->
+<th:block th:include="/user/desk/bill"/>
+
+<!--   Core JS Files-->
+
+    <script src="/resource/js/desk/desk.js"></script>
+<th:block th:include="/layout/script"/>
+
+</body>
+</html>

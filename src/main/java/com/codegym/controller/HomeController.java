@@ -22,7 +22,7 @@ public class HomeController {
     private ModelAndView goHome () {
         ModelAndView modelAndView = new ModelAndView();
 //        Iterable<Product> products = productService.findAll();
-        modelAndView.setViewName("/user/home");
+        modelAndView.setViewName("/user/home/home");
 //        modelAndView.addObject("products", products);
         return modelAndView;
     }
@@ -30,14 +30,14 @@ public class HomeController {
     @GetMapping("/admin")
     @PreAuthorize("hasRole('ADMIN')")
     private ModelAndView goAdmin () {
-        ModelAndView modelAndView = new ModelAndView("/user/admin");
+        ModelAndView modelAndView = new ModelAndView("/user/admin/admin");
         return modelAndView;
     }
 
     @GetMapping ("/desk")
     @PreAuthorize("hasRole('ADMIN')")
     private ModelAndView goTable () {
-        ModelAndView modelAndView = new ModelAndView("/user/desk");
+        ModelAndView modelAndView = new ModelAndView("/user/desk/desk");
         return modelAndView;
     }
 
@@ -49,7 +49,7 @@ public class HomeController {
 
     @GetMapping ("/product")
     private ModelAndView goProduct () {
-        ModelAndView modelAndView = new ModelAndView("/user/product");
+        ModelAndView modelAndView = new ModelAndView("/user/product/product");
         return modelAndView;
     }
     @GetMapping ("/staff")

@@ -368,14 +368,14 @@ getOrderDetailOfDesk = function (desk_id) {
             $(".table-bill").append(`
              <div class="bill-items">
                  <div class="col-md-5">
-                        <p>${orderDetail.productName}</p>
-                        <p>${formatNumber(orderDetail.productPrice)}</p>
+                        <p><b>${orderDetail.productName}</b></p>
+                        <p><b>${formatNumber(orderDetail.productPrice)}</b></p>
                  </div>
                  <div class="col-md-3" style="text-align: center;">
                         <span><b>${orderDetail.quantity}</b></span>
                 </div>
                 <div class="col-md-4" style="text-align: right;">
-                    <p>${formatNumber(unitPrice)}</p>
+                    <p><b>${formatNumber(unitPrice)}</b></p>
                 </div>
              </div>
             `)

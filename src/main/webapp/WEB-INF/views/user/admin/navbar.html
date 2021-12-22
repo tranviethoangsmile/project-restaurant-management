@@ -1,0 +1,34 @@
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<th:block th:fragment="navbar">
+    <section class="mainmenu-area stricky">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="inner-content clearfix">
+                        <nav class="main-menu style1 clearfix">
+                            <div class="navbar-header clearfix">
+                                <button type="button" class="navbar-toggle" data-toggle="collapse"
+                                        data-target=".navbar-collapse">
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                </button>
+                            </div>
+                            <div class="navbar-collapse collapse clearfix">
+                                <ul class="navigation clearfix">
+                                    <li><a href="/home">Trang Chủ</a></li>
+                                    <li><a href="/admin">Quản lý</a></li>
+                                    <li><a href="/staff">Nhân Viên</a></li>
+                                    <li><a href="/category">Danh Mục</a></li>
+                                    <li><a href="/product">Món ăn</a></li>
+                                    <li><a href="/desk">Bàn Phục vụ</a></li>
+                                    <li><a href="/logout">Thoát</a></li>
+                                </ul>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</th:block>
