@@ -369,7 +369,7 @@ getOrderDetailOfDesk = function (desk_id) {
              <div class="bill-items">
                  <div class="col-md-5">
                         <p><b>${orderDetail.productName}</b></p>
-                        <p><b>${formatNumber(orderDetail.productPrice)}</b></p>
+                        <p>${formatNumber(orderDetail.productPrice)}</p>
                  </div>
                  <div class="col-md-3" style="text-align: center;">
                         <span><b>${orderDetail.quantity}</b></span>
