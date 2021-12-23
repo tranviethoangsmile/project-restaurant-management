@@ -108,13 +108,22 @@ public class AppConfig implements WebMvcConfigurer, ApplicationContextAware {
         return em;
     }
 
+//    @Bean
+//    public DataSource dataSource() {
+//        DriverManagerDataSource dataSource = new DriverManagerDataSource();
+//        dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
+//        dataSource.setUrl("jdbc:mysql://localhost:3306/project_restaurant_management?characterEncoding=UTF-8");
+//        dataSource.setUsername("root");
+//        dataSource.setPassword("29061993");
+//        return dataSource;
+//    }
     @Bean
     public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
-        dataSource.setUrl("jdbc:mysql://localhost:3306/project_restaurant_management?characterEncoding=UTF-8");
-        dataSource.setUsername("root");
-        dataSource.setPassword("29061993");
+        dataSource.setUrl("postgres://ldmxmuauxwzmpf:e39b0eb4056948a8b0a5b08a0f603f2ec0cb1c21a3481f0516c7efe384e1a3b0@ec2-3-93-94-34.compute-1.amazonaws.com:5432/d2992vub1msabi");
+        dataSource.setUsername("ldmxmuauxwzmpf");
+        dataSource.setPassword("e39b0eb4056948a8b0a5b08a0f603f2ec0cb1c21a3481f0516c7efe384e1a3b0");
         return dataSource;
     }
 
