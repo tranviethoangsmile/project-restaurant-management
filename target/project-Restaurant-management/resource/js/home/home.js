@@ -426,18 +426,109 @@ paymentForm = function (id) {
                     <th><input type="text" id="total_bill_pay" value="${total}" readonly hidden> ${formatNumber(total)} vnđ</th>
                  </tr>
                  <tr>
-                      <td style="text-align: right; margin-right: 30px" colspan="4"><button type="button" onclick="billPrint()" class="btn btn-success" disabled>In Hoá Đơn</button></td>
+                      <td style="text-align: right; margin-right: 30px" colspan="4"><button type="button" onclick="billPrint(${desk_id})" class="btn btn-success" >In Hoá Đơn</button></td>
                       <td style="text-align: right; margin-right: 30px" colspan="4"><button type="button" onclick="billNotPrint(${desk_id})" class="btn btn-success">Không in hoá đơn</button></td>
                  </tr>
             `
         )
-        // console.log(order_id);
         $("#desk_name_bill").text(desk_name)
         $("#order_id_bill").val(order_id);
     }).fail(function () {
         $.notify("Tải thông tin bàn không thành công", "error");
     })
 }
+
+function downloadPDFWithPDFMake() {
+
+    var today = new Date();
+    var date = today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear();
+    var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+    var dateTime = date+' '+time;
+
+    var id = $("#desk_name_bill").text();
+
+    var time = dateTime;
+
+    var tableHeaderText = [...document.querySelectorAll('#styledTable thead tr th')].map(thElement => ({ text: thElement.textContent, style: 'tableHeader' }));
+
+    var tableRowCells = [...document.querySelectorAll('#styledTable tbody tr td')].map(tdElement => ({ text: tdElement.textContent, style: 'tableData' }));
+    var tableDataAsRows = tableRowCells.reduce((rows, cellData, index) => {
+        // index is th
+        if (index % 5 === 0) {
+            rows.push([]);
+        }
+
+        rows[rows.length - 1].push(cellData);
+        return rows;
+    }, []);
+
+    var docDefinition = {
+        header:[ { text: 'PI MẬP', alignment: 'center' },
+            { text: '225 tang bat ho, thanh pho hue', italics: true, fontSize: 10,  alignment: "center"},
+            { text: 'HOTLINE: 0353168699', italics: true, fontSize: 10,  alignment: "center"},
+
+        ],
+
+
+        // footer: function(currentPage, pageCount) { return ({ text: `Page ${currentPage} of ${pageCount}`, alignment: 'center' }); },
+        content: [
+            { text: `bàn: ` + id, italics: true, fontSize: 10,  alignment: "life"},
+            { text: time, italics: true, fontSize: 10,  alignment: "life"},
+
+
+            {
+                layout: 'lightHorizontalLines',
+                table: {
+                    headerRows: 1,
+                    body: [
+                        tableHeaderText,
+                        ...tableDataAsRows,
+                    ]
+                },
+            },
+        ],
+
+    };
+    pdfMake.createPdf(docDefinition).open();
+
+}
+
+// inhoadon
+billPrint = function (id){
+    let bill = {
+        createAt: new Date(),
+        total: $("#total_bill_pay").val(),
+        customerName: $("#customerName").val(),
+        order_id: $("#order_id_bill").val(),
+        desk_id: id
+    }
+    $.ajax({
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        url: "/api/bill/create",
+        type: "POST",
+        data: JSON.stringify(bill)
+    }).done(function (billResp){
+        $("#bill").modal("hide");
+        downloadPDFWithPDFMake();
+        $("#orderDetail_of_desk").empty();
+        $("#total_payment_of_desk").empty();
+        changerStatusAfterPayment(billResp.desk_id);
+        $("#product_list_of_desk").empty();
+        $("#total").empty();
+        $("#order_id").text('');
+        $("#desk_name").text('');
+        $("#desk_name_bill").text('');
+        $.notify("Đã thanh toán", "success");
+        let btn_pay = $("#btn_pay");
+        btn_pay.empty();
+    }).fail(function (){
+        $.notify("Thanh toán lỗi", "error");
+    })
+}
+
 
 // Thanh toán không in hoá đơn
 billNotPrint = function (id){

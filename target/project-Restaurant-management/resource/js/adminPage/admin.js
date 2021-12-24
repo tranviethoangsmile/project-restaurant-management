@@ -19,7 +19,6 @@ init = function () {
     getAllProduct();
     getAllBill();
 }
-
 getAllBill = function () {
     $.ajax({
         url: "/api/bill/getallbill",
@@ -27,20 +26,24 @@ getAllBill = function () {
     }).done(function (bills){
         console.log(bills);
         $("#list-bill").empty();
+        let cusName = '';
         $.each(bills,function (index,bill){
             $("#list-bill").append(
                 `
                 <tr>
                     <td>${index + 1}</td>
-                    <td>${convert(bill.createAt)}</td>
-                    <td>${bill.customerName}</td>
+                    <td >${convert(bill.createAt)}</td>
+                    <td id="cus">${bill.customerName}</td>
                     <td>${formatNumber(bill.total)} vnđ</td>
                     <td><button onclick="billDetail(${bill.order_id})" class="btn btn-success">Xem chi tiết</button></td> 
                 </tr>
                 `
             )
+            cusName = $("#cus").text();
+
         })
         $('#list-bill-show').DataTable();
+        $("#customer").text(cusName)
     }).fail(function (){
         $.notify("không tải được danh sách bills","error")
     })
@@ -57,7 +60,10 @@ billDetail = function (id){
     }).done(function (orderDetailResp){
         $("#billDetail").modal("show");
         $("#bill-list-detail").empty();
+        let desk_name = '';
+
         $.each(orderDetailResp,function (index,orderdetail){
+            desk_name = orderdetail.order.desk.name;
             $("#bill-list-detail").append(
                 `
                 <tr>
@@ -70,6 +76,9 @@ billDetail = function (id){
                 `
             )
         })
+        $("#desk").text(desk_name)
+
+
     }).fail(function(){
         $.notify("không tải được danh sách", "")
     })
@@ -233,8 +242,15 @@ getAllProductOfCategory = function (id) {
 
 
 function downloadPDFWithPDFMake() {
-    var id = $("#id").text();
-    var time = $("#time").text();
+    var today = new Date();
+    var date = today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear();
+    var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+    var dateTime = date+' '+time;
+
+    var id = $("#desk").text();
+    console.log("id"+id);
+
+    var time = dateTime;
 
     var tableHeaderText = [...document.querySelectorAll('#styledTable thead tr th')].map(thElement => ({ text: thElement.textContent, style: 'tableHeader' }));
 
@@ -252,12 +268,13 @@ function downloadPDFWithPDFMake() {
     var docDefinition = {
         header:[ { text: 'PI MẬP', alignment: 'center' },
             { text: '225 tang bat ho, thanh pho hue', italics: true, fontSize: 10,  alignment: "center"},
+            { text: 'HOTLINE: 0353168699', italics: true, fontSize: 10,  alignment: "center"},
         ],
 
 
         // footer: function(currentPage, pageCount) { return ({ text: `Page ${currentPage} of ${pageCount}`, alignment: 'center' }); },
         content: [
-            { text: id, italics: true, fontSize: 10,  alignment: "life"},
+            { text: `bàn: ` + id, italics: true, fontSize: 10,  alignment: "life"},
             { text: time, italics: true, fontSize: 10,  alignment: "life"},
 
 
